@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galeri Visual | BATIK BINAR</title>
+  <meta name="description" content="Galeri visual Batik Binar. Jelajahi koleksi motif batik, proses pembuatan, detail tekstur, busana modern, dan sentra Paoman Indramayu."
+  <link rel="canonical" href="https://batikbinar.id/galeri.html">
+  <meta property="og:title" content="Galeri Visual | BATIK BINAR">
+  <meta property="og:description" content="Galeri visual Batik Binar. Jelajahi koleksi motif batik, proses pembuatan, detail tekstur, busana modern, dan sentra Paoman Indramayu.">
+  <meta property="og:image" content="assets/og-batik-binar.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Galeri Visual | BATIK BINAR">
+  <meta name="twitter:description" content="Galeri visual Batik Binar. Jelajahi koleksi motif batik, proses pembuatan, detail tekstur, busana modern, dan sentra Paoman Indramayu.">
+  <meta name="twitter:image" content="assets/og-batik-binar.jpg">>
+    <link rel="stylesheet" href="css/01-base.css">
+  <link rel="stylesheet" href="css/03-header.css">
+  <link rel="stylesheet" href="css/04-buttons.css">
+  <link rel="stylesheet" href="css/06-footer.css">
+  <link rel="stylesheet" href="css/08-components.css">
+  <link rel="stylesheet" href="css/10-gallery.css">
+  <link rel="stylesheet" href="css/11-overlays.css">
+  <link rel="stylesheet" href="css/14-animations.css">
+  <link rel="stylesheet" href="css/15-responsive.css">
+  <link rel="icon" type="image/png" href="assets/logo-batik-binar.png">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Lewati ke konten utama</a>
+
+    <!-- header dan navbar -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-container">
+      <!-- Brand Logo using Official Logo Image -->
+      <a href="index.html" class="brand-logo">
+        <img src="assets/logo-batik-binar.png" width="682" height="1024" alt="Batik Binar" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-name">BATIK BINAR</span>
+          <span class="brand-tag">Dermayon Heritage</span>
+        </div>
+      </a>
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html#beranda" class="nav-link">Home</a></li>
+          <li><a href="index.html#tentang" class="nav-link">Tentang</a></li>
+          <li><a href="index.html#proses" class="nav-link">Proses</a></li>
+          <li><a href="index.html#motif" class="nav-link">Koleksi</a></li>
+          <li><a href="galeri.html" class="nav-link active">Galeri</a></li>
+          <li><a href="profile.html" class="nav-link">Profil</a></li>
+          <li><a href="belanja.html" class="nav-link">Belanja</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <a href="dashboard.html" class="nav-icon-btn" aria-label="Dashboard" style="background-color: var(--color-accent); color: white;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+        <a href="login.html" class="btn-pill btn-pill-blue" style="padding: 8px 18px; font-size: 0.88rem;">
+          <span>Login</span>
+          <div class="btn-arrow-circle" style="width: 22px; height: 22px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </a>
+      </div>
+      <button class="menu-toggle-btn" id="menuToggleBtn" aria-label="Buka menu navigasi" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Backdrop -->
+  <div class="mobile-backdrop" id="mobileBackdrop"></div>
+
+  <main id="main-content">
+    <!-- Gallery Hero Banner -->
+    <section class="gallery-hero">
+      <div class="container">
+        <h1 class="gallery-hero-title">Galeri Visual Batik Binar</h1>
+        <p class="gallery-hero-desc">
+          Jelajahi koleksi visual, dari goresan canting maestro, teknik complongan legendaris, hingga aplikasi busana modern khas warisan pesisir Indramayu.
+        </p>
+        <!-- Search Bar -->
+        <div class="gallery-search-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="galeriSearchInput" class="gallery-search-input" placeholder="Cari motif, proses, busana, tekstur..." autocomplete="off">
+          <span class="gallery-search-count" id="galeriSearchCount">Memuat koleksi&hellip;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee / Walking Animation -->
+    <div class="gallery-marquee-strip">
+      <div class="gallery-marquee-track">
+        <span class="marquee-item">Iwak Etong</span>
+        <span class="marquee-item">Kapal Kandas</span>
+        <span class="marquee-item">Merak Ngibing</span>
+        <span class="marquee-item">Sawat Kembang</span>
+        <span class="marquee-item">Mega Mendung</span>
+        <span class="marquee-item">Udang Windu</span>
+        <span class="marquee-item">Singa Barong</span>
+        <span class="marquee-item">Buketan Flora</span>
+        <span class="marquee-item">Lokcan Phoenix</span>
+        <span class="marquee-item">Ganggeng Laut</span>
+        <!-- Duplicate for seamless loop -->
+        <span class="marquee-item">Iwak Etong</span>
+        <span class="marquee-item">Kapal Kandas</span>
+        <span class="marquee-item">Merak Ngibing</span>
+        <span class="marquee-item">Sawat Kembang</span>
+        <span class="marquee-item">Mega Mendung</span>
+        <span class="marquee-item">Udang Windu</span>
+        <span class="marquee-item">Singa Barong</span>
+        <span class="marquee-item">Buketan Flora</span>
+        <span class="marquee-item">Lokcan Phoenix</span>
+        <span class="marquee-item">Ganggeng Laut</span>
+      </div>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="gallery-filter-bar">
+      <button class="gallery-filter-btn active" data-filter="semua">Semua</button>
+      <button class="gallery-filter-btn" data-filter="motif">Motif Batik</button>
+      <button class="gallery-filter-btn" data-filter="proses">Proses Pembuatan</button>
+      <button class="gallery-filter-btn" data-filter="detail">Detail Tekstur</button>
+      <button class="gallery-filter-btn" data-filter="busana">Busana Modern</button>
+      <button class="gallery-filter-btn" data-filter="sentra">Sentra Paoman</button>
+    </div>
+
+    <!-- Gallery Grid -->
+    <section class="gallery-page-section">
+      <div class="container">
+        <!-- ==========================================================================
+             PANDUAN MENGGANTI FOTO GALERI:
+             - Cukup ganti URL pada atribut: src="..." pada tag img di setiap kartu.
+             - Anda juga bisa mengubah judul pada tag h4, tag span, serta data-desc="...".
+             - Setiap foto di bawah sudah menggunakan gambar berbeda sesuai kategorinya.
+             ========================================================================== -->
+        <h2 class="sr-only">Koleksi Galeri Batik Binar</h2>
+        <div id="galeriGrid" class="gallery-page-grid">
+
+          <!-- ==================== KATEGORI: MOTIF BATIK (motif) ==================== -->
+          
+          <!-- Foto 1: Motif Iwak Etong -->
+          <div class="gallery-page-card" data-category="motif" data-title="Motif Iwak Etong" data-tag="Motif Batik" data-desc="Motif ikan etong khas pesisir laut Jawa Utara, melambangkan kelimpahan rezeki bahari dan rasa syukur nelayan Dermayon.">
+            <img src="" width="800" height="600" alt="Motif Iwak Etong" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Motif Batik</span>
+              <h3 class="gallery-page-title">Motif Iwak Etong</h3>
+            </div>
+          </div>
+
+          <!-- Foto 2: Motif Kapal Kandas -->
+          <div class="gallery-page-card" data-category="motif" data-title="Motif Kapal Kandas" data-tag="Motif Batik" data-desc="Kapal dagang kuno yang bersandar di muara Cimanuk, simbol keteguhan hati dan pantang menyerah mengarungi samudra.">
+            <img src="" width="800" height="600" alt="Motif Kapal Kandas" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Motif Batik</span>
+              <h3 class="gallery-page-title">Motif Kapal Kandas</h3>
+            </div>
+          </div>
+
+          <!-- Foto 3: Motif Merak Ngibing -->
+          <div class="gallery-page-card" data-category="motif" data-title="Motif Merak Ngibing" data-tag="Motif Batik" data-desc="Tarian merak dengan sayap mengembang memancarkan keanggunan, sukacita, dan keindahan estetika pesisir.">
+            <img src="" width="800" height="600" alt="Motif Merak Ngibing" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Motif Batik</span>
+              <h3 class="gallery-page-title">Motif Merak Ngibing</h3>
+            </div>
+          </div>
+
+          <!-- Foto 4: Motif Mega Mendung Dermayon -->
+          <div class="gallery-page-card" data-category="motif" data-title="Mega Mendung Dermayon" data-tag="Motif Batik" data-desc="Adaptasi khas pesisir Dermayon dengan gradasi warna biru samudra dan aksen rintik jarum halus.">
+            <img src="" width="800" height="600" alt="Mega Mendung Dermayon" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Motif Batik</span>
+              <h3 class="gallery-page-title">Mega Mendung Dermayon</h3>
+            </div>
+          </div>
+
+          <!-- Foto 5: Motif Udang Windu Bahari -->
+          <div class="gallery-page-card" data-category="motif" data-title="Motif Udang Windu" data-tag="Motif Batik" data-desc="Motif fauna bahari yang terinspirasi dari hasil tambak pesisir Indramayu sebagai doa kemakmuran.">
+            <img src="" width="800" height="600" alt="Motif Udang Windu" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Motif Batik</span>
+              <h3 class="gallery-page-title">Motif Udang Windu</h3>
+            </div>
+          </div>
+
+          <!-- Foto 6: Motif Singa Barong -->
+          <div class="gallery-page-card" data-category="motif" data-title="Singa Barong Paoman" data-tag="Motif Batik" data-desc="Motif agung lambang kekuatan dan keberanian, memadukan pengaruh ragam hias pesisir utara Jawa.">
+            <img src="" width="800" height="600" alt="Singa Barong Paoman" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Motif Batik</span>
+              <h3 class="gallery-page-title">Singa Barong Paoman</h3>
+            </div>
+          </div>
+
+          <!-- Foto 7: Motif Ganggeng Rumput Laut -->
+          <div class="gallery-page-card" data-category="motif" data-title="Ganggeng Rumput Laut" data-tag="Motif Batik" data-desc="Melambangkan kelenturan, kesabaran, dan ketahanan hidup nelayan menghadapi pasang surut ombak laut.">
+            <img src="" width="800" height="600" alt="Ganggeng Rumput Laut" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Motif Batik</span>
+              <h3 class="gallery-page-title">Ganggeng Rumput Laut</h3>
+            </div>
+          </div>
+
+          <!-- Foto 8: Motif Lokcan Phoenix -->
+          <div class="gallery-page-card" data-category="motif" data-title="Lokcan Burung Phoenix" data-tag="Motif Batik" data-desc="Harmoni akulturasi budaya Tionghoa pesisir dan kearifan Dermayon melambangkan keberuntungan abadi.">
+            <img src="" width="800" height="600" alt="Lokcan Burung Phoenix" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Motif Batik</span>
+              <h3 class="gallery-page-title">Lokcan Phoenix</h3>
+            </div>
+          </div>
+
+          <!-- ==================== KATEGORI: PROSES PEMBUATAN (proses) ==================== -->
+
+          <!-- Foto 9: Molani Sketsa Pola -->
+          <div class="gallery-page-card" data-category="proses" data-title="Molani Pola Sketsa" data-tag="Proses Pembuatan" data-desc="Tahap awal menggambar sketsa pola motif di atas kain mori primissima menggunakan goresan pensil halus.">
+            <img src="" width="800" height="600" alt="Molani Pola Sketsa" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Proses Pembuatan</span>
+              <h3 class="gallery-page-title">Molani Pola Sketsa</h3>
+            </div>
+          </div>
+
+          <!-- Foto 10: Nyanting Lilin Malam -->
+          <div class="gallery-page-card" data-category="proses" data-title="Nyanting Lilin Tulis" data-tag="Proses Pembuatan" data-desc="Menorehkan lilin malam panas secara manual menggunakan canting tembaga untuk mengunci garis presisi motif.">
+            <img src="" width="800" height="600" alt="Nyanting Lilin Tulis" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Proses Pembuatan</span>
+              <h3 class="gallery-page-title">Nyanting Lilin Tulis</h3>
+            </div>
+          </div>
+
+          <!-- Foto 11: Complongan Jarum Mikro -->
+          <div class="gallery-page-card" data-category="proses" data-title="Teknik Jarum Complongan" data-tag="Proses Pembuatan" data-desc="Teknik legendaris khas Indramayu menusuk ribuan jarum mikro ke lapisan lilin malam untuk menghasilkan cecek rintik magis.">
+            <img src="" width="800" height="600" alt="Teknik Jarum Complongan" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Proses Pembuatan</span>
+              <h3 class="gallery-page-title">Teknik Complongan</h3>
+            </div>
+          </div>
+
+          <!-- Foto 12: Pewarnaan Alami Kayu Mahoni -->
+          <div class="gallery-page-card" data-category="proses" data-title="Pewarnaan Alami Pesisir" data-tag="Proses Pembuatan" data-desc="Pencelupan serat kain ke dalam ekstrak alami dari kulit kayu mahoni dan daun mangga ramah lingkungan.">
+            <img src="" width="800" height="600" alt="Pewarnaan Alami Pesisir" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Proses Pembuatan</span>
+              <h3 class="gallery-page-title">Pewarnaan Alami</h3>
+            </div>
+          </div>
+
+          <!-- Foto 13: Nglorod Meluruhkan Malam -->
+          <div class="gallery-page-card" data-category="proses" data-title="Nglorod Meluruhkan Lilin" data-tag="Proses Pembuatan" data-desc="Merebus kain dalam air mendidih untuk meluruhkan lilin malam hingga motif complongan muncul dengan sempurna.">
+            <img src="" width="800" height="600" alt="Nglorod Meluruhkan Lilin" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Proses Pembuatan</span>
+              <h3 class="gallery-page-title">Nglorod Lilin Malam</h3>
+            </div>
+          </div>
+
+          <!-- Foto 14: Penjemuran Alami Surya -->
+          <div class="gallery-page-card" data-category="proses" data-title="Penjemuran Kain Alami" data-tag="Proses Pembuatan" data-desc="Mengeringkan kain batik di bawah hembusan angin sepoi pesisir Pantura untuk mengunci ketahanan pigmen warna.">
+            <img src="" width="800" height="600" alt="Penjemuran Kain Alami" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Proses Pembuatan</span>
+              <h3 class="gallery-page-title">Penjemuran Alami</h3>
+            </div>
+          </div>
+
+          <!-- ==================== KATEGORI: DETAIL TEKSTUR (detail) ==================== -->
+
+          <!-- Foto 15: Rintik Complongan -->
+          <div class="gallery-page-card" data-category="detail" data-title="Rintik Magis Complongan" data-tag="Detail Tekstur" data-desc="Kerapian lubang jarum mikro complongan yang menembus serat kain dan memunculkan rintik magis khas Dermayon.">
+            <img src="" width="800" height="600" alt="Rintik Magis Complongan" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Detail Tekstur</span>
+              <h3 class="gallery-page-title">Rintik Complongan</h3>
+            </div>
+          </div>
+
+          <!-- Foto 16: Serat Sutra ATBM -->
+          <div class="gallery-page-card" data-category="detail" data-title="Serat Sutra ATBM Halus" data-tag="Detail Tekstur" data-desc="Kilau alami tenun sutra Alat Tenun Bukan Mesin (ATBM) yang memberikan kesan anggun dan jatuh lembut di kulit.">
+            <img src="" width="800" height="600" alt="Serat Sutra ATBM Halus" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Detail Tekstur</span>
+              <h3 class="gallery-page-title">Serat Sutra ATBM</h3>
+            </div>
+          </div>
+
+          <!-- Foto 17: Retakan Lilin Crackling -->
+          <div class="gallery-page-card" data-category="detail" data-title="Retakan Lilin Alami" data-tag="Detail Tekstur" data-desc="Efek crackling unik dari retakan lilin malam menghasilkan tekstur artistik yang tidak bisa ditiru mesin sablon.">
+            <img src="" width="800" height="600" alt="Retakan Lilin Alami" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Detail Tekstur</span>
+              <h3 class="gallery-page-title">Retakan Lilin Alami</h3>
+            </div>
+          </div>
+
+          <!-- Foto 18: Ujung Canting Tembaga -->
+          <div class="gallery-page-card" data-category="detail" data-title="Canting Tembaga Presisi" data-tag="Detail Tekstur" data-desc="Ujung cucuk canting tembaga buatan pandai besi lokal yang mampu mengalirkan lilin malam setipis rambut.">
+            <img src="" width="800" height="600" alt="Canting Tembaga Presisi" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Detail Tekstur</span>
+              <h3 class="gallery-page-title">Canting Tembaga</h3>
+            </div>
+          </div>
+
+          <!-- Foto 19: Tekstur Katun Primissima -->
+          <div class="gallery-page-card" data-category="detail" data-title="Serat Mori Primissima" data-tag="Detail Tekstur" data-desc="Kerapatan tenun benang mori primissima kualitas tertinggi yang menyerap pigmen warna alami secara maksimal.">
+            <img src="" width="800" height="600" alt="Serat Mori Primissima" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Detail Tekstur</span>
+              <h3 class="gallery-page-title">Mori Primissima</h3>
+            </div>
+          </div>
+
+          <!-- ==================== KATEGORI: BUSANA MODERN (busana) ==================== -->
+
+          <!-- Foto 20: Gaun Sutra Royal -->
+          <div class="gallery-page-card" data-category="busana" data-title="Gaun Sutra Royal Blue" data-tag="Busana Modern" data-desc="Gaun pesta mewah berbahan sutra ATBM bermotif Iwak Etong bernuansa Royal Blue khas pesisir Dermayon.">
+            <img src="" width="800" height="600" alt="Gaun Sutra Royal Blue" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Busana Modern</span>
+              <h3 class="gallery-page-title">Gaun Sutra Royal</h3>
+            </div>
+          </div>
+
+          <!-- Foto 21: Kemeja Formal Minimalis -->
+          <div class="gallery-page-card" data-category="busana" data-title="Kemeja Pria Minimalis" data-tag="Busana Modern" data-desc="Kemeja pria potongan slim fit dengan penempatan motif maritim yang elegan untuk suasana profesional.">
+            <img src="" width="800" height="600" alt="Kemeja Pria Minimalis" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Busana Modern</span>
+              <h3 class="gallery-page-title">Kemeja Minimalis</h3>
+            </div>
+          </div>
+
+          <!-- Foto 22: Siluet Busana Wanita Modern -->
+          <div class="gallery-page-card" data-category="busana" data-title="Siluet Busana Wanita" data-tag="Busana Modern" data-desc="Potongan busana wanita kontemporer yang menyatu harmonis dengan kekayaan motif klasik Paoman.">
+            <img src="" width="800" height="600" alt="Siluet Busana Wanita" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Busana Modern</span>
+              <h3 class="gallery-page-title">Siluet Wanita Modern</h3>
+            </div>
+          </div>
+
+          <!-- Foto 23: Moda Kontemporer Binar -->
+          <div class="gallery-page-card" data-category="busana" data-title="Moda Kontemporer Binar" data-tag="Busana Modern" data-desc="Koleksi busana siap pakai yang dirancang untuk generasi muda aktif yang mencintai identitas nusantara.">
+            <img src="" width="800" height="600" alt="Moda Kontemporer Binar" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Busana Modern</span>
+              <h3 class="gallery-page-title">Moda Kontemporer</h3>
+            </div>
+          </div>
+
+          <!-- Foto 24: Outer Layering Kasual -->
+          <div class="gallery-page-card" data-category="busana" data-title="Outer Layering Kasual" data-tag="Busana Modern" data-desc="Cardigan dan outer santai dengan corak motif laut yang cocok dipadukan dengan celana denim.">
+            <img src="" width="800" height="600" alt="Outer Layering Kasual" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Busana Modern</span>
+              <h3 class="gallery-page-title">Outer Layering</h3>
+            </div>
+          </div>
+
+          <!-- Foto 25: Runway High Fashion -->
+          <div class="gallery-page-card" data-category="busana" data-title="Runway High Fashion" data-tag="Busana Modern" data-desc="Kreasi batik pesisir Dermayon yang tampil memukau di panggung peragaan busana tingkat nasional.">
+            <img src="" width="800" height="600" alt="Runway High Fashion" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Busana Modern</span>
+              <h3 class="gallery-page-title">Runway High Fashion</h3>
+            </div>
+          </div>
+
+          <!-- ==================== KATEGORI: SENTRA PAOMAN (sentra) ==================== -->
+
+          <!-- Foto 26: Ibu-Ibu Pembatik Paoman -->
+          <div class="gallery-page-card" data-category="sentra" data-title="Ibu Pembatik Paoman" data-tag="Sentra Paoman" data-desc="Generasi maestro pembatik Paoman yang mengabdikan hidup melestarikan warisan leluhur secara turun-temurun.">
+            <img src="" width="800" height="600" alt="Ibu Pembatik Paoman" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Sentra Paoman</span>
+              <h3 class="gallery-page-title">Pembatik Paoman</h3>
+            </div>
+          </div>
+
+          <!-- Foto 27: Workshop Sentra Paoman -->
+          <div class="gallery-page-card" data-category="sentra" data-title="Workshop Sentra Paoman" data-tag="Sentra Paoman" data-desc="Suasana ruang produksi sentra Paoman tempat canting dan wajan malam menyala setiap hari.">
+            <img src="" width="800" height="600" alt="Workshop Sentra Paoman" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Sentra Paoman</span>
+              <h3 class="gallery-page-title">Workshop Sentra</h3>
+            </div>
+          </div>
+
+          <!-- Foto 28: Kain Sentra Siap Pakai -->
+          <div class="gallery-page-card" data-category="sentra" data-title="Koleksi Kain Paoman" data-tag="Sentra Paoman" data-desc="Deretan lembaran kain panjang batik tulis Paoman yang siap dihantarkan kepada para pecinta wastra.">
+            <img src="" width="800" height="600" alt="Koleksi Kain Paoman" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Sentra Paoman</span>
+              <h3 class="gallery-page-title">Koleksi Kain Paoman</h3>
+            </div>
+          </div>
+
+          <!-- Foto 29: Showroom Utama Batik Binar -->
+          <div class="gallery-page-card" data-category="sentra" data-title="Showroom Batik Binar" data-tag="Sentra Paoman" data-desc="Galeri dan showroom utama Batik Binar di Jl. Kopral Yahya No.120, Paoman, Kec. Indramayu, Kabupaten Indramayu, Jawa Barat 45211 yang ramah pengunjung.">
+            <img src="" width="800" height="600" alt="Showroom Batik Binar" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Sentra Paoman</span>
+              <h3 class="gallery-page-title">Showroom Binar</h3>
+            </div>
+          </div>
+
+          <!-- Foto 30: Ketelitian Jemari Canting -->
+          <div class="gallery-page-card" data-category="sentra" data-title="Dedikasi Maestro Canting" data-tag="Sentra Paoman" data-desc="Fokus penuh dan ketenangan batin dalam setiap goresan canting menghasilkan karya seni bermartabat tinggi.">
+            <img src="" width="800" height="600" alt="Dedikasi Maestro Canting" loading="lazy">
+            <div class="gallery-page-overlay">
+              <span class="gallery-page-tag">Sentra Paoman</span>
+              <h3 class="gallery-page-title">Maestro Canting</h3>
+            </div>
+          </div>
+
+        </div>
+        <!-- Empty State -->
+        <div class="gallery-empty" id="galeriEmpty" style="display: none;">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <h3>Tidak Ditemukan</h3>
+          <p>Coba kata kunci lain atau reset filter pencarian Anda.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-brand">
+          <img loading="lazy" decoding="async" src="assets/logo-batik-binar.png" width="682" height="1024" alt="Batik Binar Logo">
+          <p>
+            Platform resmi pelestarian dan perwujudan modern batik pesisir Dermayon, Indramayu. Menghidupkan kembali teknik complongan dan motif maritim autentik.
+          </p>
+          <div class="footer-social-links">
+            <a href="https://www.instagram.com/bintangarutindramayu?stkn=MTF2ZGJvNXVnenlobQ==" class="social-btn" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="https://www.facebook.com/share/19sMPGLddk/" class="social-btn" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="https://wa.me/6287870229801"
+              class="social-btn"
+              aria-label="WhatsApp"
+              target="_blank" rel="noopener">
+
+              <svg viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  width="20"
+                  height="20">
+                <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6.1-3.5-8.3z"/>
+                <path d="M8.2 6.8c-.3-.7-.6-.7-.9-.7h-.8c-.3 0-.7.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.1 1.4 3.3c.2.2 2.3 3.7 5.7 5 .8.3 1.4.5 1.9.6.8.1 1.5.1 2 .1.6-.1 1.8-.7 2.1-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.7-.4l-2.1-1c-.3-.1-.6-.2-.8.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.8.1-.4-.2-1.5-.6-2.8-1.8-1-.9-1.7-2-1.9-2.4-.2-.3 0-.5.2-.7.2-.2.4-.4.5-.6.2-.2.2-.4.3-.6.1-.2 0-.4-.1-.6z"/>
+              </svg>
+
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3>Navigasi</h3>
+          <ul class="footer-links-list">
+            <li><a href="#beranda">Home</a></li>
+            <li><a href="#tentang">Tentang Binar</a></li>
+            <li><a href="#proses">Tahapan Proses</a></li>
+            <li><a href="#motif">Koleksi Motif</a></li>
+            <li><a href="galeri.html">Galeri Visual</a></li>
+            <li><a href="profile.html">Profil</a></li>
+            <li><a href="belanja.html">Belanja Batik</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Akses Akun</h3>
+          <ul class="footer-links-list">
+            <li><a href="login.html">Masuk (Login)</a></li>
+            <li><a href="register.html">Pendaftaran Akun</a></li>
+            <li><a href="#">Sertifikat Keaslian</a></li>
+            <li><a href="#">Panduan Perawatan</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Sentra & Kontak</h3>
+          <div class="footer-contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Sentra Batik Paoman, Jl. Kopral Yahya No.120, Paoman, Kec. Indramayu, Kabupaten Indramayu, Jawa Barat 45211</span>
+          </div>
+          <div class="footer-contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>halo@batikbinar.id</span>
+          </div>
+          <div class="footer-contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>+62 8787-0229-801</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Batik Binar Indonesia. Seluruh hak cipta dilindungi.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Syarat & Ketentuan</a>
+          <a href="#">Kebijakan Privasi</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- lightbox modal -->
+  <div class="modal-backdrop" id="previewModal" role="dialog" aria-modal="true">
+    <div class="modal-container">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Tutup preview modal" type="button">&times;</button>
+      <div class="modal-image-wrapper">
+        <img src="" width="800" height="600" alt="Pratinjau Batik Binar" id="modalImage">
+      </div>
+      <div class="modal-body">
+        <div class="modal-tag" id="modalTag">Batik Paoman</div>
+        <h3 class="modal-title" id="modalTitle">Judul Motif</h3>
+        <p class="modal-description" id="modalDesc">Deskripsi detail filosofis karya batik.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Overlay Modal -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-overlay-container">
+      <div class="search-overlay-header">
+        <h3>Cari Produk Batik Binar</h3>
+        <button class="search-overlay-close" id="searchOverlayClose" type="button">&times;</button>
+      </div>
+      <div class="search-overlay-input-wrap">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="indexSearchInput" class="search-overlay-input" placeholder="Cari motif, busana, kain, aksesoris..." autocomplete="off">
+      </div>
+      <div class="search-overlay-results" id="indexSearchResults">
+        <p class="search-overlay-hint">Ketik nama produk untuk mulai mencari...</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="native-api.js?v=14"></script>
+</body>
+</html>

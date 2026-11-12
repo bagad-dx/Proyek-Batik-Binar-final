@@ -1,0 +1,95 @@
+/* ==========================================================================
+   BUTTONS: MODERN PILL BUTTON WITH ARROW (Reference Style)
+   ========================================================================== */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 24px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  transition: all var(--transition-normal);
+  white-space: nowrap;
+}
+
+.btn-pill-blue {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  box-shadow: 0 8px 20px var(--color-accent-glow);
+}
+
+.btn-pill-blue:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(11, 95, 165, 0.45);
+  color: var(--color-white);
+}
+
+.btn-pill-royal {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: 0 8px 20px var(--color-primary-glow);
+}
+
+.btn-pill-royal:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(21, 42, 136, 0.45);
+  color: var(--color-white);
+}
+
+.btn-pill-white {
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.btn-pill-white:hover {
+  background-color: var(--color-primary-light);
+  transform: translateY(-2px);
+}
+
+/* Circular Arrow Icon inside Pill Button */
+.btn-arrow-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-fast);
+}
+
+.btn-pill-white .btn-arrow-circle {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.btn-pill:hover .btn-arrow-circle {
+  transform: translateX(4px);
+}
+
+/* Small round arrow button (used inside cards) */
+.btn-circle-arrow {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px var(--color-accent-glow);
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.btn-circle-arrow:hover {
+  background-color: var(--color-primary);
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px var(--color-primary-glow);
+}
+

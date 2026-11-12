@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+
+/* --- Design Tokens / CSS Variables --- */
+:root {
+  /* Dominant Royal Blue from Official Logo */
+  --color-primary: #152A88;        /* Deep Royal Blue / Official Logo Color */
+  --color-primary-dark: #0B1754;
+  --color-primary-light: #EEF2FF;
+  --color-primary-glow: rgba(21, 42, 136, 0.25);
+
+  /* Vibrant Accent Blue (Pop-up) */
+  --color-accent: #1687D9;         /* Electric Ocean / Pesisir Dermayon */
+  --color-accent-hover: #0D70B9;
+  --color-accent-light: #E1F2FE;
+  --color-accent-glow: rgba(22, 135, 217, 0.35);
+
+  /* Secondary Complementary Colors */
+  --color-cyan: #0EA5E9;
+  --color-teal-blue: #0284C7;
+  
+  /* Surfaces & Backgrounds */
+  --color-bg: #F8FAFD;             /* Clean Ice-Blue Soft Tint */
+  --color-bg-alt: #EDF3FA;
+  --color-card-bg: #FFFFFF;
+  --color-white: #FFFFFF;
+  
+  /* Typography */
+  --color-dark: #0F172A;           /* Deep Charcoal Slate */
+  --color-text-muted: #475569;
+  --color-text-light: #94A3B8;
+  
+  /* Borders & Shadows */
+  --color-border: rgba(21, 42, 136, 0.12);
+  --color-border-light: rgba(15, 23, 42, 0.06);
+  
+  --shadow-sm: 0 2px 8px rgba(21, 42, 136, 0.05);
+  --shadow-md: 0 10px 25px rgba(21, 42, 136, 0.08);
+  --shadow-lg: 0 20px 45px rgba(21, 42, 136, 0.12);
+  --shadow-hero-card: 0 16px 40px rgba(11, 23, 84, 0.25);
+  
+  /* Fonts */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 9999px;
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  --container-width: 1240px;
+}
+
+/* --- Base & Reset --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle Homepage Batik Iwak Pesisir Watermark */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.055;
+  background-image: url('../assets/bg-homepage.jpg');
+  background-size: 380px auto;
+  background-repeat: repeat;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+

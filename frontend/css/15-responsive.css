@@ -1,0 +1,187 @@
+/* ==========================================================================
+   13. RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    text-align: center;
+  }
+
+  .hero-desc {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .services-grid-6 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .services-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .motif-banner-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .gallery-grid-modern {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .shop-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .shop-modal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-modal-img-wrap {
+    min-height: 280px;
+    max-height: 300px;
+  }
+
+  .gallery-page-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .footer-top-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+  }
+
+  .auth-page-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-banner-side {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-heading {
+    font-size: 2.6rem;
+  }
+
+  .section-main-heading {
+    font-size: 2.2rem;
+  }
+
+  .menu-toggle-btn {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background-color: var(--color-white);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 100px 30px 40px;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+    transition: right var(--transition-normal);
+    z-index: 1000;
+  }
+
+  .nav-menu.open {
+    right: 0;
+  }
+
+  .nav-link {
+    color: var(--color-dark) !important;
+    font-size: 1.1rem;
+    width: 100%;
+  }
+
+  .nav-actions {
+    display: none;
+  }
+
+  .services-grid-6 {
+    grid-template-columns: 1fr;
+  }
+  .services-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .motif-cards-row {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid-modern {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-hero-title,
+  .gallery-hero-title {
+    font-size: 2.2rem;
+  }
+
+  .shop-filter-pills,
+  .gallery-filter-bar {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+  }
+
+  .shop-filter-btn,
+  .gallery-filter-btn {
+    flex-shrink: 0;
+  }
+
+  .gallery-page-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery-page-card,
+  .gallery-page-card:nth-child(5n+1),
+  .gallery-page-card:nth-child(5n+3),
+  .gallery-page-card:nth-child(5n+5) {
+    height: 220px;
+  }
+
+  .shop-modal-info {
+    padding: 24px 20px;
+  }
+
+  .shop-modal-title {
+    font-size: 1.4rem;
+  }
+
+  .capsule-card {
+    width: 95px;
+    height: 220px;
+  }
+
+  .capsule-card:nth-child(2) {
+    width: 105px;
+    height: 250px;
+  }
+
+  .footer-top-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-form-card {
+    padding: 32px 20px;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+}

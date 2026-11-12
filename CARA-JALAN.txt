@@ -1,0 +1,47 @@
+CARA MENJALANKAN PROYEK-GABUNGAN (Batik Binar)
+================================================
+
+1) AKTIFKAN MYSQL XAMPP
+   - Buka XAMPP Control Panel > Start pada MySQL (Apache hanya perlu
+     jika ingin serve via htdocs; cara termudah pakai artisan di bawah).
+   - Database `batik_binar` SUDAH ada dan SUDAH digabung (tidak perlu import
+     `batik_binar.sql` lagi). File itu hanya cadangan sebelum merge.
+
+2) JALANKAN BACKEND LARAVEL
+   cd "E:\Tugas kulyeah\SEMESTER 3\Proyek1\Proyek final otp jadi\Proyek 1 gabung fitur\backend"
+   php artisan migrate --force
+   php artisan serve --host=127.0.0.1 --port=8000
+
+2b) PENGATURAN OTP (WAJIB, sekali saja)
+   - Login admin di http://127.0.0.1:8000/login
+   - Buka menu "OTP" di panel: http://127.0.0.1:8000/panel/admin/otp
+   - Isi Gmail App Password (16 huruf) dan/atau token Fonnte.
+   - Klik "Kirim Tes Sekarang" untuk memastikan pesan benar-benar terkirim.
+   - Panduan lengkap: CARA-SETTING-OTP.txt
+   - Uji lewat terminal (dari folder backend):
+       php artisan otp:test emailkamu@gmail.com --channel=email
+       php artisan otp:test 081234567890 --channel=wa
+
+3) BUKA DI BROWSER
+   http://127.0.0.1:8000/                  (beranda)
+   http://127.0.0.1:8000/belanja.html      (filter jenis live + ?jenis=1&q=kain)
+   http://127.0.0.1:8000/galeri.html       (marquee motif + tag + filosofi live)
+   http://127.0.0.1:8000/produk.html?id=5  (spek Ukuran + Teknik)
+   http://127.0.0.1:8000/login             (panel admin: Produk, Galeri, Jenis)
+
+4) JIKA DATABASE DI-RESET / KOMPUTER LAIN
+   a. Import dulu `batik_binar.sql` (phpMyAdmin > Import) ke DB `batik_binar`.
+   b. Import `merge_raka.sql` (file di folder "Proyek gabungan") ke DB yg sama.
+   c. cd backend, lalu:
+      php artisan migrate --force
+      php artisan db:seed --class=Database\Seeders\RakaMergeSeeder --force
+
+5) AKUN
+   Pakai akun yang sudah ada di tabel `pengguna` (8 akun bawaan).
+   Lupa password? Buat akun baru via halaman register, atau login sebagai
+   admin sesuai data `pengguna` di database.
+
+CATATAN
+- Folder frontend/ (backend satu folder dengan frontend) adalah salinan halaman native yang sama
+  dengan backend\public\; API base-nya diatur di frontend\config.js.
+- Folder Raka-Asli/ hanya arsip referensi, bukan untuk dijalankan.

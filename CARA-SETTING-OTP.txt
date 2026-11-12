@@ -1,0 +1,208 @@
+FITUR OTP PENDAFTARAN AKUN - BATIK BINAR (MODE NYATA)
+=====================================================
+Setiap user yang mendaftar WAJIB memverifikasi kode OTP 6 digit yang
+BENAR-BENAR DIKIRIM ke Email (SMTP/Gmail) atau WhatsApp (Fonnte).
+Kode berlaku 10 menit, maksimal 5x salah, sekali pakai.
+Akun baru dibuat di tabel `pengguna` hanya setelah kode benar.
+
+Tidak ada lagi mode demo: bila pengiriman gagal, pendaftaran DITOLAK
+dengan pesan error yang jelas. Kode OTP tidak pernah ditampilkan di layar.
+Kode juga tidak ditulis ke log, KECUALI admin mengaktifkan "Mode Tes Lokal"
+(bagian 2C) untuk pengembangan tanpa kredensial.
+
+
+===========================================================
+1. PERSIAPAN (SEKALI SAJA)
+===========================================================
+a. Aktifkan MySQL XAMPP.
+b. Buka terminal di folder `backend`, lalu jalankan migrasi baru:
+
+     php artisan migrate --force
+
+   Migrasi ini membuat tabel `pengaturan_otp` dan kolom
+   `otp_verifications.last_sent_at` (cooldown kirim ulang).
+
+c. Jalankan server (ganti port bila 8000 sudah dipakai aplikasi lain):
+
+     php artisan serve --host=127.0.0.1 --port=8001
+
+   Contoh URL di dokumen ini memakai port 8000; sesuaikan dengan port
+   yang benar-benar dipakai (8001 pada contoh di atas).
+
+d. Login sebagai admin/superadmin di:
+
+     http://127.0.0.1:8000/login
+
+   Akun bawaan: admin@batikbinar.id / superadmin@batikbinar.id
+   (password: `password`, lihat seeder).
+
+
+===========================================================
+2. ISI KREDENSIAL DI PANEL ADMIN (CARA TERMUDAH)
+===========================================================
+Buka menu OTP di panel:
+
+     http://127.0.0.1:8000/panel/admin/otp
+
+Halaman ini punya 3 bagian: Email (SMTP), WhatsApp (Fonnte), dan Kirim Tes.
+Pengaturan disimpan di database, jadi langsung berlaku tanpa restart.
+
+--- 2A. EMAIL / GMAIL (SMTP) ---
+1. Buka https://myaccount.google.com/security
+   - Aktifkan "Verifikasi 2 Langkah" (wajib).
+2. Buka https://myaccount.google.com/apppasswords
+   - Buat sandi aplikasi baru, nama bebas (mis. "Batik Binar").
+   - Salin 16 huruf yang muncul. Ini BUKAN password Gmail biasa.
+3. Di panel OTP isi:
+     Host SMTP      : smtp.gmail.com
+     Port           : 587
+     Enkripsi       : TLS (port 587)
+     Username/Email : alamat Gmail pengirim
+     App Password   : 16 huruf tadi (boleh pakai spasi)
+     Email Pengirim : kosongkan (= pakai username), atau isi Gmail yang sama
+     Nama Pengirim  : Batik Binar
+4. Centang "Aktifkan verifikasi lewat Email" lalu klik
+   "Simpan Pengaturan Email".
+5. Di bagian "Kirim Tes": pilih Email, isi alamat email tujuan, klik
+   "Kirim Tes Sekarang". Cek inbox (dan folder Spam/Promosi).
+
+Catatan Gmail:
+- Kalau muncul "Email pengirim menolak login" -> App Password salah/kedaluwarsa,
+  atau Verifikasi 2 Langkah belum aktif.
+- Gmail gratis membatasi sekitar 500 email/hari; cukup untuk proyek ini.
+
+--- 2B. WHATSAPP (FONNTE) ---
+1. Daftar di https://fonnte.com (ada kuota trial gratis).
+2. Menu "Devices" -> "Add device" -> scan QR memakai WhatsApp nomor pengirim.
+3. Pastikan status perangkat "Connected", lalu salin Token perangkat.
+4. Di panel OTP isi "Token Fonnte", centang
+   "Aktifkan verifikasi lewat WhatsApp", lalu "Simpan Pengaturan WhatsApp".
+5. Uji lewat "Kirim Tes" -> pilih WhatsApp -> isi nomor 08xxxxxxxxxx.
+
+Catatan Fonnte:
+- Fonnte membalas HTTP 200 walau gagal; sistem membaca `status` + `reason`
+  dari JSON, jadi error seperti token salah / device terputus terdeteksi.
+- Nomor 08... otomatis dinormalisasi menjadi 62...
+- Bila HP pengirim offline, OTP WA gagal terkirim (pesan error akan muncul).
+
+
+--- 2C. MODE TES LOKAL (TANPA KREDENSIAL / UNTUK PENGEMBANGAN) ---
+Dipakai kalau ingin mencoba alur daftar padahal App Password Gmail / token
+Fonnte belum ada. Kode TIDAK dikirim ke mana pun dan TIDAK tampil di layar;
+hanya ditulis ke file log.
+
+1. Buka panel OTP, bagian "Mode Tes Lokal", centang
+   "Aktifkan mode tes lokal (OTP hanya ke file log)" lalu "Simpan Mode Tes".
+2. Daftar seperti biasa (halaman native atau /register).
+3. Buka `backend/storage/logs/laravel.log`, cari baris:
+     [OTP MODE TES LOKAL] ... {"to":"...","code":"123456","test":false}
+4. Masukkan 6 digit `code` itu di halaman verifikasi.
+5. Setelah kredensial asli siap, MATIKAN mode ini (centang dilepas + simpan).
+
+Status channel di halaman daftar akan berubah menjadi "Mode tes lokal"
+(amber) selama mode ini aktif. Di API, /api/otp/config melaporkan
+`local_fallback: true` dan `delivery: "log"`.
+
+
+===========================================================
+3. ALTERNATIF: ISI LANGSUNG DI backend/.env
+===========================================================
+Kalau tidak ingin lewat panel, isi .env lalu jalankan
+`php artisan config:clear` (dan restart `php artisan serve`):
+
+  MAIL_MAILER=smtp
+  MAIL_HOST=smtp.gmail.com
+  MAIL_PORT=587
+  MAIL_USERNAME=emailkamu@gmail.com
+  MAIL_PASSWORD=16hurufapppassword
+  MAIL_ENCRYPTION=tls
+  MAIL_FROM_ADDRESS=emailkamu@gmail.com
+  MAIL_FROM_NAME="Batik Binar"
+
+  FONNTE_TOKEN=token-dari-fonnte
+
+Nilai dari panel admin (database) MENIMPA nilai .env bila diisi.
+Biarkan `OTP_DEMO=false` agar kode tidak pernah tampil di layar.
+
+
+===========================================================
+4. UJI DARI TERMINAL (TANPA BUKA BROWSER)
+===========================================================
+Di folder `backend`:
+
+  php artisan otp:test emailkamu@gmail.com --channel=email
+  php artisan otp:test 081234567890 --channel=wa
+
+Perintah ini mengirim pesan uji nyata dan menampilkan penyebab bila gagal.
+
+
+===========================================================
+5. ALUR APLIKASI
+===========================================================
+1. Halaman native  : frontend/register.html & backend/public/register.html
+                     (http://127.0.0.1:8000/register.html)
+   Isi form -> pilih Email/WA -> Daftar -> kode dikirim nyata -> masukkan
+   6 digit (auto-submit) -> akun aktif + langsung login.
+
+2. Form web Blade  : http://127.0.0.1:8000/register
+                     -> /register/otp -> masukkan kode -> login otomatis.
+
+3. API             : POST /api/otp/request  (minta kode)
+                     POST /api/otp/verify   (verifikasi -> token + user)
+                     POST /api/otp/resend   (kirim ulang, cooldown 30 detik)
+                     GET  /api/otp/config   (status channel aktif)
+
+   Contoh pemanggilan: frontend-api-example.js (apiRegister/apiVerifyOtp).
+
+4. Kode status API:
+   201 = kode terkirim / akun dibuat
+   422 = validasi salah / channel belum aktif / kode salah
+   429 = cooldown kirim ulang / terlalu banyak salah
+   410 = kode kedaluwarsa
+   502 = pengiriman gagal (email/WA) -> pendaftaran ditolak
+
+
+===========================================================
+6. KEAMANAN YANG SUDAH DITERAPKAN
+===========================================================
+- Kode disimpan sebagai hash bcrypt, bukan teks biasa.
+- Sekali pakai: baris OTP dihapus setelah verifikasi berhasil.
+- Maks 5x salah, lalu harus minta kode baru.
+- Cooldown 30 detik di server (bukan hanya tombol frontend).
+- Rate limit route: 5x/menit minta & kirim ulang, 10x/menit verifikasi.
+- Kode tidak pernah dikembalikan ke browser / ditulis ke log.
+  Pengecualian: Mode Tes Lokal (2C) yang harus diaktifkan admin secara sadar.
+- Saat berhasil, `pengguna.email_verified_at` diisi (bukti email terverifikasi).
+- Akun hanya dibuat setelah kode benar; data calon akun disimpan sementara
+  di `otp_verifications` (password sudah di-hash).
+
+
+===========================================================
+7. TROUBLESHOOTING
+===========================================================
+| Gejala | Penyebab & solusi |
+|---|---|
+| "Email belum siap" / channel Email abu-abu | Username/App Password belum diisi. Isi di panel OTP lalu simpan, atau aktifkan Mode Tes Lokal (2C). |
+| "Email pengirim menolak login" | App Password salah atau Verifikasi 2 Langkah belum aktif. Buat App Password baru. |
+| "Tidak dapat terhubung ke server email" | Host/port salah atau internet server mati. Coba 587+TLS atau 465+SSL. |
+| "Koneksi SMTP gagal dienkripsi" | Port/enkripsi tidak cocok. 587->TLS, 465->SSL. |
+| Email tidak masuk tapi tes sukses | Cek Spam/Promosi; pastikan alamat tujuan benar. |
+| "Token Fonnte ditolak" | Salin ulang token dari dashboard Fonnte. |
+| "Perangkat WhatsApp Fonnte terputus" | Buka dashboard Fonnte, scan ulang QR, pastikan Connected. |
+| "Nomor WhatsApp tidak valid" | Gunakan format 08xxxxxxxxxx (9-15 digit). |
+| "Tunggu N detik..." | Cooldown kirim ulang 30 detik; tunggu lalu coba lagi. |
+| Pengaturan panel tidak berubah | Pastikan `php artisan migrate` sudah dijalankan (tabel pengaturan_otp). |
+| Ingin lihat error detail | `backend/storage/logs/laravel.log` (kode OTP tidak dicatat). |
+
+
+===========================================================
+8. CATATAN PENTING
+===========================================================
+- Daftar Google (Firebase) tidak memakai OTP (Google yang verifikasi email).
+- Login tetap email/username + password seperti semula.
+- Register lama POST /api/register masih aktif (kompatibilitas), tapi form
+  sudah memakai alur OTP.
+- File register.html di akar folder ("salinan lama") tidak dipakai; yang
+  dipakai `frontend/register.html` + `backend/public/register.html`.
+- Halaman pengaturan: `frontend/` dan `backend/public/` memakai
+  `native-api.js` yang sama (salinan identik).

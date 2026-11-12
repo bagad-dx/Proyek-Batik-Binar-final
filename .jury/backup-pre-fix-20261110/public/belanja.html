@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Belanja Batik | BATIK BINAR</title>
+  <meta name="description" content="Belanja koleksi batik khas Indramayu di Batik Binar. Kain panjang, selendang, busana pria & wanita, dan aksesoris batik pesisir Dermayon.">
+    <link rel="stylesheet" href="css/01-base.css">
+  <link rel="stylesheet" href="css/03-header.css">
+  <link rel="stylesheet" href="css/04-buttons.css">
+  <link rel="stylesheet" href="css/06-footer.css">
+  <link rel="stylesheet" href="css/07-auth.css">
+  <link rel="stylesheet" href="css/08-components.css">
+  <link rel="stylesheet" href="css/09-shop.css">
+  <link rel="stylesheet" href="css/11-overlays.css">
+  <link rel="stylesheet" href="css/14-animations.css">
+  <link rel="stylesheet" href="css/15-responsive.css">
+  <link rel="icon" type="image/png" href="assets/logo-batik-binar.png">
+</head>
+<body>
+
+  <!-- header dan navbar -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-container">
+      <!-- Brand Logo using Official Logo Image -->
+      <a href="index.html" class="brand-logo" aria-label="Beranda Batik Binar">
+        <img src="assets/logo-batik-binar.png" alt="Batik Binar" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-name">BATIK BINAR</span>
+          <span class="brand-tag">Dermayon Heritage</span>
+        </div>
+      </a>
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html#beranda" class="nav-link">Home</a></li>
+          <li><a href="index.html#tentang" class="nav-link">Tentang</a></li>
+          <li><a href="index.html#proses" class="nav-link">Proses</a></li>
+          <li><a href="index.html#motif" class="nav-link">Koleksi</a></li>
+          <li><a href="galeri.html" class="nav-link">Galeri</a></li>
+          <li><a href="profile.html" class="nav-link">Profil</a></li>
+          <li><a href="belanja.html" class="nav-link active">Belanja</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <a href="dashboard.html" class="nav-icon-btn" aria-label="Dashboard" style="background-color: var(--color-accent); color: white;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+      <div class="nav-actions">
+        <a href="login.html" class="btn-pill btn-pill-blue" style="padding: 8px 18px; font-size: 0.88rem;">
+          <span>Login</span>
+          <div class="btn-arrow-circle" style="width: 22px; height: 22px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </a>
+      </div>
+      <button class="menu-toggle-btn" id="menuToggleBtn" aria-label="Buka menu navigasi" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Backdrop -->
+  <div class="mobile-backdrop" id="mobileBackdrop"></div>
+
+  <main>
+    <!-- Shop Hero Banner -->
+    <section class="shop-hero">
+      <div class="container">
+        <h1 class="shop-hero-title">Belanja Koleksi Batik Binar</h1>
+        <p class="shop-hero-desc">
+          Temukan mahakarya wastra pesisir Dermayon — mulai dari kain panjang klasik, selendang elegan, busana modern pria & wanita, hingga aksesoris unik bertema batik Indramayu.
+        </p>
+      </div>
+    </section>
+
+    <!-- Shop Toolbar: Search & Filter -->
+    <section class="shop-toolbar">
+      <div class="container">
+        <div class="shop-toolbar-inner">
+          <!-- Search Box -->
+          <div class="shop-search-box">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="shopSearchInput" class="shop-search-input" placeholder="Cari produk batik (mis. Iwak Etong, sutra, kemeja)...">
+            <span id="shopSearchCount" class="shop-search-count">50 produk</span>
+          </div>
+
+          <!-- Filter Pills -->
+          <div id="shopFilterPills" class="shop-filter-pills">
+            <button class="shop-filter-btn active" data-filter="semua">Semua Produk</button>
+            <button class="shop-filter-btn" data-filter="kain">Kain Panjang</button>
+            <button class="shop-filter-btn" data-filter="selendang">Selendang</button>
+            <button class="shop-filter-btn" data-filter="pria">Busana Pria</button>
+            <button class="shop-filter-btn" data-filter="wanita">Busana Wanita</button>
+            <button class="shop-filter-btn" data-filter="aksesoris">Aksesoris</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Grid -->
+    <section class="shop-grid-section">
+      <div class="container">
+        <div id="shopGrid" class="shop-grid">
+          <!-- Products rendered dynamically by script.js -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="shopEmpty" class="shop-empty" style="display: none;">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+          <h3>Produk Tidak Ditemukan</h3>
+          <p>Coba gunakan kata kunci atau filter kategori yang berbeda.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-brand">
+          <img src="assets/logo-batik-binar.png" alt="Batik Binar Logo">
+          <p>
+            Platform resmi pelestarian dan perwujudan modern batik pesisir Dermayon, Indramayu. Menghidupkan kembali teknik complongan dan motif maritim autentik.
+          </p>
+          <div class="footer-social-links">
+            <a href="https://www.instagram.com/bintangarutindramayu?stkn=MTF2ZGJvNXVnenlobQ==" class="social-btn" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="https://www.facebook.com/share/19sMPGLddk/" class="social-btn" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="https://wa.me/6287870229801"
+              class="social-btn"
+              aria-label="WhatsApp"
+              target="_blank">
+
+              <svg viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  width="20"
+                  height="20">
+                <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6.1-3.5-8.3z"/>
+                <path d="M8.2 6.8c-.3-.7-.6-.7-.9-.7h-.8c-.3 0-.7.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.1 1.4 3.3c.2.2 2.3 3.7 5.7 5 .8.3 1.4.5 1.9.6.8.1 1.5.1 2 .1.6-.1 1.8-.7 2.1-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.7-.4l-2.1-1c-.3-.1-.6-.2-.8.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.8.1-.4-.2-1.5-.6-2.8-1.8-1-.9-1.7-2-1.9-2.4-.2-.3 0-.5.2-.7.2-.2.4-.4.5-.6.2-.2.2-.4.3-.6.1-.2 0-.4-.1-.6z"/>
+              </svg>
+
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigasi</h4>
+          <ul class="footer-links-list">
+            <li><a href="#beranda">Home</a></li>
+            <li><a href="#tentang">Tentang Binar</a></li>
+            <li><a href="#proses">Tahapan Proses</a></li>
+            <li><a href="#motif">Koleksi Motif</a></li>
+            <li><a href="galeri.html">Galeri Visual</a></li>
+            <li><a href="profile.html">Profil</a></li>
+            <li><a href="belanja.html">Belanja Batik</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Akses Akun</h4>
+          <ul class="footer-links-list">
+            <li><a href="login.html">Masuk (Login)</a></li>
+            <li><a href="register.html">Pendaftaran Akun</a></li>
+            <li><a href="#">Sertifikat Keaslian</a></li>
+            <li><a href="#">Panduan Perawatan</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Sentra & Kontak</h4>
+          <div class="footer-contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Sentra Batik Paoman, Jl. Kopral Yahya No.120, Paoman, Kec. Indramayu, Kabupaten Indramayu, Jawa Barat 45211</span>
+          </div>
+          <div class="footer-contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>halo@batikbinar.id</span>
+          </div>
+          <div class="footer-contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>+62 8787-0229-801</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Batik Binar Indonesia. Seluruh hak cipta dilindungi.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Syarat & Ketentuan</a>
+          <a href="#">Kebijakan Privasi</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- lightbox modal -->
+  <div class="modal-backdrop" id="previewModal" role="dialog" aria-modal="true">
+    <div class="modal-container">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Tutup preview modal" type="button">&times;</button>
+      <div class="modal-image-wrapper">
+        <img src="" alt="Pratinjau Batik Binar" id="modalImage">
+      </div>
+      <div class="modal-body">
+        <div class="modal-tag" id="modalTag">Batik Paoman</div>
+        <h3 class="modal-title" id="modalTitle">Judul Motif</h3>
+        <p class="modal-description" id="modalDesc">Deskripsi detail filosofis karya batik.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Overlay Modal -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-overlay-container">
+      <div class="search-overlay-header">
+        <h3>Cari Produk Batik Binar</h3>
+        <button class="search-overlay-close" id="searchOverlayClose" type="button">&times;</button>
+      </div>
+      <div class="search-overlay-input-wrap">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="indexSearchInput" class="search-overlay-input" placeholder="Cari motif, busana, kain, aksesoris..." autocomplete="off">
+      </div>
+      <div class="search-overlay-results" id="indexSearchResults">
+        <p class="search-overlay-hint">Ketik nama produk untuk mulai mencari...</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="native-api.js?v=14"></script>
+</body>
+</html>

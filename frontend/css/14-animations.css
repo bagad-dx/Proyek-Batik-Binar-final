@@ -1,0 +1,50 @@
+/* ==========================================================================
+   15. KEYFRAMES & UTILITIES
+   ========================================================================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes splashPulse {
+  0% { transform: scale(0.96); filter: drop-shadow(0 8px 20px rgba(21, 42, 136, 0.2)); }
+  100% { transform: scale(1.04); filter: drop-shadow(0 16px 36px rgba(22, 135, 217, 0.35)); }
+}
+
+@keyframes splashRipple {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+@keyframes splashRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fillProgress {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+@keyframes floatSmall {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+

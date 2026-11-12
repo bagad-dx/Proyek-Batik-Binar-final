@@ -1,0 +1,245 @@
+{
+  "url": "http://127.0.0.1:8002/index.html",
+  "errors": [
+    "[desktop] Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+    "[desktop] Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+    "[desktop] Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+    "[keyboard] Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+    "[hover] Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+    "[mobile] Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+    "[reduced] Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": [
+    "[desktop] 401 http://127.0.0.1:8002/api/session-token",
+    "[desktop] 401 http://127.0.0.1:8002/api/session-token",
+    "[desktop] 401 http://127.0.0.1:8002/api/session-token",
+    "[keyboard] 401 http://127.0.0.1:8002/api/session-token",
+    "[hover] 401 http://127.0.0.1:8002/api/session-token",
+    "[mobile] 401 http://127.0.0.1:8002/api/session-token",
+    "[reduced] 401 http://127.0.0.1:8002/api/session-token"
+  ],
+  "desktop": {
+    "loadMs": 579,
+    "loaderMs": null,
+    "settledMs": 3930,
+    "vitals": {
+      "lcpMs": 380,
+      "lcpElement": "section#beranda.hero-wrapper",
+      "cls": 0.013
+    },
+    "height": 4832,
+    "overflowX": false,
+    "offenders": [],
+    "h1": [
+      "Warisan Batik\nIndramayu, Untuk\nGenerasi Masa Kini"
+    ],
+    "smallTargets": [
+      "Home 42x18",
+      "Tentang Binar 92x18",
+      "Tahapan Proses 107x18",
+      "Koleksi Motif 88x18",
+      "Galeri Visual 83x18",
+      "Profil 35x18",
+      "Belanja Batik 87x18",
+      "Masuk (Login) 93x18"
+    ],
+    "glHidden": [],
+    "title": "BATIK BINAR - Warisan Batik Indramayu Untuk Generasi Masa Kini",
+    "glOn": false,
+    "scrollFps": {
+      "fps": 109,
+      "worstFrameMs": 236
+    },
+    "nav": {
+      "href": "/galeri.html",
+      "scrollYAfter": 0,
+      "title": "Galeri Visual | BATIK BINAR"
+    },
+    "idleMotion": false,
+    "idleAt": null
+  },
+  "mobile": {
+    "throttled": true,
+    "loadMs": 16880,
+    "loaderMs": null,
+    "settledMs": 20093,
+    "vitals": {
+      "lcpMs": 5992,
+      "lcpElement": "p.splash-tagline",
+      "cls": 0.001
+    },
+    "height": 10084,
+    "overflowX": false,
+    "offenders": [],
+    "h1": [
+      "Warisan Batik\nIndramayu, Untuk\nGenerasi Masa Kini"
+    ],
+    "smallTargets": [
+      "Home 42x18",
+      "Tentang Binar 92x18",
+      "Tahapan Proses 107x18",
+      "Koleksi Motif 88x18",
+      "Galeri Visual 83x18",
+      "Profil 35x18",
+      "Belanja Batik 87x18",
+      "Masuk (Login) 93x18"
+    ],
+    "glHidden": [],
+    "title": "BATIK BINAR - Warisan Batik Indramayu Untuk Generasi Masa Kini",
+    "glOn": false,
+    "scrollFps": {
+      "fps": 128,
+      "worstFrameMs": 56
+    }
+  },
+  "files": [
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\d-00-firstpaint.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\d-01-hero.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\d-02-scroll.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\d-03-scroll.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\d-04-scroll.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\d-05-scroll.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\d-06-scroll.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\d-07-scroll.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\d-90-transition-a.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\d-90-transition-b.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\d-90-transition-c.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\d-91-after-nav.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\d-92-back.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\k-01-focus.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\k-02-focus.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\k-03-focus.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\k-04-focus.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\h-01-rest.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\h-01-hover.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\h-02-rest.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\h-02-hover.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\h-03-rest.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\h-03-hover.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\h-04-rest.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\h-04-hover.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\m-01-hero.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\m-02-scroll.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\m-03-scroll.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\m-04-scroll.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\m-05-scroll.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\m-06-scroll.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\r-01-hero.png",
+    "E:\\Tugas kulyeah\\SEMESTER 3\\Proyek1\\Proyek Batik Binar final\\.jury\\127.0.0.1-8002\\shots\\index_html\\r-02-mid.png"
+  ],
+  "notes": [
+    "desktop FPS runs headless on a software GPU: treat it as a floor, not a measurement of real hardware",
+    "mobile runs at 4x CPU slowdown on slow 4G: mobile.vitals and mobile.scrollFps are the numbers that count",
+    "loadMs: ms from navigation to the load event, null if it had not fired after 30 s (desktop) or 60 s (phone); a heavy page takes long, while visitors see content at vitals.lcpMs. loaderMs: ms until the #loader ended, null when the page has none",
+    "settledMs: ms from navigation by which the first screen stopped changing, never before the fixed wait. null: still changing at the cap, either a long intro or continuous motion (a live shader, video); d-01-hero / m-01-hero tell which. reduced.moving: the screen was still changing 1.5 s after load with reduced motion on"
+  ],
+  "keyboard": {
+    "stops": [
+      "a \"BATIK BINAR DERMAYON HERITAGE\"",
+      "a \"Home\"",
+      "a \"Tentang\"",
+      "a \"Proses\"",
+      "a \"Koleksi\"",
+      "a \"Galeri\"",
+      "a \"Profil\"",
+      "a \"Belanja\"",
+      "button \"Keranjang\"",
+      "a \"Dashboard\"",
+      "a \"Login\"",
+      "a \"Jelajahi Koleksi\""
+    ],
+    "skipLinkFirst": false,
+    "noVisibleFocus": [],
+    "invisibleFocus": [],
+    "stuck": false
+  },
+  "hover": {
+    "targets": [
+      {
+        "shot": "h-01",
+        "label": "button \"0\"",
+        "interactive": true,
+        "primary": true,
+        "react": "color",
+        "changed": [
+          "backgroundColor"
+        ]
+      },
+      {
+        "shot": "h-02",
+        "label": "button \"Sebelumnya\"",
+        "interactive": true,
+        "primary": true,
+        "react": "none",
+        "changed": []
+      },
+      {
+        "shot": "h-03",
+        "label": "button \"Detail Tahap 1\"",
+        "interactive": true,
+        "primary": true,
+        "react": "masked",
+        "changed": []
+      },
+      {
+        "shot": "h-04",
+        "label": "a \"BATIK BINAR Dermayon Heritage\"",
+        "interactive": true,
+        "primary": true,
+        "react": "none",
+        "changed": []
+      }
+    ],
+    "noHoverChange": [
+      "h-02 button \"Sebelumnya\"",
+      "h-04 a \"BATIK BINAR Dermayon Heritage\""
+    ],
+    "colorOnly": [
+      "h-01 button \"0\""
+    ],
+    "covered": [],
+    "cursorFollower": false
+  },
+  "reduced": {
+    "hiddenText": 4,
+    "moving": true
+  },
+  "a11y": {
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "count": 6,
+        "nodes": [
+          ".active.nav-link[href$=\"#beranda\"] (#ffffff on #1687d9, 3.81:1, needs 4.5:1)",
+          ".nav-actions > .btn-pill-blue.btn-pill[href$=\"login.html\"] > span (#ffffff on #1687d9, 3.81:1, needs 4.5:1)",
+          ".btn-pill-blue.btn-pill[href$=\"galeri.html\"] > span (#ffffff on #1687d9, 3.81:1, needs 4.5:1)",
+          ".footer-bottom > p (#64748b on #0b1754, 3.48:1, needs 4.5:1)"
+        ]
+      },
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "count": 1,
+        "nodes": [
+          ".brand-logo"
+        ]
+      },
+      {
+        "id": "nested-interactive",
+        "impact": "serious",
+        "help": "Interactive controls must not be nested",
+        "count": 3,
+        "nodes": [
+          "div[aria-label=\"Detail Molani dan Pola Khas\"]",
+          "div[aria-label=\"Detail Nyanting Tulis Tangan\"]",
+          "div[aria-label=\"Detail Complongan Jarum\"]"
+        ]
+      }
+    ],
+    "serious": 3,
+    "contrastNeedsReview": 17
+  }
+}

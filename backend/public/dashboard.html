@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Akun | BATIK BINAR</title>
+  <meta name="description" content="Dashboard akun pengguna Batik Binar. Kelola pesanan, wishlist, dan profil Anda."
+  <link rel="canonical" href="https://batikbinar.id/dashboard.html">
+  <meta property="og:title" content="Dashboard Akun | BATIK BINAR">
+  <meta property="og:description" content="Dashboard akun pengguna Batik Binar. Kelola pesanan, wishlist, dan profil Anda.">
+  <meta property="og:image" content="assets/og-batik-binar.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dashboard Akun | BATIK BINAR">
+  <meta name="twitter:description" content="Dashboard akun pengguna Batik Binar. Kelola pesanan, wishlist, dan profil Anda.">
+  <meta name="twitter:image" content="assets/og-batik-binar.jpg">>
+  <link rel="stylesheet" href="css/01-base.css">
+  <link rel="stylesheet" href="css/03-header.css">
+  <link rel="stylesheet" href="css/04-buttons.css">
+  <link rel="stylesheet" href="css/05-home.css">
+  <link rel="stylesheet" href="css/06-footer.css">
+  <link rel="stylesheet" href="css/07-auth.css">
+  <link rel="stylesheet" href="css/08-components.css">
+  <link rel="stylesheet" href="css/11-overlays.css">
+  <link rel="stylesheet" href="css/12-dashboard.css">
+  <link rel="stylesheet" href="css/14-animations.css">
+  <link rel="stylesheet" href="css/15-responsive.css">
+  <link rel="icon" type="image/png" href="assets/logo-batik-binar.png">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Lewati ke konten utama</a>
+
+  <!-- header dan navbar -->
+  <header class="site-header scrolled" id="siteHeader">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="assets/logo-batik-binar.png" width="682" height="1024" alt="Batik Binar" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-name">BATIK BINAR</span>
+          <span class="brand-tag">Dermayon Heritage</span>
+        </div>
+      </a>
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html#beranda" class="nav-link">Home</a></li>
+          <li><a href="index.html#tentang" class="nav-link">Tentang</a></li>
+          <li><a href="index.html#proses" class="nav-link">Proses</a></li>
+          <li><a href="index.html#motif" class="nav-link">Koleksi</a></li>
+          <li><a href="galeri.html" class="nav-link">Galeri</a></li>
+          <li><a href="profile.html" class="nav-link">Profil</a></li>
+          <li><a href="belanja.html" class="nav-link">Belanja</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <a href="dashboard.html" class="nav-icon-btn" aria-label="Dashboard" style="background-color: var(--color-accent); color: white;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+        <a href="login.html" class="btn-pill btn-pill-blue" style="padding: 8px 18px; font-size: 0.88rem;">
+          <span>Logout</span>
+          <div class="btn-arrow-circle" style="width: 22px; height: 22px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </a>
+      </div>
+      <button class="menu-toggle-btn" id="menuToggleBtn" aria-label="Buka menu navigasi" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Backdrop -->
+  <div class="mobile-backdrop" id="mobileBackdrop"></div>
+
+  <main id="main-content">
+    <!-- Dashboard Hero -->
+    <section class="dash-hero">
+      <div class="container">
+        <div class="dash-hero-content">
+          <div class="dash-avatar">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div class="dash-hero-text">
+            <h1 class="dash-hero-title">Selamat Datang, Pengguna!</h1>
+            <p class="dash-hero-desc">Kelola akun, pesanan, dan preferensi batik Anda di satu tempat.</p>
+          </div>
+        </div>
+      </div>
+      <div class="hero-bottom-curve"><svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0 C300,90 900,90 1200,0 L1200,120 L0,120 Z"></path></svg></div>
+    </section>
+
+    <!-- Dashboard Content -->
+    <section class="dash-content">
+      <div class="container">
+        <div class="dash-grid">
+          <!-- Left Column -->
+          <div class="dash-main-col">
+            <!-- Stats Cards -->
+            <div class="dash-stats-row">
+              <div class="dash-stat-card">
+                <div class="dash-stat-icon" style="background: linear-gradient(135deg, #152A88, #0B5FA5);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                  </svg>
+                </div>
+                <div class="dash-stat-info">
+                  <span class="dash-stat-number">3</span>
+                  <span class="dash-stat-label">Pesanan Aktif</span>
+                </div>
+              </div>
+              <div class="dash-stat-card">
+                <div class="dash-stat-icon" style="background: linear-gradient(135deg, #0EA5E9, #38BDF8);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                  </svg>
+                </div>
+                <div class="dash-stat-info">
+                  <span class="dash-stat-number">12</span>
+                  <span class="dash-stat-label">Wishlist</span>
+                </div>
+              </div>
+              <div class="dash-stat-card">
+                <div class="dash-stat-icon" style="background: linear-gradient(135deg, #10B981, #34D399);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                  </svg>
+                </div>
+                <div class="dash-stat-info">
+                  <span class="dash-stat-number">8</span>
+                  <span class="dash-stat-label">Riwayat Pesanan</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Orders -->
+            <div class="dash-section-card">
+              <div class="dash-section-header">
+                <h2>Pesanan Terbaru</h2>
+                <a href="#" class="dash-see-all">Lihat Semua →</a>
+              </div>
+              <div class="dash-orders-list">
+                <div class="dash-order-item">
+                  <div class="dash-order-img">
+                    <img loading="lazy" decoding="async" src="assets/img/pin-1dc76be6.jpg" width="1000" height="750" alt="Kain Iwak Etong">
+                  </div>
+                  <div class="dash-order-info">
+                    <h3>Kain Iwak Etong Royal Blue</h3>
+                    <p>Tulis Complongan • Katun Primissima</p>
+                  </div>
+                  <div class="dash-order-price">Rp 1.850.000</div>
+                  <span class="dash-order-status status-process">Diproses</span>
+                </div>
+                <div class="dash-order-item">
+                  <div class="dash-order-img">
+                    <img loading="lazy" decoding="async" src="assets/img/pin-8f842281.jpg" width="800" height="800" alt="Kemeja Merak">
+                  </div>
+                  <div class="dash-order-info">
+                    <h3>Kemeja Lengan Pendek Merak</h3>
+                    <p>Cap • Katun Prima • Size L</p>
+                  </div>
+                  <div class="dash-order-price">Rp 980.000</div>
+                  <span class="dash-order-status status-shipped">Dikirim</span>
+                </div>
+                <div class="dash-order-item">
+                  <div class="dash-order-img">
+                    <img loading="lazy" decoding="async" src="assets/img/pin-8f842281.jpg" width="800" height="800" alt="Clutch Merak">
+                  </div>
+                  <div class="dash-order-info">
+                    <h3>Clutch Batik Merak Ngibing</h3>
+                    <p>Tulis • Batik + Kulit Sintetis</p>
+                  </div>
+                  <div class="dash-order-price">Rp 380.000</div>
+                  <span class="dash-order-status status-done">Selesai</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="dash-side-col">
+            <!-- Profile Card -->
+            <div class="dash-section-card dash-profile-card">
+              <div class="dash-profile-header">
+                <div class="dash-profile-avatar">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="dash-profile-name">Pengguna Batik Binar</h3>
+                  <p class="dash-profile-email">pengguna@batikbinar.id</p>
+                </div>
+              </div>
+              <div class="dash-profile-details">
+                <div class="dash-profile-row">
+                  <span class="dash-profile-label">Telepon</span>
+                  <span class="dash-profile-value">+62 821-xxxx-xxxx</span>
+                </div>
+                <div class="dash-profile-row">
+                  <span class="dash-profile-label">Bergabung</span>
+                  <span class="dash-profile-value">Oktober 2026</span>
+                </div>
+                <div class="dash-profile-row">
+                  <span class="dash-profile-label">Status</span>
+                  <span class="dash-profile-value dash-member-badge">Member Aktif</span>
+                </div>
+              </div>
+              <a href="#" class="btn-pill btn-pill-royal" style="width: 100%; justify-content: center; margin-top: 16px; font-size: 0.88rem;">
+                <span>Edit Profil</span>
+                <div class="btn-arrow-circle" style="width: 22px; height: 22px;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </div>
+              </a>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="dash-section-card">
+              <h2 class="dash-section-title">Menu Cepat</h2>
+              <div class="dash-quick-actions">
+                <a href="belanja.html" class="dash-action-btn">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                  </svg>
+                  <span>Belanja</span>
+                </a>
+                <a href="galeri.html" class="dash-action-btn">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                    <polyline points="21 15 16 10 5 21"></polyline>
+                  </svg>
+                  <span>Galeri</span>
+                </a>
+                <a href="#" class="dash-action-btn">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                  </svg>
+                  <span>Wishlist</span>
+                </a>
+                <a href="#" class="dash-action-btn">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                  </svg>
+                  <span>Pengaturan</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-brand">
+          <img loading="lazy" decoding="async" src="assets/logo-batik-binar.png" width="682" height="1024" alt="Batik Binar Logo">
+          <p>
+            Platform resmi pelestarian dan perwujudan modern batik pesisir Dermayon, Indramayu. Menghidupkan kembali teknik complongan dan motif maritim autentik.
+          </p>
+          <div class="footer-social-links">
+            <a href="https://www.instagram.com/bintangarutindramayu?stkn=MTF2ZGJvNXVnenlobQ==" class="social-btn" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="https://www.facebook.com/share/19sMPGLddk/" class="social-btn" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="https://wa.me/6287870229801"
+              class="social-btn"
+              aria-label="WhatsApp"
+              target="_blank" rel="noopener">
+
+              <svg viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  width="20"
+                  height="20">
+                <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6.1-3.5-8.3z"/>
+                <path d="M8.2 6.8c-.3-.7-.6-.7-.9-.7h-.8c-.3 0-.7.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.1 1.4 3.3c.2.2 2.3 3.7 5.7 5 .8.3 1.4.5 1.9.6.8.1 1.5.1 2 .1.6-.1 1.8-.7 2.1-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.7-.4l-2.1-1c-.3-.1-.6-.2-.8.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.8.1-.4-.2-1.5-.6-2.8-1.8-1-.9-1.7-2-1.9-2.4-.2-.3 0-.5.2-.7.2-.2.4-.4.5-.6.2-.2.2-.4.3-.6.1-.2 0-.4-.1-.6z"/>
+              </svg>
+
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3>Navigasi</h3>
+          <ul class="footer-links-list">
+            <li><a href="#beranda">Home</a></li>
+            <li><a href="#tentang">Tentang Binar</a></li>
+            <li><a href="#proses">Tahapan Proses</a></li>
+            <li><a href="#motif">Koleksi Motif</a></li>
+            <li><a href="galeri.html">Galeri Visual</a></li>
+            <li><a href="profile.html">Profil</a></li>
+            <li><a href="belanja.html">Belanja Batik</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Akses Akun</h3>
+          <ul class="footer-links-list">
+            <li><a href="login.html">Masuk (Login)</a></li>
+            <li><a href="register.html">Pendaftaran Akun</a></li>
+            <li><a href="#">Sertifikat Keaslian</a></li>
+            <li><a href="#">Panduan Perawatan</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Sentra & Kontak</h3>
+          <div class="footer-contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Sentra Batik Paoman, Jl. Kopral Yahya No.120, Paoman, Kec. Indramayu, Kabupaten Indramayu, Jawa Barat 45211</span>
+          </div>
+          <div class="footer-contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>halo@batikbinar.id</span>
+          </div>
+          <div class="footer-contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>+62 8787-0229-801</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Batik Binar Indonesia. Seluruh hak cipta dilindungi.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Syarat & Ketentuan</a>
+          <a href="#">Kebijakan Privasi</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- lightbox modal -->
+  <div class="modal-backdrop" id="previewModal" role="dialog" aria-modal="true">
+    <div class="modal-container">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Tutup preview modal" type="button">&times;</button>
+      <div class="modal-image-wrapper">
+        <img src="" width="800" height="600" alt="Pratinjau Batik Binar" id="modalImage">
+      </div>
+      <div class="modal-body">
+        <div class="modal-tag" id="modalTag">Batik Paoman</div>
+        <h3 class="modal-title" id="modalTitle">Judul Motif</h3>
+        <p class="modal-description" id="modalDesc">Deskripsi detail filosofis karya batik.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Overlay Modal -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-overlay-container">
+      <div class="search-overlay-header">
+        <h3>Cari Produk Batik Binar</h3>
+        <button class="search-overlay-close" id="searchOverlayClose" type="button">&times;</button>
+      </div>
+      <div class="search-overlay-input-wrap">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="indexSearchInput" class="search-overlay-input" placeholder="Cari motif, busana, kain, aksesoris..." autocomplete="off">
+      </div>
+      <div class="search-overlay-results" id="indexSearchResults">
+        <p class="search-overlay-hint">Ketik nama produk untuk mulai mencari...</p>
+      </div>
+    </div>
+  </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="native-api.js?v=14"></script>
+</body>
+</html>

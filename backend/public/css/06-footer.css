@@ -1,0 +1,120 @@
+/* ==========================================================================
+   9. FOOTER (Deep Royal & White)
+   ========================================================================== */
+.site-footer {
+  background-color: #0B1754; /* Deep Navy Royal */
+  color: #CBD5E1;
+  padding-top: 80px;
+  padding-bottom: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-top-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.3fr;
+  gap: 48px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-brand img {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  margin-bottom: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 4px;
+  border: 2px solid var(--color-accent);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.footer-brand p {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  max-width: 320px;
+  margin-bottom: 24px;
+}
+
+.footer-social-links {
+  display: flex;
+  gap: 12px;
+}
+
+.social-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.social-btn:hover {
+  background-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.footer-col h3,
+.footer-col h4 {
+  font-size: 1.15rem;
+  color: var(--color-white);
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.footer-links-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-links-list a {
+  font-size: 0.9rem;
+  color: #94A3B8;
+}
+
+.footer-links-list a:hover {
+  color: #38BDF8;
+}
+
+.footer-contact-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+  font-size: 0.9rem;
+}
+
+.footer-contact-row svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--color-accent);
+  margin-top: 3px;
+}
+
+.footer-bottom {
+  padding-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #94A3B8;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.footer-bottom-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-bottom-links a:hover {
+  color: var(--color-accent);
+}
+

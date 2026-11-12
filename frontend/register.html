@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar Akun Baru | BATIK BINAR</title>
+  <meta name="description" content="Bergabunglah dengan Batik Binar. Akses eksklusif koleksi batik tulis khas Indramayu.">
+    <link rel="stylesheet" href="css/01-base.css">
+  <link rel="stylesheet" href="css/04-buttons.css">
+  <link rel="stylesheet" href="css/07-auth.css">
+  <link rel="stylesheet" href="css/08-components.css">
+  <link rel="stylesheet" href="css/14-animations.css">
+  <link rel="stylesheet" href="css/15-responsive.css">
+  <link rel="icon" type="image/png" href="assets/logo-batik-binar.png">
+</head>
+<body>
+
+  <div class="auth-gradient-page">
+    <div class="auth-centered-card" style="max-width: 520px;">
+
+      <div class="auth-card-top-nav">
+        <a href="index.html" class="auth-card-logo">
+          <img src="assets/logo-batik-binar.png" alt="Logo Batik Binar">
+          <span>BATIK BINAR</span>
+        </a>
+        <a href="index.html" class="auth-back-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          Beranda
+        </a>
+      </div>
+
+      <div class="auth-header">
+        <h2>Buat Akun Baru</h2>
+        <p>Daftarkan diri Anda untuk menjadi bagian pelestarian wastra</p>
+      </div>
+
+      <form id="registerForm" novalidate>
+        <div class="form-group">
+          <label for="regName" class="form-label">Nama Lengkap</label>
+          <div class="input-wrapper">
+            <input 
+              type="text" 
+              id="regName" 
+              class="form-control" 
+              placeholder="Contoh: Raden Ayu Binar" 
+              required 
+              autocomplete="name"
+            >
+          </div>
+          <p class="form-error">Nama lengkap minimal 3 karakter.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="regEmail" class="form-label">Alamat Email</label>
+          <div class="input-wrapper">
+            <input 
+              type="email" 
+              id="regEmail" 
+              class="form-control" 
+              placeholder="nama@email.com" 
+              required 
+              autocomplete="email"
+            >
+          </div>
+          <p class="form-error">Masukkan alamat email yang valid.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="regPhone" class="form-label">Nomor Telepon (WhatsApp)</label>
+          <div class="input-wrapper">
+            <input 
+              type="tel" 
+              id="regPhone" 
+              class="form-control" 
+              placeholder="081234567890" 
+              required 
+              autocomplete="tel"
+            >
+          </div>
+          <p class="form-error">Nomor telepon minimal 9 digit angka.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="regPassword" class="form-label">Kata Sandi</label>
+          <div class="input-wrapper">
+            <input 
+              type="password" 
+              id="regPassword" 
+              class="form-control" 
+              placeholder="Buat kata sandi aman (min. 6 karakter)" 
+              required 
+              autocomplete="new-password"
+            >
+            <button 
+              type="button" 
+              class="password-toggle-btn" 
+              data-target="regPassword" 
+              aria-label="Tampilkan kata sandi"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+
+          <div class="password-strength-container" id="pwdStrengthMeter">
+            <div class="strength-bars">
+              <div class="strength-bar"></div>
+              <div class="strength-bar"></div>
+              <div class="strength-bar"></div>
+              <div class="strength-bar"></div>
+            </div>
+            <p class="strength-text" id="pwdStrengthText">Kekuatan kata sandi: Lemah</p>
+          </div>
+          <p class="form-error">Kata sandi minimal 6 karakter.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="regConfirmPassword" class="form-label">Konfirmasi Kata Sandi</label>
+          <div class="input-wrapper">
+            <input 
+              type="password" 
+              id="regConfirmPassword" 
+              class="form-control" 
+              placeholder="Ulangi kata sandi Anda" 
+              required 
+              autocomplete="new-password"
+            >
+            <button 
+              type="button" 
+              class="password-toggle-btn" 
+              data-target="regConfirmPassword" 
+              aria-label="Tampilkan konfirmasi kata sandi"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+          <p class="form-error">Konfirmasi kata sandi tidak cocok.</p>
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox-label" style="align-items: flex-start;">
+            <input type="checkbox" id="regTerms" required style="margin-top: 3px;">
+            <span style="font-size: 0.88rem; line-height: 1.4;">Saya menyetujui <a href="#" style="color: var(--color-primary); font-weight: 700;">Syarat & Ketentuan</a> serta <a href="#" style="color: var(--color-accent); font-weight: 700;">Kebijakan Privasi</a> Batik Binar.</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn-pill btn-pill-royal auth-submit-btn">
+          <a href="index.html"></a>
+          <span>Daftar Sekarang</span>
+          <div class="btn-arrow-circle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </div>
+        </button>
+
+        <div class="auth-divider">
+          <span>atau daftar dengan</span>
+        </div>
+
+        <button type="button" class="google-auth-btn" onclick="showToast('Menghubungkan ke Google OAuth...', 'info');">
+          <svg class="google-icon" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
+            <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.16 0 9.94 0 12s.45 3.84 1.25 5.42l4.03-3.15z"/>
+            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+          </svg>
+          Daftar dengan Google
+        </button>
+
+        <p class="auth-switch-text">
+          Sudah memiliki akun? <a href="login.html">Masuk di sini</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="config.js"></script>
+  <script src="native-api.js?v=18"></script>
+</body>
+</html>

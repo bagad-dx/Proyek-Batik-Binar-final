@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Produk | BATIK BINAR</title>
+  <meta name="description" content="Detail produk batik Batik Binar Indramayu.">
+  <link rel="stylesheet" href="css/01-base.css">
+  <link rel="stylesheet" href="css/03-header.css">
+  <link rel="stylesheet" href="css/04-buttons.css">
+  <link rel="stylesheet" href="css/05-home.css">
+  <link rel="stylesheet" href="css/06-footer.css">
+  <link rel="stylesheet" href="css/08-components.css">
+  <link rel="stylesheet" href="css/09-shop.css">
+  <link rel="stylesheet" href="css/12-dashboard.css">
+  <link rel="stylesheet" href="css/14-animations.css">
+  <link rel="stylesheet" href="css/15-responsive.css">
+  <link rel="stylesheet" href="css/16-native.css">
+  <link rel="icon" type="image/png" href="assets/logo-batik-binar.png">
+</head>
+<body>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="Beranda Batik Binar">
+        <img src="assets/logo-batik-binar.png" alt="Batik Binar" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-name">BATIK BINAR</span>
+          <span class="brand-tag">Dermayon Heritage</span>
+        </div>
+      </a>
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html#beranda" class="nav-link">Home</a></li>
+          <li><a href="index.html#tentang" class="nav-link">Tentang</a></li>
+          <li><a href="index.html#proses" class="nav-link">Proses</a></li>
+          <li><a href="index.html#motif" class="nav-link">Koleksi</a></li>
+          <li><a href="galeri.html" class="nav-link">Galeri</a></li>
+          <li><a href="profile.html" class="nav-link">Profil</a></li>
+          <li><a href="belanja.html" class="nav-link active">Belanja</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <a href="dashboard.html" class="nav-icon-btn" aria-label="Dashboard" style="background-color: var(--color-accent); color: white;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+      </div>
+      <button class="menu-toggle-btn" id="menuToggleBtn" aria-label="Buka menu navigasi" type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-backdrop" id="mobileBackdrop"></div>
+
+  <main>
+    <section class="hero-wrapper nb-slim">
+      <div class="container" style="text-align:center;position:relative;z-index:3;">
+        <span class="hero-tagline-capsule">BATIK BINAR • DERMAYON</span>
+        <h1 class="hero-heading">Detail Produk</h1>
+        <p class="hero-desc" style="margin:0 auto;">Spesifikasi lengkap wastra pilihan Anda.</p>
+      </div>
+      <div class="hero-bottom-curve"><svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0 C300,90 900,90 1200,0 L1200,120 L0,120 Z"></path></svg></div>
+    </section>
+    <section class="shop-grid-section">
+      <div class="container" style="max-width:1080px;">
+        <p class="service-meta-text" id="pdCrumb" style="margin-bottom:14px;">Belanja / <b id="pdCrumbName">Produk</b></p>
+        <div id="pdWrap"><p class="service-desc">Memuat produk...</p></div>
+        <div class="services-header" style="margin-top:36px;">
+          <span class="section-eyebrow-pill">TERKAIT</span>
+          <h2 class="section-main-heading" style="font-size:1.4rem;">Produk Sejenis</h2>
+        </div>
+        <div class="services-grid-6" id="pdRelated" style="grid-template-columns:repeat(4,1fr);"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Batik Binar Indonesia. Seluruh hak cipta dilindungi.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="native-api.js?v=14"></script>
+</body>
+</html>

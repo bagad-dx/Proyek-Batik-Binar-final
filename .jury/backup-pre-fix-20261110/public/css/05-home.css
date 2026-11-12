@@ -1,0 +1,685 @@
+/* ==========================================================================
+   3. HERO SECTION (Curved Bottom Wave + 3 Capsule Cards)
+   ========================================================================== */
+.hero-wrapper {
+  position: relative;
+  background-image: 
+    linear-gradient(180deg, rgba(11, 23, 84, 0.72) 0%, rgba(21, 42, 136, 0.55) 50%, rgba(11, 23, 84, 0.88) 100%),
+    url('../assets/bg-homepage.jpg');
+  background-size: 520px auto;
+  background-repeat: repeat;
+  background-position: center top;
+  color: var(--color-white);
+  padding-top: 150px;
+  padding-bottom: 120px;
+  overflow: hidden;
+}
+
+/* Curved Concave Bottom (Matching the reference design) */
+.hero-bottom-curve {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  pointer-events: none;
+}
+
+.hero-bottom-curve svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 70px;
+}
+
+.hero-bottom-curve path {
+  fill: var(--color-bg);
+}
+
+.hero-container {
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr;
+  align-items: center;
+  gap: 48px;
+  position: relative;
+  z-index: 3;
+}
+
+/* Left Hero Content */
+.hero-tagline-capsule {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color:  #c9eeff; /* Light Cyan Accent */
+  margin-bottom: 18px;
+}
+
+.hero-heading {
+  font-size: 3.8rem;
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin-bottom: 22px;
+}
+
+.hero-heading .text-accent {
+  color: #f0f4f6; /* Pop-up Cyan-Blue */
+}
+
+.hero-desc {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 520px;
+  margin-bottom: 36px;
+}
+
+/* Right Hero: 3 Capsule Cards (Exact match to reference!) */
+.hero-capsules-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.capsules-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.capsule-card {
+  width: 135px;
+  height: 290px;
+  border-radius: 120px; /* Capsule pill frame */
+  border: 4px solid var(--color-white);
+  box-shadow: var(--shadow-hero-card);
+  overflow: hidden;
+  position: relative;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+}
+
+.capsule-card:nth-child(2) {
+  height: 330px; /* Center capsule is taller */
+  width: 145px;
+  transform: translateY(-8px);
+}
+
+.capsule-card:hover {
+  transform: translateY(-16px) scale(1.03);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.4);
+}
+
+.capsule-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.capsule-card:hover .capsule-img {
+  transform: scale(1.1);
+}
+
+.capsule-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(21, 42, 136, 0.8) 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 24px;
+}
+
+.capsule-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-white);
+  text-align: center;
+  padding: 4px 10px;
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+  border-radius: var(--radius-pill);
+}
+
+/* Prev / Next Circular Navigation Arrows */
+.capsules-nav-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.capsule-nav-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.18);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  transition: all var(--transition-fast);
+}
+
+.capsule-nav-btn:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  transform: scale(1.08);
+}
+
+/* ==========================================================================
+   4. ABOUT SECTION (Asymmetric Collage + Blue Brush Splashes)
+   ========================================================================== */
+.about-section {
+  padding: 100px 0;
+  position: relative;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 64px;
+}
+
+/* Asymmetric Collage with Artistic Blue Dye Brush Strokes */
+.about-collage-wrapper {
+  position: relative;
+}
+
+/* Organic Blue Paint Splash / Brush Accent (SVG / Gradient) */
+.about-brush-splash {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, var(--color-accent) 0%, rgba(22, 135, 217, 0) 70%);
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  opacity: 0.6;
+  z-index: 1;
+  filter: blur(14px);
+}
+
+.about-brush-splash-bottom {
+  position: absolute;
+  bottom: -30px;
+  left: 20%;
+  width: 120px;
+  height: 80px;
+  background-color: var(--color-accent);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  opacity: 0.4;
+  z-index: 1;
+  transform: rotate(-15deg);
+  filter: blur(10px);
+}
+
+.about-collage-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.collage-item {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 4px solid var(--color-white);
+  transition: transform var(--transition-normal);
+}
+
+.collage-item:hover {
+  transform: translateY(-6px);
+}
+
+.collage-item-top {
+  grid-column: span 2;
+  height: 220px;
+}
+
+.collage-item-bottom-1 {
+  height: 180px;
+}
+
+.collage-item-bottom-2 {
+  height: 220px;
+  transform: translateY(-20px);
+}
+
+.collage-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Floating canting / plane icon */
+.about-floating-icon {
+  position: absolute;
+  top: -10px;
+  right: 15%;
+  width: 44px;
+  height: 44px;
+  background-color: var(--color-white);
+  color: var(--color-accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  z-index: 3;
+  animation: floatSmall 3s ease-in-out infinite alternate;
+}
+
+/* Right Content */
+.about-content {
+  position: relative;
+}
+
+.section-eyebrow-pill {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  background-color: var(--color-accent-light);
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 16px;
+}
+
+.section-main-heading {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1.2;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+
+.about-narrative {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--color-text-muted);
+  margin-bottom: 28px;
+}
+
+/* ==========================================================================
+   5. SERVICES & PROSES PEMBUATAN (6-Card Grid - "We've Got You Covered")
+   ========================================================================== */
+.services-section {
+  padding: 100px 0;
+  background-color: var(--color-bg);
+}
+
+.services-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 60px;
+}
+
+.services-grid-6 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+.services-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+.services-grid-3 .service-card {
+  cursor: pointer;
+}
+
+.service-card {
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: 18px 18px 24px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border-light);
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(21, 42, 136, 0.2);
+}
+
+.service-img-box {
+  width: 100%;
+  height: 175px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 26px;
+}
+
+.service-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.service-card:hover .service-img-box img {
+  transform: scale(1.08);
+}
+
+/* Floating Circular Badge / Icon (Overlapping the bottom edge of image) */
+.service-icon-badge {
+  position: absolute;
+  bottom: -18px;
+  left: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px var(--color-accent-glow);
+  border: 3px solid var(--color-white);
+  z-index: 2;
+}
+
+.service-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 0 6px;
+}
+
+.service-title {
+  font-size: 1.22rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.service-desc {
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.service-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.service-meta-text {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+/* ==========================================================================
+   6. FEATURED MOTIF BATIK (Popular Destinations Style Layout)
+   ========================================================================== */
+.motif-banner-section {
+  position: relative;
+  background-image: 
+    linear-gradient(180deg, rgba(11, 23, 84, 0.85) 0%, rgba(21, 42, 136, 0.8) 100%),
+    url('../assets/bg-homepage.jpg');
+  background-size: 500px auto;
+  background-repeat: repeat;
+  background-position: center;
+  color: var(--color-white);
+  padding: 100px 0;
+  overflow: hidden;
+}
+
+.motif-banner-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.35fr;
+  align-items: center;
+  gap: 48px;
+}
+
+.motif-banner-content {
+  position: relative;
+  z-index: 2;
+}
+
+.motif-banner-content .section-eyebrow-pill {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #7DD3FC;
+}
+
+.motif-banner-heading {
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.18;
+  margin-bottom: 18px;
+}
+
+.motif-banner-desc {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+/* Row of Rounded Vertical Motif Cards */
+.motif-cards-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.motif-destination-card {
+  height: 360px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.3);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all var(--transition-normal);
+  cursor: pointer;
+}
+
+.motif-destination-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--color-accent);
+  box-shadow: 0 20px 45px rgba(22, 135, 217, 0.4);
+}
+
+.motif-card-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.motif-destination-card:hover .motif-card-bg-img {
+  transform: scale(1.1);
+}
+
+.motif-card-content {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 40%, rgba(11, 23, 84, 0.95) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.motif-location-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #7DD3FC;
+  margin-bottom: 4px;
+}
+
+.motif-card-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 8px;
+}
+
+.motif-card-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 6px;
+}
+
+.motif-duration-badge {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   7. GALLERY PREVIEW
+   ========================================================================== */
+.gallery-section {
+  padding: 100px 0;
+  background-color: var(--color-white);
+}
+
+.gallery-grid-modern {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.gallery-modern-card {
+  height: 280px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+}
+
+.gallery-modern-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.gallery-modern-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.gallery-modern-card:hover img {
+  transform: scale(1.08);
+}
+
+.gallery-modern-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(21, 42, 136, 0.85) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.gallery-modern-card:hover .gallery-modern-overlay {
+  opacity: 1;
+}
+
+.gallery-modern-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #7DD3FC;
+  text-transform: uppercase;
+}
+
+.gallery-modern-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-white);
+}
+/* ==========================================================================
+   8. CTA BANNER (Curved & Royal Blue)
+   ========================================================================== */
+.cta-section {
+  padding: 40px 0 100px;
+}
+
+.cta-banner-pill {
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, var(--color-accent) 100%);
+  border-radius: 32px;
+  padding: 60px 48px;
+  color: var(--color-white);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.cta-banner-pill::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.cta-banner-content {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.cta-banner-heading {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+  line-height: 1.15;
+}
+
+.cta-banner-desc {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+
+.cta-btn-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
