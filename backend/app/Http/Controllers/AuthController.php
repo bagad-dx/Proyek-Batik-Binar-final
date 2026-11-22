@@ -335,10 +335,18 @@ class AuthController extends Controller
     {
         $user = Auth::guard('web')->user();
         if (! $user) return response()->json(['token' => null, 'user' => null]);
-        $user->tokens()->where('name', 'batik-binar-web')->delete();
-        return response()->json([
-            'token' => $user->createToken('batik-binar-web')->plainTextToken,
-            'user' => $user,
-        ]);
+        // Jangan rotasi token di tiap panggilan: plaintext token web yang
+        // sudah ada tidak bisa dikembalikan (hanya hash-nya yang tersimpan),
+        // dan menghapusnya membuat token yang dipegang browser kedaluwarsa
+        // seketika -> halaman native ke-2 logout sendiri (401). Klien tetap
+        // memakai token yang ditulis layout saat login web; token baru hanya
+        // dibuat bila akun ini belum punya token web sama sekali.
+        if (! $user->tokens()->where('name', 'batik-binar-web')->exists()) {
+            return response()->json([
+                'token' => $user->createToken('batik-binar-web')->plainTextToken,
+                'user' => $user,
+            ]);
+        }
+        return response()->json(['token' => null, 'user' => $user]);
     }
 }

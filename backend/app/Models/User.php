@@ -20,6 +20,8 @@ class User extends Authenticatable
         'banned_at', 'ban_reason', 'email_verified_at',
     ];
 
+    protected $hidden = ['password', 'remember_token'];
+
     protected function casts(): array
     {
         return [

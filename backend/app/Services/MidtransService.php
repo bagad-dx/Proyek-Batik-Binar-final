@@ -31,7 +31,7 @@ class MidtransService
         return 'BINAR-' . $order->id . '-' . $order->created_at->format('YmdHis');
     }
 
-    /** Pilihan tombol -> filter metode Snap. COD = tunai di gerai (Midtrans tak punya COD murni). */
+    /** Pilihan tombol -> filter metode Snap. Tunai di gerai (Midtrans tak punya COD murni). */
     public const CHANNELS = [
         'transfer' => ['bank_transfer'],
         'cod' => ['indomaret', 'alfamart'],
@@ -265,6 +265,57 @@ class MidtransService
     }
 
     /**
+     * Sinkronisasi status order dari Midtrans Status API (GET /v2/{order_id}/status).
+     * Dipakai polling lokal karena webhook Midtrans tidak bisa mencapai localhost.
+     * Hanya status resmi Midtrans yang mengubah DB; tidak ada jalur yang menandai
+     * lunas dari pengakuan pembeli. Return Order (fresh) atau null bila tidak ada
+     * payment_ref / Midtrans tak terjangkau.
+     */
+    public function syncStatus(Order $order): ?Order
+    {
+        if (! $this->configured() || ! $order->payment_ref) return null;
+        if ($order->status !== 'pending') return $order->fresh();
+        try {
+            $res = Http::timeout(20)->withHeaders($this->coreHeaders())
+                ->get($this->baseUrl() . '/v2/' . $order->payment_ref . '/status');
+        } catch (\Throwable $e) {
+            Log::warning('Midtrans sync status gagal (network): ' . $e->getMessage());
+            return null;
+        }
+        if (! $res->successful()) {
+            Log::warning('Midtrans sync status HTTP ' . $res->status() . ' untuk ' . $order->payment_ref);
+            return null;
+        }
+        $api = $res->json();
+        $trx = $api['transaction_status'] ?? '';
+        $fraud = $api['fraud_status'] ?? 'accept';
+        $this->applyTransactionStatus($order->fresh(), $trx, $fraud);
+        return $order->fresh();
+    }
+
+    /**
+     * Terapkan transisi status dari transaction_status Midtrans.
+     * Dipakai bersama oleh webhook (handleNotification) dan polling (syncStatus)
+     * supaya keduanya tidak bisa berbeda hasil.
+     */
+    protected function applyTransactionStatus(Order $order, string $trx, string $fraud): void
+    {
+        if ($order->status !== 'pending') return;
+        if ($trx === 'settlement' || ($trx === 'capture' && $fraud === 'accept')) {
+            $order->update(['midtrans_status' => $trx, 'status' => 'diproses', 'paid_at' => now()]);
+            kirim_notifikasi($order->user_id, 'Pembayaran #' . $order->id . ' lunas',
+                'Terima kasih! Pesananmu sedang diproses admin.', 'pembayaran', 'pesanan', $order->id);
+        } elseif (in_array($trx, ['deny', 'cancel', 'expire'], true)) {
+            $order->update(['midtrans_status' => $trx, 'status' => 'batal']);
+            if ($order->product) $order->product->increment('stok', $order->jumlah);
+            kirim_notifikasi($order->user_id, 'Pembayaran #' . $order->id . ' gagal/kedaluwarsa',
+                'Pesanan dibatalkan otomatis dan stok dikembalikan.', 'pembayaran', 'pesanan', $order->id);
+        } else {
+            $order->update(['midtrans_status' => $trx]);
+        }
+    }
+
+    /**
      * Proses notifikasi webhook Midtrans. Return Order atau null bila diabaikan.
      *
      * @throws \RuntimeException bila signature salah
@@ -282,19 +333,8 @@ class MidtransService
 
         $trx = $payload['transaction_status'] ?? '';
         $fraud = $payload['fraud_status'] ?? 'accept';
-
-        if ($trx === 'settlement' || ($trx === 'capture' && $fraud === 'accept')) {
-            $order->update(['midtrans_status' => $trx, 'status' => 'diproses', 'paid_at' => now()]);
-            kirim_notifikasi($order->user_id, 'Pembayaran #' . $order->id . ' lunas',
-                'Terima kasih! Pesananmu sedang diproses admin.', 'pembayaran', 'pesanan', $order->id);
-        } elseif (in_array($trx, ['deny', 'cancel', 'expire'], true)) {
-            $order->update(['midtrans_status' => $trx, 'status' => 'batal']);
-            if ($order->product) $order->product->increment('stok', $order->jumlah);
-            kirim_notifikasi($order->user_id, 'Pembayaran #' . $order->id . ' gagal/kedaluwarsa',
-                'Pesanan dibatalkan otomatis dan stok dikembalikan.', 'pembayaran', 'pesanan', $order->id);
-        } else {
-            $order->update(['midtrans_status' => $trx]);
-        }
+        $this->applyTransactionStatus($order, $trx, $fraud);
         return $order;
     }
 }
+

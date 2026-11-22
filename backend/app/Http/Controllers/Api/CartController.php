@@ -83,6 +83,7 @@ class CartController extends Controller
         }
 
         $shipping = Order::EXPEDITIONS[$data['expedition']]['ongkir'];
+        $shippingCharged = false; // K2: ongkir penuh hanya di order pertama
         $orders = [];
         $snaps = [];
         $directs = [];
@@ -99,11 +100,12 @@ class CartController extends Controller
                 'no_hp' => $data['no_hp'],
                 'payment_method' => 'midtrans',
                 'expedition' => $data['expedition'],
-                'shipping_cost' => $shipping,
+                'shipping_cost' => $shippingCharged ? 0 : $shipping,
                 'batas_bayar' => Order::batasBayarDefault(),
                 'catatan' => ($data['catatan'] ?? '') . (isset($data['pay_channel']) ? ' [via:' . $data['pay_channel'] . (isset($data['bank']) ? ':' . $data['bank'] : '') . (isset($data['ewallet']) ? ':' . $data['ewallet'] : '') . (isset($data['store']) ? ':' . $data['store'] : '') . ']' : ''),
                 'status' => 'pending',
             ]);
+            $shippingCharged = true; // ongkir sudah dibebankan ke order pertama
             $item->product->decrement('stok', $item->jumlah);
             $order->details()->create([
                 'product_id' => $item->product_id,

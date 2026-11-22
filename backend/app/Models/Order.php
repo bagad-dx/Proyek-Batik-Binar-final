@@ -18,7 +18,7 @@ class Order extends Model
 
     public const PAYMENTS = [
         'transfer' => 'Transfer Bank',
-        'cod' => 'COD (Bayar di Tempat)',
+        'cod' => 'Tunai di Gerai (Alfamart/Indomaret)',
         'ewallet' => 'E-Wallet (DANA/OVO/GoPay)',
         'qris' => 'QRIS',
         'midtrans' => 'Midtrans (VA Bank / QRIS / E-Wallet)',
@@ -58,7 +58,7 @@ class Order extends Model
     public function getMetodeLabelAttribute(): string
     {
         if (preg_match('/\[via:([a-z]+)(?::([a-z]+))?\]/', $this->catatan ?? '', $m)) {
-            $base = ['transfer' => 'Transfer Bank', 'cod' => 'COD (Tunai Gerai)', 'ewallet' => 'E-Wallet', 'qris' => 'QRIS', 'kartu' => 'Kartu Kredit/Debit'][$m[1]] ?? null;
+            $base = ['transfer' => 'Transfer Bank', 'cod' => 'Tunai di Gerai', 'ewallet' => 'E-Wallet', 'qris' => 'QRIS', 'kartu' => 'Kartu Kredit/Debit'][$m[1]] ?? null;
             if ($base) {
                 $sub = ['bca' => 'BCA', 'bni' => 'BNI', 'bri' => 'BRI', 'permata' => 'Permata', 'gopay' => 'GoPay', 'shopeepay' => 'ShopeePay', 'alfamart' => 'Alfamart', 'indomaret' => 'Indomaret'][$m[2] ?? ''] ?? null;
                 return $sub ? $base . ' ' . $sub : $base;

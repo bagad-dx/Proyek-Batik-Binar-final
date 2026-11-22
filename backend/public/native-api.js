@@ -268,7 +268,7 @@
       '</div>' +
       '<div class="form-group"><label class="form-label" for="otpCode">Kode OTP (6 digit)</label>' +
       '<div class="input-wrapper"><input type="text" id="otpCode" class="form-control otp-input" ' +
-      'placeholder="••••••" maxlength="6" inputmode="numeric" autocomplete="one-time-code"></div></div>' +
+      'placeholder="â€¢â€¢â€¢â€¢â€¢â€¢" maxlength="6" inputmode="numeric" autocomplete="one-time-code"></div></div>' +
       '<p class="service-desc">Kode kedaluwarsa dalam <b id="otpTimer">10:00</b></p>' +
       '<div class="otp-actions">' +
       '<button type="button" class="btn-pill btn-pill-royal auth-submit-btn" id="otpVerifyBtn" style="flex:1;justify-content:center;"><span>Verifikasi & Buat Akun</span></button>' +
@@ -525,7 +525,7 @@
   /* ---------- pilihan metode ala Shopee ---------- */
   const NB_PAY = [
     { key: 'transfer', label: 'Transfer Bank', gw: false },
-    { key: 'cod', label: 'COD', gw: false },
+    { key: 'cod', label: 'Tunai di Gerai', gw: false },
     { key: 'ewallet', label: 'E-Wallet', gw: false },
     { key: 'qris', label: 'QRIS', gw: true },
     { key: 'kartu', label: 'Kartu Kredit/Debit', gw: true },
@@ -556,7 +556,7 @@
   const PAY_SUBS = {
     transfer: { label: 'Pilih Bank', name: 'bank', opts: [['bca', 'BCA'], ['bni', 'BNI'], ['bri', 'BRI'], ['permata', 'Permata']] },
     ewallet: { label: 'Pilih E-Wallet', name: 'ewallet', opts: [['gopay', 'GoPay'], ['shopeepay', 'ShopeePay']] },
-    cod: { label: 'Pilih Gerai Tunai', name: 'store', opts: [['alfamart', 'Alfamart'], ['indomaret', 'Indomaret']] },
+    cod: { label: 'Pilih Gerai Tunai (bayar maks. 24 jam)', name: 'store', opts: [['alfamart', 'Alfamart'], ['indomaret', 'Indomaret']] },
   };
   function bindPaySub(scope, defKey) {
     const wrap = document.getElementById('paySubWrap');
@@ -600,7 +600,7 @@
     } else {
       h = '<p class="service-desc">Menyiapkan pembayaran...</p>';
     }
-    if (d.gross) h += '<p class="service-desc" style="text-align:center;">Total: <b>Rp ' + Number(d.gross).toLocaleString('id-ID') + '</b>' + (d.expires ? ' • Kedaluwarsa: ' + esc(d.expires) : '') + '</p>';
+    if (d.gross) h += '<p class="service-desc" style="text-align:center;">Total: <b>Rp ' + Number(d.gross).toLocaleString('id-ID') + '</b>' + (d.expires ? ' â€¢ Kedaluwarsa: ' + esc(d.expires) : '') + '</p>';
     box.innerHTML = h;
     box.style.display = 'block';
     const cp = box.querySelector('[data-copy]');
@@ -680,7 +680,7 @@
     return '<div class="shop-product-card" data-id="' + p.id + '">' +
       '<div class="shop-product-img"><img src="' + esc(img) + '" alt="' + esc(p.nama) + '" loading="lazy">' +
       '<span class="shop-product-badge">' + esc(cat) + '</span>' +
-      '<button class="nb-heart" data-wish="' + p.id + '" aria-label="Wishlist" title="Wishlist">♡</button></div>' +
+      '<button class="nb-heart" data-wish="' + p.id + '" aria-label="Wishlist" title="Wishlist">â™¡</button></div>' +
       '<div class="shop-product-body"><div class="shop-product-category">' + esc(cat) + '</div>' +
       '<h3 class="shop-product-name">' + esc(p.nama) + '</h3>' +
       ((p.teknik || p.bahan || p.ukuran) ? '<div class="shop-product-specs">' + esc([p.teknik, p.bahan, p.ukuran].filter(Boolean).join(' \u2022 ')) + '</div>' : '') +
@@ -726,9 +726,9 @@
     document.getElementById('nativeShopCat').textContent = (p.category && p.category.nama) || 'Batik Binar';
     document.getElementById('nativeShopTitle').textContent = p.nama;
     document.getElementById('nativeShopDesc').textContent =
-      (p.deskripsi || '') + ' • Motif: ' + (p.motif || '-') + ' • Bahan: ' + (p.bahan || '-') +
-      ' • Ukuran: ' + (p.ukuran || '-') + ' • Teknik: ' + (p.teknik || '-') +
-      ' • Stok: ' + p.stok + ' • Rp ' + Number(p.harga).toLocaleString('id-ID');
+      (p.deskripsi || '') + ' â€¢ Motif: ' + (p.motif || '-') + ' â€¢ Bahan: ' + (p.bahan || '-') +
+      ' â€¢ Ukuran: ' + (p.ukuran || '-') + ' â€¢ Teknik: ' + (p.teknik || '-') +
+      ' â€¢ Stok: ' + p.stok + ' â€¢ Rp ' + Number(p.harga).toLocaleString('id-ID');
     const buyBox = document.getElementById('nativeShopBuy');
     const coBox = document.getElementById('nativeCheckout');
     coBox.style.display = 'none';
@@ -767,7 +767,7 @@
     loadMeta().then((meta) => {
       const expData = meta.expeditions || {};
       const exps = Object.entries(expData).map(([k, v]) =>
-        '<option value="' + esc(k) + '" data-ongkir="' + v.ongkir + '">' + esc(v.label) + ' — Rp ' + Number(v.ongkir).toLocaleString('id-ID') + '</option>').join('');
+        '<option value="' + esc(k) + '" data-ongkir="' + v.ongkir + '">' + esc(v.label) + ' â€” Rp ' + Number(v.ongkir).toLocaleString('id-ID') + '</option>').join('');
       const me = store.user || {};
       box.innerHTML =
         '<div class="form-group"><label class="form-label">Jumlah (stok ' + p.stok + ')</label><div class="input-wrapper"><input type="number" id="coJumlah" class="form-control" value="1" min="1" max="' + p.stok + '"></div></div>' +
@@ -978,7 +978,7 @@
     $$('.nb-heart', root || document).forEach((b) => {
       const on = wishSet.has(String(b.getAttribute('data-wish')));
       b.classList.toggle('liked', on);
-      b.textContent = on ? '♥' : '♡';
+      b.textContent = on ? 'â™¥' : 'â™¡';
       if (!b.dataset.bound) {
         b.dataset.bound = '1';
         b.addEventListener('click', async (e) => {
@@ -1061,8 +1061,8 @@
         return '<div class="nb-cart-item"><input type="checkbox" class="nb-pick" data-pick="' + i.id + '" checked>' +
           '<img src="' + esc(imgUrl(p.gambar_url || p.gambar, FALLBACK_IMG)) + '" alt="">' +
           '<div class="inf"><b>' + esc(p.nama || '-') + '</b><span>Rp ' + Number(p.harga || 0).toLocaleString('id-ID') + '</span></div>' +
-          '<div class="nb-qty"><button type="button" data-dec="' + i.id + '">−</button><b>' + i.jumlah + '</b><button type="button" data-inc="' + i.id + '">+</button></div>' +
-          '<button type="button" class="nb-cart-rm" data-rm="' + i.id + '" aria-label="Hapus">×</button></div>';
+          '<div class="nb-qty"><button type="button" data-dec="' + i.id + '">âˆ’</button><b>' + i.jumlah + '</b><button type="button" data-inc="' + i.id + '">+</button></div>' +
+          '<button type="button" class="nb-cart-rm" data-rm="' + i.id + '" aria-label="Hapus">Ã—</button></div>';
       }).join('');
       const updSelTotal = () => {
         const sel = $$('.nb-pick', body).filter((c) => c.checked).map((c) => Number(c.getAttribute('data-pick')));
@@ -1119,7 +1119,7 @@
     const meta = await loadMeta();
     const expData = meta.expeditions || {};
     const exps = Object.entries(expData).map(([k, v]) =>
-      '<option value="' + esc(k) + '" data-ongkir="' + v.ongkir + '">' + esc(v.label) + ' — Rp ' + Number(v.ongkir).toLocaleString('id-ID') + '</option>').join('');
+      '<option value="' + esc(k) + '" data-ongkir="' + v.ongkir + '">' + esc(v.label) + ' â€” Rp ' + Number(v.ongkir).toLocaleString('id-ID') + '</option>').join('');
     const me = store.user || {};
     let cartSubtotal = 0;
     try {
@@ -1129,7 +1129,7 @@
         .reduce((s, i) => s + (i.product ? i.product.harga * i.jumlah : 0), 0);
     } catch (e) {}
     body.innerHTML =
-      '<button type="button" class="nb-mini-btn primary" id="nbBackCart">← Kembali</button>' +
+      '<button type="button" class="nb-mini-btn primary" id="nbBackCart">â† Kembali</button>' +
       '<div class="form-group"><label class="form-label">No HP</label><div class="input-wrapper"><input type="text" id="nbCoHp" class="form-control" value="' + esc(me.phone || '') + '"></div></div>' +
       '<div class="form-group"><label class="form-label">Alamat Lengkap</label><div class="input-wrapper"><textarea id="nbCoAlamat" class="form-control" rows="2">' + esc(me.alamat || '') + '</textarea></div></div>' +
       '<div class="form-group"><label class="form-label">Ekspedisi</label><div class="input-wrapper"><select id="nbCoExp" class="form-control">' + exps + '</select></div></div>' +
@@ -1242,7 +1242,7 @@
     body.innerHTML = '<p class="service-desc">Memuat...</p>';
     try {
       const items = await api('/wishlist');
-      if (!items.length) { body.innerHTML = '<p class="service-desc">Wishlist kosong. Ketuk ♥ pada produk untuk menyimpan.</p>'; return; }
+      if (!items.length) { body.innerHTML = '<p class="service-desc">Wishlist kosong. Ketuk â™¥ pada produk untuk menyimpan.</p>'; return; }
       body.innerHTML = items.map((w) => {
         const p = w.product || {};
         return '<div class="nb-wish-item"><img src="' + esc(imgUrl(p.gambar_url || p.gambar, FALLBACK_IMG)) + '" alt="">' +
@@ -1392,7 +1392,7 @@
     return steps[kind] || ['Klik Bayar Sekarang untuk membuka halaman bayar aman', 'Pilih / lengkapi detail pembayaran', 'Selesaikan verifikasi bila diminta (mis. 3DS / OTP)'];
   }
   function payTimelineHtml() {
-    const dot = (done, active) => '<span class="pay-dot' + (done ? ' done' : active ? ' active' : '') + '">' + (done ? '✓' : '') + '</span>';
+    const dot = (done, active) => '<span class="pay-dot' + (done ? ' done' : active ? ' active' : '') + '">' + (done ? 'âœ“' : '') + '</span>';
     return '<div class="pay-timeline">' +
       '<div class="pay-step">' + dot(true) + '<div><b>Pesanan Dibuat</b><span>Menunggu pembayaran</span></div></div>' +
       '<div class="pay-line"></div>' +
@@ -1400,7 +1400,7 @@
       '<div class="pay-line"></div>' +
       '<div class="pay-step">' + dot(false) + '<div><b>Pesanan Diproses</b><span>Otomatis setelah lunas</span></div></div></div>';
   }
-  function payCountdownStart(batas) {
+  function payCountdownStart(batas, onExpire) {
     const el = document.getElementById('payCountdown');
     if (!el || !batas) return;
     const end = new Date(batas).getTime();
@@ -1409,11 +1409,12 @@
       const sisa = end - Date.now();
       if (sisa <= 0) {
         el.textContent = '00:00:00';
+        clearInterval(window.__payTick);
+        if (typeof onExpire === 'function') { onExpire(); return; }
         const w = document.getElementById('payWarn');
-        if (w) w.innerHTML = '<b>Waktu habis.</b> Pesanan kedaluwarsa — silakan buat pesanan baru. <a href="belanja.html">Belanja lagi</a>';
+        if (w) w.innerHTML = '<b>Waktu habis.</b> Pesanan kedaluwarsa - silakan buat pesanan baru. <a href="belanja.html">Belanja lagi</a>';
         const btns = document.querySelectorAll('#payNowBtn,#payRefresh');
         btns.forEach((b) => { b.disabled = true; });
-        clearInterval(window.__payTick);
         return;
       }
       const h = Math.floor(sisa / 3600000), m = Math.floor(sisa % 3600000 / 60000), s = Math.floor(sisa % 60000 / 1000);
@@ -1429,12 +1430,45 @@
     if (!store.token) { window.location.href = 'login.html'; return; }
     const oid = new URLSearchParams(window.location.search).get('order_id');
     if (!oid) { box.innerHTML = '<p class="service-desc">Pesanan tidak ditemukan.</p>'; return; }
+    let pollId = null;
+    const stopPolling = () => { if (pollId) { clearInterval(pollId); pollId = null; } };
+    // Cek status ke Midtrans (sinkronisasi server). Satu-satunya jalan
+    // mendeteksi lunas; tidak pernah menandai lunas dari pengakuan pembeli.
+    const checkPaidStatus = async () => api('/orders/' + oid + '/payment-status');
+    const showPaidInvoice = (chk) => {
+      stopPolling();
+      clearInterval(window.__payTick);
+      const o = (chk && chk.order) || {};
+      const paidAt = o.paid_at ? new Date(o.paid_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '-';
+      box.innerHTML = '<div style="text-align:center;padding:12px 0 4px;">' +
+        '<div style="width:72px;height:72px;border-radius:50%;background:#DCFCE7;color:#15803D;display:inline-flex;align-items:center;justify-content:center;font-size:2rem;font-weight:800;">&#10003;</div>' +
+        '<h3 class="service-title" style="margin:14px 0 4px;">Pembayaran Berhasil</h3>' +
+        '<p class="service-desc">Pesanan #' + esc(String(oid)) + ' sudah lunas dan sedang diproses admin.</p></div>' +
+        '<div class="nb-summary" style="max-width:460px;margin:12px auto 0;">' +
+        '<div class="row"><span>Pesanan</span><span>#' + esc(String(oid)) + ' &bull; ' + esc(o.nama || 'Produk Batik') + ' x' + (o.jumlah || 1) + '</span></div>' +
+        '<div class="row"><span>Total Bayar</span><span>' + rupiah(o.grand_total || 0) + '</span></div>' +
+        '<div class="row"><span>Status</span><span>Lunas - Diproses</span></div>' +
+        '<div class="row"><span>Dibayar pada</span><span>' + esc(paidAt) + '</span></div></div>' +
+        '<div class="backend-actions" style="justify-content:center;margin-top:18px;"><a href="pesanan.html" class="btn-pill btn-pill-blue" style="padding:10px 22px;"><span>Lihat Pesanan</span></a> ' +
+        '<a href="dashboard.html" class="btn-pill btn-pill-royal" style="padding:10px 22px;"><span>Kembali ke Dashboard</span></a></div>' +
+        '<p class="service-desc" style="text-align:center;margin-top:12px;">Anda akan diarahkan ke dashboard...</p>';
+      setTimeout(() => { window.location.href = 'dashboard.html'; }, 6000);
+    };
+    const onPayExpired = async () => {
+      stopPolling();
+      try {
+        const chk = await checkPaidStatus();
+        if (chk && (chk.paid || chk.status === 'diproses')) { showPaidInvoice(chk); return; }
+      } catch (e) {}
+      const w = document.getElementById('payWarn');
+      if (w) w.innerHTML = '<b>Waktu habis.</b> Pesanan kedaluwarsa - silakan buat pesanan baru. <a href="belanja.html">Belanja lagi</a>';
+      document.querySelectorAll('#payNowBtn,#payRefresh').forEach((b) => { b.disabled = true; });
+    };
     const showPay = async (silent) => {
       try {
         const d = await api('/orders/' + oid + '/payment');
         if (d.paid || d.status === 'diproses') {
-          toast('Pembayaran lunas! Pesanan diproses.', 'success');
-          setTimeout(() => { window.location.href = 'dashboard.html'; }, 1200);
+          showPaidInvoice({ paid: true, status: 'diproses', order: { id: oid, nama: (d.order && d.order.nama) || 'Produk Batik', jumlah: (d.order && d.order.jumlah) || 1, grand_total: (d.order && d.order.grand_total) || d.gross || 0, paid_at: null } });
           return true;
         }
         renderDirectPay(box.querySelector('#payDirect'), d);
@@ -1443,8 +1477,8 @@
             const host = d.is_production ? 'app.midtrans.com' : 'app.sandbox.midtrans.com';
             await loadScript('https://' + host + '/snap/snap.js');
             window.snap.pay(d.snap_token, {
-              onSuccess: () => { window.location.href = 'dashboard.html'; },
-              onPending: () => { window.location.href = 'dashboard.html'; },
+              onSuccess: async () => { try { const chk = await checkPaidStatus(); if (chk && chk.paid) { showPaidInvoice(chk); return; } } catch (e) {} window.location.href = 'dashboard.html'; },
+              onPending: async () => { try { const chk = await checkPaidStatus(); if (chk && chk.paid) { showPaidInvoice(chk); return; } } catch (e) {} window.location.href = 'dashboard.html'; },
               onClose: () => {},
             });
           } catch (e) {}
@@ -1456,10 +1490,15 @@
       }
     };
     try {
+      const chk0 = await checkPaidStatus().catch(() => null);
+      if (chk0 && (chk0.paid || chk0.status === 'diproses')) { showPaidInvoice(chk0); return; }
       const d = await api('/orders/' + oid + '/payment');
+      if (d.status === 'batal') {
+        box.innerHTML = '<p class="service-desc" style="text-align:center;">Pesanan ini sudah dibatalkan/kedaluwarsa.</p><div class="backend-actions" style="justify-content:center;"><a href="pesanan.html" class="btn-pill btn-pill-blue" style="padding:10px 22px;"><span>Lihat Pesanan</span></a></div>';
+        return;
+      }
       if (d.paid || d.status === 'diproses') {
-        toast('Pesanan ini sudah lunas.', 'success');
-        setTimeout(() => { window.location.href = 'dashboard.html'; }, 1200);
+        showPaidInvoice({ paid: true, status: 'diproses', order: { id: oid, nama: (d.order && d.order.nama) || 'Produk Batik', jumlah: (d.order && d.order.jumlah) || 1, grand_total: (d.order && d.order.grand_total) || d.gross || 0, paid_at: null } });
         return;
       }
       const o = d.order || {};
@@ -1470,7 +1509,7 @@
         '<div class="pay-grid">' +
         '<div class="backend-card"><h3 class="service-title">Ringkasan Pesanan</h3>' +
         '<div style="display:flex;gap:12px;align-items:center;margin:10px 0 14px;"><img src="' + esc(img) + '" alt="" style="width:72px;height:72px;border-radius:14px;object-fit:cover;flex:none;">' +
-        '<div><b style="font-size:.95rem;">' + esc(o.nama || 'Pesanan') + '</b><div class="service-meta-text">Pesanan #' + esc(String(oid)) + ' • x' + (o.jumlah || 1) + '</div>' +
+        '<div><b style="font-size:.95rem;">' + esc(o.nama || 'Pesanan') + '</b><div class="service-meta-text">Pesanan #' + esc(String(oid)) + ' â€¢ x' + (o.jumlah || 1) + '</div>' +
         '<span class="pay-method-badge">' + esc(metode) + '</span></div></div>' +
         '<div class="nb-summary">' +
         '<div class="row"><span>Subtotal Produk</span><span>' + rupiah(o.total_harga || 0) + '</span></div>' +
@@ -1483,10 +1522,10 @@
         '<p class="service-meta-text" id="payWarn">Bayar sebelum ' + (o.batas_bayar ? new Date(o.batas_bayar).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '-') + '</p>' +
         '<div id="payDirect"></div>' +
         '<div class="backend-actions" style="justify-content:center;margin-top:14px;"><button type="button" class="btn-pill btn-pill-blue" id="payNowBtn" style="padding:12px 28px;"><span>Bayar Sekarang</span></button> ' +
-        '<button type="button" class="btn-pill btn-pill-royal" id="payRefresh" style="padding:10px 22px;"><span>Saya Sudah Bayar</span></button></div></div></div>' +
+        '<button type="button" class="btn-pill btn-pill-royal" id="payRefresh" style="padding:10px 22px;"><span>Cek Status Pembayaran</span></button></div></div></div>' +
         '<div class="backend-card" style="margin-top:16px;"><h3 class="service-title">Cara Membayar</h3>' +
         '<ol class="pay-steps-list">' + payStepsFor(d.kind, grand).map((s) => '<li>' + esc(s) + '</li>').join('') + '</ol></div>';
-      payCountdownStart(o.batas_bayar);
+      payCountdownStart(o.batas_bayar, onPayExpired);
       document.getElementById('payCancelBtn').addEventListener('click', async () => {
         if (!confirm('Batalkan pesanan ini? Stok dikembalikan.')) return;
         try {
@@ -1503,28 +1542,46 @@
         btn.disabled = false;
         btn.querySelector('span').textContent = 'Bayar Sekarang';
       });
-      // segarkan bila sudah lunas
-      const iv = setInterval(async () => {
+      // Polling status lunas ke Midtrans tiap 2,5 detik (ala MiomiPay POS).
+      pollId = setInterval(async () => {
         try {
-          const chk = await api('/orders/' + oid + '/payment');
-          if (chk.paid || chk.status === 'diproses') {
-            clearInterval(iv);
+          const chk = await checkPaidStatus();
+          if (chk && (chk.paid || chk.status === 'diproses')) {
             toast('Pembayaran lunas! Pesanan diproses.', 'success');
-            setTimeout(() => { window.location.href = 'dashboard.html'; }, 1200);
+            showPaidInvoice(chk);
           }
         } catch (e) {}
-      }, 15000);
-      document.getElementById('payRefresh').addEventListener('click', async () => {
+      }, 2500);
+      // Cek instan saat halaman dibuka kembali / kembali dari browser.
+      const onVisible = async () => {
+        if (document.hidden) return;
         try {
-          const chk = await api('/orders/' + oid + '/payment');
+          const chk = await checkPaidStatus();
+          if (chk && (chk.paid || chk.status === 'diproses')) { toast('Pembayaran lunas! Pesanan diproses.', 'success'); showPaidInvoice(chk); }
+        } catch (e) {}
+      };
+      document.addEventListener('visibilitychange', onVisible);
+      window.addEventListener('focus', onVisible);
+      document.getElementById('payRefresh').addEventListener('click', async (e) => {
+        const btn = e.currentTarget;
+        btn.disabled = true;
+        const span = btn.querySelector('span');
+        const oldLabel = span ? span.textContent : '';
+        if (span) span.textContent = 'Mengecek...';
+        try {
+          const chk = await checkPaidStatus();
           if (chk.paid || chk.status === 'diproses') {
-            clearInterval(iv);
             toast('Pembayaran lunas! Pesanan diproses.', 'success');
-            setTimeout(() => { window.location.href = 'dashboard.html'; }, 1200);
+            showPaidInvoice(chk);
+          } else if (chk.status === 'batal') {
+            toast('Pesanan ini sudah batal/kedaluwarsa.', 'error');
+            setTimeout(() => { window.location.href = 'pesanan.html'; }, 1200);
           } else {
             toast('Belum terdeteksi. Selesaikan pembayaran dulu ya.', 'info');
           }
-        } catch (e) { toast(e.message, 'error'); }
+        } catch (err) { toast(err.message || 'Gagal mengecek status.', 'error'); }
+        btn.disabled = false;
+        if (span) span.textContent = oldLabel;
       });
       // tampilkan QR/kode bayar segera saat halaman dibuka
       await showPay(true);
@@ -1546,7 +1603,7 @@
     const repay = (belum && (o.snap_token || o.payment_data))
       ? '<button type="button" data-repay="' + o.id + '" class="btn-pill btn-pill-blue" style="padding:6px 14px;font-size:.75rem;">Bayar</button>' : '';
     const chatBtn = '<button type="button" data-sellerchat="' + o.id + '" class="btn-pill btn-pill-blue" style="padding:6px 14px;font-size:.75rem;">Chat Penjual</button>';
-    return '<div class="dash-order-item" data-status="' + o.status + '" data-belum="' + (belum ? 1 : 0) + '"><div class="dash-order-img"><img src="' + esc(img) + '" alt=""></div>' +
+    return '<div class="dash-order-item" data-order-id="' + o.id + '" data-status="' + o.status + '" data-belum="' + (belum ? 1 : 0) + '"><div class="dash-order-img"><img src="' + esc(img) + '" alt=""></div>' +
       '<div class="dash-order-info"><h4>' + esc(nm) + ' x' + o.jumlah + '</h4><p>Rp ' + Number(o.total_harga).toLocaleString('id-ID') + '</p><p style="font-size:.75rem;color:var(--color-text-muted);">Via: <b>' + esc(o.metode_label || '-') + '</b></p>' + deadline + '</div>' +
       '<span class="dash-order-status ' + (STATUS_CLASS[o.status] || 'status-process') + '"' +
       (belum ? ' style="background:#FEF3C7;color:#92400E;"' : '') +
@@ -1591,6 +1648,15 @@
         render();
       });
       render();
+      // Deep-link dari notifikasi: ?order_id= sorot pesanan, ?chat= buka chat penjual.
+      const qp = new URLSearchParams(window.location.search);
+      const hlOid = qp.get('order_id');
+      if (hlOid) {
+        const hlEl = list.querySelector('[data-order-id="' + hlOid + '"]');
+        if (hlEl) { hlEl.style.outline = '2px solid var(--color-accent,#0B5FA5)'; hlEl.style.outlineOffset = '4px'; hlEl.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+      }
+      const chatOid = qp.get('chat');
+      if (chatOid) { try { await openSellerChat(Number(chatOid)); } catch (e) {} }
     } catch (e) {
       if (String(e.message).includes('401') || String(e.message).includes('Unauthenticated')) {
         store.clear();
@@ -1633,7 +1699,7 @@
       const d = document.createElement('div');
       d.className = 'binar-prod';
       const img = imgUrl(p.gambar, FALLBACK_IMG);
-      d.innerHTML = '<img src="' + esc(img) + '" alt=""><div class="p"><b>' + esc(p.nama) + '</b><span>' + esc(p.harga) + ' • stok ' + p.stok + '</span></div>';
+      d.innerHTML = '<img src="' + esc(img) + '" alt=""><div class="p"><b>' + esc(p.nama) + '</b><span>' + esc(p.harga) + ' â€¢ stok ' + p.stok + '</span></div>';
       const b = document.createElement('button');
       b.type = 'button'; b.textContent = 'Lihat';
       b.addEventListener('click', () => {
@@ -1684,15 +1750,15 @@
   function initNativeChat() {
     if (document.getElementById('binarFab')) return;
     const fab = document.createElement('div');
-    fab.id = 'binarFab'; fab.className = 'binar-chat-fab'; fab.title = 'Tanya Binar'; fab.textContent = '✦';
+    fab.id = 'binarFab'; fab.className = 'binar-chat-fab'; fab.title = 'Tanya Binar'; fab.textContent = 'âœ¦';
     const panel = document.createElement('div');
     panel.id = 'binarPanel'; panel.className = 'binar-chat-panel';
     panel.innerHTML = '<div class="binar-chat-head"><img src="assets/logo-batik-binar.png" alt="Binar">' +
-      '<div class="t"><b id="binarName">Binar Assistant</b><span id="binarStatus">Online — spesialis batik</span></div>' +
+      '<div class="t"><b id="binarName">Binar Assistant</b><span id="binarStatus">Online â€” spesialis batik</span></div>' +
       '<button id="binarClose" aria-label="Tutup chat">&times;</button></div>' +
       '<div class="binar-chat-body" id="binarBody"></div>' +
       '<div class="binar-chat-foot"><input type="text" id="binarInput" placeholder="Tanya soal batik..." autocomplete="off" maxlength="500">' +
-      '<button id="binarSend" aria-label="Kirim">➤</button></div>';
+      '<button id="binarSend" aria-label="Kirim">âž¤</button></div>';
     document.body.appendChild(fab);
     document.body.appendChild(panel);
     const toggle = (force) => {
@@ -1747,9 +1813,19 @@
         if (!n.items.length) { drop.innerHTML = '<p class="service-desc">Belum ada notifikasi.</p>'; }
         else {
           drop.innerHTML = n.items.map((x) =>
-            '<div style="padding:10px 12px;border-radius:12px;background:' + (x.dibaca_at ? '#fff' : 'var(--color-primary-light,#EEF2FF)') + ';margin-bottom:6px;">' +
+            '<div class="nb-notif-item" data-notif-id="' + x.id + '" data-notif-url="' + esc(x.url || 'pesanan.html') + '" role="button" tabindex="0" style="padding:10px 12px;border-radius:12px;background:' + (x.dibaca_at ? '#fff' : 'var(--color-primary-light,#EEF2FF)') + ';margin-bottom:6px;cursor:pointer;">' +
             '<b style="font-size:.82rem;">' + esc(x.judul) + '</b><p style="font-size:.78rem;margin:2px 0;color:var(--color-text-muted);">' + esc(x.pesan) + '</p></div>'
           ).join('');
+          $$('.nb-notif-item', drop).forEach((el) => {
+            const go = async () => {
+              const id = el.getAttribute('data-notif-id');
+              const url = el.getAttribute('data-notif-url') || 'pesanan.html';
+              try { await api('/notifications/read', { method: 'PATCH', body: { id: Number(id) } }); } catch (e) {}
+              window.location.href = url;
+            };
+            el.addEventListener('click', go);
+            el.addEventListener('keydown', (ev) => { if (ev.key === 'Enter') go(); });
+          });
         }
         await api('/notifications/read', { method: 'PATCH', body: {} });
         setTimeout(() => { const b2 = document.getElementById('nbNotifCount'); if (b2) b2.style.display = 'none'; }, 1500);
@@ -1868,10 +1944,10 @@
         '<div class="about-collage-wrapper"><div class="service-card" style="overflow:hidden;"><div class="service-img-box" style="height:420px;"><img src="' + esc(img) + '" alt="' + esc(p.nama) + '" style="height:100%;object-fit:cover;"></div></div></div>' +
         '<div class="about-content"><span class="section-eyebrow-pill">' + esc(cat) + '</span>' +
         '<h2 class="section-main-heading" style="font-size:2rem;">' + esc(p.nama) + '</h2>' +
-        '<p class="service-meta-text">Terjual ' + (p.terjual || 0) + ' • Stok ' + p.stok + '</p>' +
+        '<p class="service-meta-text">Terjual ' + (p.terjual || 0) + ' â€¢ Stok ' + p.stok + '</p>' +
         '<div style="font-size:1.8rem;font-weight:800;color:var(--color-primary);margin:10px 0;">Rp ' + Number(p.harga).toLocaleString('id-ID') + '</div>' +
         '<p class="about-narrative">' + esc(p.deskripsi || '') + '</p>' + specs +
-        '<div class="backend-actions" style="align-items:center;"><div class="nb-qty"><button type="button" id="pdMin">−</button><b id="pdQty">1</b><button type="button" id="pdPlus">+</button></div>' +
+        '<div class="backend-actions" style="align-items:center;"><div class="nb-qty"><button type="button" id="pdMin">âˆ’</button><b id="pdQty">1</b><button type="button" id="pdPlus">+</button></div>' +
         '<button type="button" class="btn-pill btn-pill-royal" id="pdCart" style="padding:10px 20px;"><span>+ Keranjang</span></button>' +
         '<button type="button" class="btn-pill btn-pill-blue" id="pdBuy" style="padding:10px 20px;"><span>Beli Sekarang</span></button></div>' +
         '</div></div>';
@@ -1922,7 +1998,7 @@
         if (!items.length) { page.innerHTML = '<p class="service-desc">Tidak ada barang untuk checkout. <a href="belanja.html">Belanja dulu</a></p>'; return; }
       }
       const expOpts = Object.entries(meta.expeditions || {}).map(([k, v]) =>
-        '<option value="' + esc(k) + '" data-ongkir="' + v.ongkir + '">' + esc(v.label) + ' — Rp ' + Number(v.ongkir).toLocaleString('id-ID') + '</option>').join('');
+        '<option value="' + esc(k) + '" data-ongkir="' + v.ongkir + '">' + esc(v.label) + ' â€” Rp ' + Number(v.ongkir).toLocaleString('id-ID') + '</option>').join('');
       const rows = items.map((i) => {
         const p = i.product || {};
         const sub = (p.harga || 0) * i.jumlah;
@@ -1934,7 +2010,7 @@
       }).join('');
       const barangTotal = items.reduce((s, i) => s + ((i.product ? i.product.harga : 0) * i.jumlah), 0);
       page.innerHTML =
-        '<div class="backend-card" style="margin-bottom:16px;"><h3 class="service-title">📍 Alamat Pengiriman</h3>' +
+        '<div class="backend-card" style="margin-bottom:16px;"><h3 class="service-title">ðŸ“ Alamat Pengiriman</h3>' +
         '<p><b>' + esc(me.name || '') + ' (' + esc(me.phone || '-') + ')</b></p>' +
         '<p class="service-desc" id="coAddrText">' + esc(me.alamat || 'Belum ada alamat') + '</p>' +
         '<button type="button" class="nb-mini-btn primary" id="coAddrEdit">Ubah</button>' +
@@ -1954,7 +2030,7 @@
         const ongkir = opt && opt.dataset.ongkir ? parseInt(opt.dataset.ongkir, 10) : 0;
         document.getElementById('coPageSummary').innerHTML =
           '<div class="row"><span>Subtotal Pesanan</span><span>' + rupiah(barangTotal) + '</span></div>' +
-          '<div class="row"><span>Subtotal Pengiriman</span><span>' + rupiah(ongkir) + '</span></div>' +
+          '<div class="row"><span>' + (items.length > 1 ? 'Subtotal Pengiriman (1x, pesanan pertama dari ' + items.length + ' pesanan)' : 'Subtotal Pengiriman') + '</span><span>' + rupiah(ongkir) + '</span></div>' +
           '<div class="row grand"><span>Total Pembayaran</span><span>' + rupiah(barangTotal + ongkir) + '</span></div>';
       };
       document.getElementById('coExpPage').addEventListener('change', upd);
@@ -2139,7 +2215,7 @@
 
   /* ---------- pengaman login halaman Belanja ----------
      Belanja hanya untuk user login. Token di localStorage saja belum
-     cukup bukti — validasi lewat /me (auth:sanctum). Dipanggil di boot
+     cukup bukti â€” validasi lewat /me (auth:sanctum). Dipanggil di boot
      sebelum initNativeShop; kembalikan true bila mengalihkan (boot berhenti). */
   async function guardBelanjaPage() {
     if (!/belanja\.html$/i.test(window.location.pathname)) return false;
@@ -2181,3 +2257,4 @@
     document.head.appendChild(l);
   }
 })();
+

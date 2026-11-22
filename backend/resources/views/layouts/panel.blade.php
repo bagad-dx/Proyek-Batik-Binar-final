@@ -5,48 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@yield('title', 'Panel Admin | BATIK BINAR')</title>
   @include('layouts.theme-css')
+  <link rel="stylesheet" href="{{ asset('css/admin-panel.css') }}?v={{ filemtime(public_path('css/admin-panel.css')) }}">
   <link rel="icon" type="image/png" href="{{ asset('assets/logo-batik-binar.png') }}">
-  <style>
-    /* ===== Panel: disamakan dengan tema website (royal blue + motif batik).
-       Admin & superadmin SATU tema; pembeda hanya label role di topbar. ===== */
-    .panel-topbar {
-      background-color: var(--color-primary-dark);
-      background-image:
-        linear-gradient(180deg, rgba(11, 23, 84, 0.88) 0%, rgba(21, 42, 136, 0.80) 100%),
-        url("{{ asset('assets/bg-homepage.jpg') }}");
-      background-size: auto, 500px auto;
-      background-repeat: no-repeat, repeat;
-      background-position: center, center top;
-      color: #fff;
-    }
-    .panel-topbar .container { display:flex; align-items:center; gap:12px; padding-top:10px; padding-bottom:10px; flex-wrap:wrap; }
-    .panel-brand { display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.04em; margin-right:auto; }
-    .panel-brand img { width:36px; height:36px; border-radius:50%; background:#fff; object-fit:cover; border:2px solid rgba(255,255,255,.8); }
-    .panel-nav { display:flex; gap:8px; flex-wrap:wrap; }
-    .panel-nav a { color:#fff; font-size:.82rem; font-weight:700; padding:7px 14px; border-radius:9999px; background:rgba(255,255,255,.14); }
-    .panel-nav a:hover { background:rgba(255,255,255,.28); }
-    .panel-nav a.active { background:#fff; color:var(--color-primary); }
-    .backend-main { padding: 0 0 60px; min-height: 70vh; }
-    .main-pad { padding-top: 26px; }
-    .role-pill { display:inline-block; padding:2px 12px; border-radius:9999px; font-size:.75rem; font-weight:700; background:var(--color-primary-light); color:var(--color-primary); }
-    .flash-box { margin-bottom:18px; padding:12px 18px; border-radius:16px; font-size:.9rem; }
-    .flash-success { background:#ECFDF5; border:1px solid #6EE7B7; color:#065F46; }
-    .flash-error { background:#FEF2F2; border:1px solid #FCA5A5; color:#991B1B; }
-    .backend-table { width:100%; border-collapse:collapse; font-size:.9rem; }
-    .backend-table th { text-align:left; padding:10px 12px; background:var(--color-primary-light); color:var(--color-primary); }
-    .backend-table td { padding:10px 12px; border-top:1px solid var(--color-border-light); vertical-align:top; }
-    .backend-card { background:var(--color-card-bg); border:1px solid var(--color-border-light); border-radius:var(--radius-lg); box-shadow:var(--shadow-md); padding:24px; }
-    .backend-actions { display:flex; gap:10px; flex-wrap:wrap; margin:18px 0; }
-    .panel-footer { text-align:center; font-size:.8rem; color:var(--color-text-muted); padding:24px; }
-    /* Panel tanpa header fixed: hero tidak perlu ruang atas sebesar halaman website */
-    .hero-wrapper.nb-slim.panel-hero { padding-top:44px; padding-bottom:96px; }
-    .backend-main { background-color: transparent; }
-  </style>
 </head>
 @php
   $isSuper = request()->is('panel/superadmin*');
   $role = auth()->user()->role ?? null;
-  // Judul hero per seksi panel (disamakan gaya halaman website: hero + lengkung).
+  // Judul per seksi panel (dipakai sebagai judul topbar).
   $heroMap = [
     'admin.dashboard' => ['Dashboard Admin', 'Ringkasan & kontrol jual beli.'],
     'admin.products.*' => ['Produk', 'Kelola postingan jual beli batik.'],
@@ -74,60 +39,80 @@
   @if(session('web_token'))
   <script>try{localStorage.setItem('binar_token', @json(session('web_token')));localStorage.removeItem('binar_user');}catch(e){}</script>
   @endif
-  <div class="panel-topbar">
-    <div class="container">
-      <a href="{{ $role === 'superadmin' ? route('superadmin.dashboard') : route('admin.dashboard') }}" class="panel-brand">
-        <img src="{{ asset('assets/logo-batik-binar.png') }}" alt="Batik Binar">
-        <span>BATIK BINAR • {{ $isSuper ? 'SUPERADMIN' : 'ADMIN' }}</span>
-      </a>
-      <nav class="panel-nav">
-        @if($role === 'admin' || $role === 'superadmin')
-          <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">Dashboard</a>
-          <a href="{{ route('admin.products.index') }}" class="{{ request()->routeIs('admin.products.*') ? 'active' : '' }}">Produk</a>
-          <a href="{{ route('admin.galleries.index') }}" class="{{ request()->routeIs('admin.galleries.*') ? 'active' : '' }}">Galeri</a>
-          <a href="{{ route('admin.motifs.index') }}" class="{{ request()->routeIs('admin.motifs.*') ? 'active' : '' }}">Motif</a>
-          <a href="{{ route('admin.orders.index') }}" class="{{ request()->routeIs('admin.orders.*') ? 'active' : '' }}">Pesanan</a>
-          <a href="{{ route('admin.chats.index') }}" class="{{ request()->routeIs('admin.chats.*') ? 'active' : '' }}">Chat</a>
-          <a href="{{ route('admin.contents.index') }}" class="{{ request()->routeIs('admin.contents.*', 'admin.categories.*', 'admin.jenis.*', 'admin.settings.*') ? 'active' : '' }}">Konten</a>
-          <a href="{{ route('admin.jenis.index') }}" class="{{ request()->routeIs('admin.jenis.*') ? 'active' : '' }}">Jenis</a>
-          <a href="{{ route('admin.otp.index') }}" class="{{ request()->routeIs('admin.otp.*') ? 'active' : '' }}">OTP</a>
-        @endif
-        @if($role === 'superadmin')
-          <a href="{{ route('superadmin.users.index') }}" class="{{ request()->routeIs('superadmin.users.*') ? 'active' : '' }}">User</a>
-          <a href="{{ route('superadmin.chatbot.index') }}" class="{{ request()->routeIs('superadmin.chatbot.*') ? 'active' : '' }}">Chatbot</a>
-        @endif
-        <a href="{{ route('home') }}" target="_blank" rel="noopener">Lihat Website</a>
-      </nav>
-      @auth
-        <span class="role-pill" style="background:rgba(255,255,255,.9);">{{ auth()->user()->username }} • {{ auth()->user()->role }}</span>
-        <form method="POST" action="{{ route('logout') }}" style="display:inline;">@csrf
-          <button type="submit" style="background:#fff;color:var(--color-primary);font-weight:800;font-size:.8rem;padding:7px 16px;border-radius:9999px;">Logout</button>
-        </form>
-      @endauth
-    </div>
-  </div>
 
-  {{-- Hero ala halaman website (home -> tentang): motif batik + lengkung transisi --}}
-  <section class="hero-wrapper nb-slim panel-hero">
-    <div class="container" style="text-align:center;position:relative;z-index:3;">
-      <span class="hero-tagline-capsule">BATIK BINAR • {{ $isSuper ? 'SUPERADMIN' : 'ADMIN' }}</span>
-      <h1 class="hero-heading">{{ $heroTitle }}</h1>
-      <p class="hero-desc" style="margin:0 auto;">{{ $heroDesc }}</p>
+  {{-- ===== SIDEBAR (mengikuti referensi FrontEnd/admin/admin.html) ===== --}}
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-top">
+        <img src="{{ asset('assets/logo-batik-binar.png') }}" alt="Batik Binar" class="sidebar-logo-img">
+        <div class="sidebar-logo-text">Batik Binar<span>Pesisir Indramayu</span></div>
+      </div>
+      <span class="admin-badge">{{ $isSuper ? 'Superadmin Panel' : 'Admin Panel' }}</span>
     </div>
-    <div class="hero-bottom-curve"><svg viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0 C300,90 900,90 1200,0 L1200,120 L0,120 Z"></path></svg></div>
-  </section>
+    <nav class="sidebar-nav">
+      <div class="nav-label">Menu Utama</div>
+      <a href="{{ route('admin.dashboard') }}" class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></span>Dashboard</a>
+      <a href="{{ route('admin.products.index') }}" class="nav-item {{ request()->routeIs('admin.products.*') ? 'active' : '' }}"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span>Produk</a>
+      <a href="{{ route('admin.galleries.index') }}" class="nav-item {{ request()->routeIs('admin.galleries.*') ? 'active' : '' }}"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></span>Galeri</a>
+      <a href="{{ route('admin.motifs.index') }}" class="nav-item {{ request()->routeIs('admin.motifs.*') ? 'active' : '' }}"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span>Motif</a>
+      <a href="{{ route('admin.orders.index') }}" class="nav-item {{ request()->routeIs('admin.orders.*') ? 'active' : '' }}"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>Pesanan</a>
+      <a href="{{ route('admin.chats.index') }}" class="nav-item {{ request()->routeIs('admin.chats.*') ? 'active' : '' }}"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>Chat</a>
+      <div class="nav-label" style="margin-top:16px">Kelola</div>
+      <a href="{{ route('admin.contents.index') }}" class="nav-item {{ request()->routeIs('admin.contents.*', 'admin.categories.*', 'admin.jenis.*', 'admin.settings.*') ? 'active' : '' }}"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>Konten</a>
+      <a href="{{ route('admin.jenis.index') }}" class="nav-item {{ request()->routeIs('admin.jenis.*') ? 'active' : '' }}"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>Jenis</a>
+      <a href="{{ route('admin.otp.index') }}" class="nav-item {{ request()->routeIs('admin.otp.*') ? 'active' : '' }}"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>OTP</a>
+      @if($role === 'superadmin')
+      <div class="nav-label" style="margin-top:16px">Sistem</div>
+      <a href="{{ route('superadmin.users.index') }}" class="nav-item {{ request()->routeIs('superadmin.users.*') ? 'active' : '' }}"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>User</a>
+      <a href="{{ route('superadmin.chatbot.index') }}" class="nav-item {{ request()->routeIs('superadmin.chatbot.*') ? 'active' : '' }}"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>Chatbot</a>
+      @endif
+    </nav>
+    <a href="{{ route('home') }}" target="_blank" rel="noopener" class="sidebar-back">&#8592; Kembali ke Situs</a>
+    <div class="sidebar-user">
+      <div class="sidebar-user-info">
+        <div class="sidebar-avatar">{{ strtoupper(mb_substr(auth()->user()->name ?? 'A', 0, 1)) }}</div>
+        <div>
+          <div class="sidebar-user-name">{{ auth()->user()->name ?? 'Admin' }}</div>
+          <div class="sidebar-user-email">{{ auth()->user()->email ?? '' }}</div>
+        </div>
+      </div>
+      <form method="POST" action="{{ route('logout') }}">@csrf
+        <button type="submit" class="btn-logout">Keluar / Logout</button>
+      </form>
+    </div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
-  <main class="backend-main">
-    <div class="container main-pad">
+  {{-- ===== MAIN ===== --}}
+  <div class="admin-main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" onclick="toggleSidebar()" aria-label="Toggle Menu">&#9776;</button>
+        <div class="topbar-title">{{ $heroTitle }}</div>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-clock">
+          <strong id="clockTime">--:--:--</strong>
+          <span id="clockDate">-- --- ----</span>
+        </div>
+        <a href="{{ route('admin.chats.index') }}" class="topbar-bell" aria-label="Chat Penjual" title="Chat Penjual">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+        </a>
+        <div class="topbar-avatar">{{ strtoupper(mb_substr(auth()->user()->name ?? 'A', 0, 1)) }}</div>
+      </div>
+    </header>
+
+    <main class="admin-content">
       @if(session('success'))<div class="flash-box flash-success">{{ session('success') }}</div>@endif
       @if(session('error'))<div class="flash-box flash-error">{{ session('error') }}</div>@endif
-      @if($errors->any())
+      @if(isset($errors) && $errors->any())
         <div class="flash-box flash-error"><ul style="margin-left:18px;list-style:disc;">@foreach($errors->all() as $e)<li>{{ $e }}</li>@endforeach</ul></div>
       @endif
       @yield('content')
-    </div>
-  </main>
+      <div class="panel-footer">&copy; 2026 Batik Binar Indonesia • Panel Pengelola</div>
+    </main>
+  </div>
 
-  <div class="panel-footer">&copy; 2026 Batik Binar Indonesia • Panel Pengelola</div>
+  <script src="{{ asset('js/admin-panel.js') }}?v={{ filemtime(public_path('js/admin-panel.js')) }}"></script>
 </body>
 </html>

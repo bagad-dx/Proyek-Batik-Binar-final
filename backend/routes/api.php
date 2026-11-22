@@ -56,6 +56,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/my-orders', [CatalogApiController::class, 'myOrders']);
     Route::post('/orders', [CatalogApiController::class, 'storeOrder']);
     Route::get('/orders/{order}/payment', [CatalogApiController::class, 'paymentData']);
+    Route::get('/orders/{order}/payment-status', [CatalogApiController::class, 'syncPaymentStatus']); // polling lunas (sync ke Midtrans)
     Route::patch('/orders/{order}/cancel', [CatalogApiController::class, 'cancelOrder']);
     // Wishlist
     Route::get('/wishlist', [\App\Http\Controllers\Api\WishlistController::class, 'index']);
@@ -78,3 +79,4 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/superadmin/check', fn () => response()->json(['message' => 'Anda superadmin.']));
     });
 });
+

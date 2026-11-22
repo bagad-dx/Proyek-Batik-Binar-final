@@ -229,6 +229,7 @@ class ChatbotController extends Controller
     protected function bestSellers(int $limit = 3)
     {
         $ids = Order::select('product_id', DB::raw('SUM(jumlah) as terjual'))
+            ->whereIn('status', ['diproses', 'dikirim', 'selesai'])
             ->groupBy('product_id')->orderByDesc('terjual')->limit($limit)->pluck('product_id');
         $top = Product::whereIn('id', $ids)->where('status', 'aktif')->get()->sortBy(fn ($p) => array_search($p->id, $ids->all()));
         if ($top->count() < $limit) {

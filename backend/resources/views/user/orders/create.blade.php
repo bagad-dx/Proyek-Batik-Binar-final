@@ -6,7 +6,7 @@
   $expeditions = Order::EXPEDITIONS;
   $methods = [
     ['key' => 'transfer', 'label' => 'Transfer Bank', 'gw' => false],
-    ['key' => 'cod', 'label' => 'COD', 'gw' => false],
+    ['key' => 'cod', 'label' => 'Tunai di Gerai', 'gw' => false],
     ['key' => 'ewallet', 'label' => 'E-Wallet', 'gw' => false],
     ['key' => 'qris', 'label' => 'QRIS', 'gw' => true],
     ['key' => 'kartu', 'label' => 'Kartu Kredit/Debit', 'gw' => true],

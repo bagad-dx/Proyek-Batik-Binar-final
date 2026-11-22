@@ -17,7 +17,7 @@ class CatalogApiController extends Controller
     {
         // Gabungan filter Raka (belanja.php: ?kategori=<id_jenis> & ?q=nama/deskripsi)
         // + filter PROYEK (category_id). jenis_id = padanan id_jenis Raka.
-        $q = Product::with(['category', 'jenis'])->withSum('orders as terjual', 'jumlah')->where('status', 'aktif')->latest();
+        $q = Product::with(['category', 'jenis'])->withSum(['orders as terjual' => fn ($q) => $q->whereIn('status', ['diproses', 'dikirim', 'selesai'])], 'jumlah')->where('status', 'aktif')->latest();
         if ($request->filled('search')) {
             $s = $request->search;
             $q->where(function ($w) use ($s) {
@@ -65,7 +65,7 @@ class CatalogApiController extends Controller
 
     public function productDetail($id)
     {
-        $product = Product::with(['category', 'jenis'])->withSum('orders as terjual', 'jumlah')->findOrFail($id);
+        $product = Product::with(['category', 'jenis'])->withSum(['orders as terjual' => fn ($q) => $q->whereIn('status', ['diproses', 'dikirim', 'selesai'])], 'jumlah')->findOrFail($id);
         return response()->json($product);
     }
 
@@ -174,7 +174,7 @@ class CatalogApiController extends Controller
         ]);
 
         kirim_notifikasi($request->user()->id, 'Pesanan #' . $order->id . ' dibuat',
-            $product->nama . ' x' . $data['jumlah'] . ' — silakan selesaikan pembayaran Midtrans.',
+            $product->nama . ' x' . $data['jumlah'] . ' â€” silakan selesaikan pembayaran Midtrans.',
             'pesanan', 'pesanan', $order->id);
 
         $extra = [];
@@ -205,14 +205,52 @@ class CatalogApiController extends Controller
         return response()->json(['message' => 'Pesanan dibuat.', 'order' => $order->fresh()] + $extra, 201);
     }
 
-    /** Data bayar susulan (kode/QR langsung) untuk pesanan milik sendiri. */
-    public function paymentData(Request $request, Order $order, \App\Services\MidtransService $midtrans)
+    /**
+     * Sinkronisasi status pembayaran dari Midtrans Status API, lalu kembalikan
+     * status terbaru. Dipakai polling halaman pembayaran (localhost tidak bisa
+     * menerima webhook). TIDAK PERNAH menandai lunas dari pengakuan pembeli:
+     * hanya status resmi Midtrans (settlement / capture+accept) yang mengubah DB.
+     */
+    public function syncPaymentStatus(Request $request, Order $order, \App\Services\MidtransService $midtrans)
     {
         abort_unless((int) $order->user_id === (int) $request->user()->id, 403);
         $order->load('product');
         if ($order->status !== 'pending' || $order->paid_at) {
             return response()->json([
-                'paid' => (bool) $order->paid_at || $order->status !== 'pending',
+                'paid' => (bool) $order->paid_at || in_array($order->status, ['diproses', 'dikirim', 'selesai'], true),
+                'status' => $order->status,
+                'midtrans_status' => $order->midtrans_status,
+                'order' => ['id' => $order->id, 'nama' => $order->product->nama ?? '-', 'jumlah' => $order->jumlah, 'total_harga' => $order->total_harga, 'shipping_cost' => $order->shipping_cost, 'grand_total' => $order->grand_total, 'batas_bayar' => $order->batas_bayar, 'paid_at' => $order->paid_at],
+            ]);
+        }
+        $synced = $midtrans->syncStatus($order);
+        if (! $synced) {
+            return response()->json(['message' => 'Midtrans belum bisa dihubungi, coba lagi.'], 502);
+        }
+        $synced->load('product');
+        return response()->json([
+            'paid' => (bool) $synced->paid_at || $synced->status === 'diproses',
+            'status' => $synced->status,
+            'midtrans_status' => $synced->midtrans_status,
+            'order' => ['id' => $synced->id, 'nama' => $synced->product->nama ?? '-', 'jumlah' => $synced->jumlah, 'total_harga' => $synced->total_harga, 'shipping_cost' => $synced->shipping_cost, 'grand_total' => $synced->grand_total, 'batas_bayar' => $synced->batas_bayar, 'paid_at' => $synced->paid_at],
+        ]);
+    }
+
+    /** Data bayar susulan (kode/QR langsung) untuk pesanan milik sendiri. */
+    public function paymentData(Request $request, Order $order, \App\Services\MidtransService $midtrans)
+    {
+        abort_unless((int) $order->user_id === (int) $request->user()->id, 403);
+        $order->load('product');
+        // Sinkronisasi dulu ke Midtrans: kalau webhook belum sampai (localhost),
+        // status lunas di Midtrans tetap harus terbaca di halaman bayar.
+        try {
+            $synced = $midtrans->syncStatus($order);
+            if ($synced) $order = $synced;
+        } catch (\Throwable) {
+        }
+        if ($order->status !== 'pending' || $order->paid_at) {
+            return response()->json([
+                'paid' => (bool) $order->paid_at || in_array($order->status, ['diproses', 'dikirim', 'selesai'], true),
                 'status' => $order->status,
                 'order' => ['id' => $order->id, 'nama' => $order->product->nama ?? '-', 'jumlah' => $order->jumlah, 'batas_bayar' => $order->batas_bayar],
             ]);
@@ -249,3 +287,4 @@ class CatalogApiController extends Controller
         return response()->json(['message' => 'OK', 'status' => $order?->status]);
     }
 }
+
