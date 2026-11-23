@@ -148,6 +148,10 @@
   transition: all var(--transition-fast);
 }
 
+.input-wrapper .form-control[type="password"] {
+  padding-right: 48px;
+}
+
 .form-control:focus {
   outline: none;
   border-color: var(--color-accent);
