@@ -69,6 +69,7 @@
   <a href="{{ route('admin.contents.index') }}" class="btn btn-outline"><span>Kelola Konten Website</span></a>
 </div>
 
+<div class="dash-grid">
 <div class="card">
   <div class="card-header">
     <div class="card-title">Pesanan Terbaru</div>
@@ -101,5 +102,15 @@
       </tbody>
     </table>
   </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">Produk Terlaris</div>
+  </div>
+  {{-- Diisi admin-panel.js dari /api/products (terjual = order lunas). --}}
+  <div class="top-products" id="topProducts">
+    <div class="notif-empty">Memuat produk terlaris...</div>
+  </div>
+</div>
 </div>
 @endsection

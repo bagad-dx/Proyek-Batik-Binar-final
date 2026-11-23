@@ -268,7 +268,7 @@
       '</div>' +
       '<div class="form-group"><label class="form-label" for="otpCode">Kode OTP (6 digit)</label>' +
       '<div class="input-wrapper"><input type="text" id="otpCode" class="form-control otp-input" ' +
-      'placeholder="â€¢â€¢â€¢â€¢â€¢â€¢" maxlength="6" inputmode="numeric" autocomplete="one-time-code"></div></div>' +
+      'placeholder="••••••" maxlength="6" inputmode="numeric" autocomplete="one-time-code"></div></div>' +
       '<p class="service-desc">Kode kedaluwarsa dalam <b id="otpTimer">10:00</b></p>' +
       '<div class="otp-actions">' +
       '<button type="button" class="btn-pill btn-pill-royal auth-submit-btn" id="otpVerifyBtn" style="flex:1;justify-content:center;"><span>Verifikasi & Buat Akun</span></button>' +
@@ -600,7 +600,7 @@
     } else {
       h = '<p class="service-desc">Menyiapkan pembayaran...</p>';
     }
-    if (d.gross) h += '<p class="service-desc" style="text-align:center;">Total: <b>Rp ' + Number(d.gross).toLocaleString('id-ID') + '</b>' + (d.expires ? ' â€¢ Kedaluwarsa: ' + esc(d.expires) : '') + '</p>';
+    if (d.gross) h += '<p class="service-desc" style="text-align:center;">Total: <b>Rp ' + Number(d.gross).toLocaleString('id-ID') + '</b>' + (d.expires ? ' • Kedaluwarsa: ' + esc(d.expires) : '') + '</p>';
     box.innerHTML = h;
     box.style.display = 'block';
     const cp = box.querySelector('[data-copy]');
@@ -680,7 +680,7 @@
     return '<div class="shop-product-card" data-id="' + p.id + '">' +
       '<div class="shop-product-img"><img src="' + esc(img) + '" alt="' + esc(p.nama) + '" loading="lazy">' +
       '<span class="shop-product-badge">' + esc(cat) + '</span>' +
-      '<button class="nb-heart" data-wish="' + p.id + '" aria-label="Wishlist" title="Wishlist">â™¡</button></div>' +
+      '<button class="nb-heart" data-wish="' + p.id + '" aria-label="Wishlist" title="Wishlist">♡</button></div>' +
       '<div class="shop-product-body"><div class="shop-product-category">' + esc(cat) + '</div>' +
       '<h3 class="shop-product-name">' + esc(p.nama) + '</h3>' +
       ((p.teknik || p.bahan || p.ukuran) ? '<div class="shop-product-specs">' + esc([p.teknik, p.bahan, p.ukuran].filter(Boolean).join(' \u2022 ')) + '</div>' : '') +
@@ -726,9 +726,9 @@
     document.getElementById('nativeShopCat').textContent = (p.category && p.category.nama) || 'Batik Binar';
     document.getElementById('nativeShopTitle').textContent = p.nama;
     document.getElementById('nativeShopDesc').textContent =
-      (p.deskripsi || '') + ' â€¢ Motif: ' + (p.motif || '-') + ' â€¢ Bahan: ' + (p.bahan || '-') +
-      ' â€¢ Ukuran: ' + (p.ukuran || '-') + ' â€¢ Teknik: ' + (p.teknik || '-') +
-      ' â€¢ Stok: ' + p.stok + ' â€¢ Rp ' + Number(p.harga).toLocaleString('id-ID');
+      (p.deskripsi || '') + ' • Motif: ' + (p.motif || '-') + ' • Bahan: ' + (p.bahan || '-') +
+      ' • Ukuran: ' + (p.ukuran || '-') + ' • Teknik: ' + (p.teknik || '-') +
+      ' • Stok: ' + p.stok + ' • Rp ' + Number(p.harga).toLocaleString('id-ID');
     const buyBox = document.getElementById('nativeShopBuy');
     const coBox = document.getElementById('nativeCheckout');
     coBox.style.display = 'none';
@@ -767,7 +767,7 @@
     loadMeta().then((meta) => {
       const expData = meta.expeditions || {};
       const exps = Object.entries(expData).map(([k, v]) =>
-        '<option value="' + esc(k) + '" data-ongkir="' + v.ongkir + '">' + esc(v.label) + ' â€” Rp ' + Number(v.ongkir).toLocaleString('id-ID') + '</option>').join('');
+        '<option value="' + esc(k) + '" data-ongkir="' + v.ongkir + '">' + esc(v.label) + ' — Rp ' + Number(v.ongkir).toLocaleString('id-ID') + '</option>').join('');
       const me = store.user || {};
       box.innerHTML =
         '<div class="form-group"><label class="form-label">Jumlah (stok ' + p.stok + ')</label><div class="input-wrapper"><input type="number" id="coJumlah" class="form-control" value="1" min="1" max="' + p.stok + '"></div></div>' +
@@ -978,7 +978,7 @@
     $$('.nb-heart', root || document).forEach((b) => {
       const on = wishSet.has(String(b.getAttribute('data-wish')));
       b.classList.toggle('liked', on);
-      b.textContent = on ? 'â™¥' : 'â™¡';
+      b.textContent = on ? '♥' : '♡';
       if (!b.dataset.bound) {
         b.dataset.bound = '1';
         b.addEventListener('click', async (e) => {
@@ -1061,8 +1061,8 @@
         return '<div class="nb-cart-item"><input type="checkbox" class="nb-pick" data-pick="' + i.id + '" checked>' +
           '<img src="' + esc(imgUrl(p.gambar_url || p.gambar, FALLBACK_IMG)) + '" alt="">' +
           '<div class="inf"><b>' + esc(p.nama || '-') + '</b><span>Rp ' + Number(p.harga || 0).toLocaleString('id-ID') + '</span></div>' +
-          '<div class="nb-qty"><button type="button" data-dec="' + i.id + '">âˆ’</button><b>' + i.jumlah + '</b><button type="button" data-inc="' + i.id + '">+</button></div>' +
-          '<button type="button" class="nb-cart-rm" data-rm="' + i.id + '" aria-label="Hapus">Ã—</button></div>';
+          '<div class="nb-qty"><button type="button" data-dec="' + i.id + '">−</button><b>' + i.jumlah + '</b><button type="button" data-inc="' + i.id + '">+</button></div>' +
+          '<button type="button" class="nb-cart-rm" data-rm="' + i.id + '" aria-label="Hapus">×</button></div>';
       }).join('');
       const updSelTotal = () => {
         const sel = $$('.nb-pick', body).filter((c) => c.checked).map((c) => Number(c.getAttribute('data-pick')));
@@ -1119,7 +1119,7 @@
     const meta = await loadMeta();
     const expData = meta.expeditions || {};
     const exps = Object.entries(expData).map(([k, v]) =>
-      '<option value="' + esc(k) + '" data-ongkir="' + v.ongkir + '">' + esc(v.label) + ' â€” Rp ' + Number(v.ongkir).toLocaleString('id-ID') + '</option>').join('');
+      '<option value="' + esc(k) + '" data-ongkir="' + v.ongkir + '">' + esc(v.label) + ' — Rp ' + Number(v.ongkir).toLocaleString('id-ID') + '</option>').join('');
     const me = store.user || {};
     let cartSubtotal = 0;
     try {
@@ -1129,7 +1129,7 @@
         .reduce((s, i) => s + (i.product ? i.product.harga * i.jumlah : 0), 0);
     } catch (e) {}
     body.innerHTML =
-      '<button type="button" class="nb-mini-btn primary" id="nbBackCart">â† Kembali</button>' +
+      '<button type="button" class="nb-mini-btn primary" id="nbBackCart">← Kembali</button>' +
       '<div class="form-group"><label class="form-label">No HP</label><div class="input-wrapper"><input type="text" id="nbCoHp" class="form-control" value="' + esc(me.phone || '') + '"></div></div>' +
       '<div class="form-group"><label class="form-label">Alamat Lengkap</label><div class="input-wrapper"><textarea id="nbCoAlamat" class="form-control" rows="2">' + esc(me.alamat || '') + '</textarea></div></div>' +
       '<div class="form-group"><label class="form-label">Ekspedisi</label><div class="input-wrapper"><select id="nbCoExp" class="form-control">' + exps + '</select></div></div>' +
@@ -1242,7 +1242,7 @@
     body.innerHTML = '<p class="service-desc">Memuat...</p>';
     try {
       const items = await api('/wishlist');
-      if (!items.length) { body.innerHTML = '<p class="service-desc">Wishlist kosong. Ketuk â™¥ pada produk untuk menyimpan.</p>'; return; }
+      if (!items.length) { body.innerHTML = '<p class="service-desc">Wishlist kosong. Ketuk ♥ pada produk untuk menyimpan.</p>'; return; }
       body.innerHTML = items.map((w) => {
         const p = w.product || {};
         return '<div class="nb-wish-item"><img src="' + esc(imgUrl(p.gambar_url || p.gambar, FALLBACK_IMG)) + '" alt="">' +
@@ -1392,7 +1392,7 @@
     return steps[kind] || ['Klik Bayar Sekarang untuk membuka halaman bayar aman', 'Pilih / lengkapi detail pembayaran', 'Selesaikan verifikasi bila diminta (mis. 3DS / OTP)'];
   }
   function payTimelineHtml() {
-    const dot = (done, active) => '<span class="pay-dot' + (done ? ' done' : active ? ' active' : '') + '">' + (done ? 'âœ“' : '') + '</span>';
+    const dot = (done, active) => '<span class="pay-dot' + (done ? ' done' : active ? ' active' : '') + '">' + (done ? '✓' : '') + '</span>';
     return '<div class="pay-timeline">' +
       '<div class="pay-step">' + dot(true) + '<div><b>Pesanan Dibuat</b><span>Menunggu pembayaran</span></div></div>' +
       '<div class="pay-line"></div>' +
@@ -1509,7 +1509,7 @@
         '<div class="pay-grid">' +
         '<div class="backend-card"><h3 class="service-title">Ringkasan Pesanan</h3>' +
         '<div style="display:flex;gap:12px;align-items:center;margin:10px 0 14px;"><img src="' + esc(img) + '" alt="" style="width:72px;height:72px;border-radius:14px;object-fit:cover;flex:none;">' +
-        '<div><b style="font-size:.95rem;">' + esc(o.nama || 'Pesanan') + '</b><div class="service-meta-text">Pesanan #' + esc(String(oid)) + ' â€¢ x' + (o.jumlah || 1) + '</div>' +
+        '<div><b style="font-size:.95rem;">' + esc(o.nama || 'Pesanan') + '</b><div class="service-meta-text">Pesanan #' + esc(String(oid)) + ' • x' + (o.jumlah || 1) + '</div>' +
         '<span class="pay-method-badge">' + esc(metode) + '</span></div></div>' +
         '<div class="nb-summary">' +
         '<div class="row"><span>Subtotal Produk</span><span>' + rupiah(o.total_harga || 0) + '</span></div>' +
@@ -1699,7 +1699,7 @@
       const d = document.createElement('div');
       d.className = 'binar-prod';
       const img = imgUrl(p.gambar, FALLBACK_IMG);
-      d.innerHTML = '<img src="' + esc(img) + '" alt=""><div class="p"><b>' + esc(p.nama) + '</b><span>' + esc(p.harga) + ' â€¢ stok ' + p.stok + '</span></div>';
+      d.innerHTML = '<img src="' + esc(img) + '" alt=""><div class="p"><b>' + esc(p.nama) + '</b><span>' + esc(p.harga) + ' • stok ' + p.stok + '</span></div>';
       const b = document.createElement('button');
       b.type = 'button'; b.textContent = 'Lihat';
       b.addEventListener('click', () => {
@@ -1750,15 +1750,15 @@
   function initNativeChat() {
     if (document.getElementById('binarFab')) return;
     const fab = document.createElement('div');
-    fab.id = 'binarFab'; fab.className = 'binar-chat-fab'; fab.title = 'Tanya Binar'; fab.textContent = 'âœ¦';
+    fab.id = 'binarFab'; fab.className = 'binar-chat-fab'; fab.title = 'Tanya Binar'; fab.textContent = '✦';
     const panel = document.createElement('div');
     panel.id = 'binarPanel'; panel.className = 'binar-chat-panel';
     panel.innerHTML = '<div class="binar-chat-head"><img src="assets/logo-batik-binar.png" alt="Binar">' +
-      '<div class="t"><b id="binarName">Binar Assistant</b><span id="binarStatus">Online â€” spesialis batik</span></div>' +
+      '<div class="t"><b id="binarName">Binar Assistant</b><span id="binarStatus">Online — spesialis batik</span></div>' +
       '<button id="binarClose" aria-label="Tutup chat">&times;</button></div>' +
       '<div class="binar-chat-body" id="binarBody"></div>' +
       '<div class="binar-chat-foot"><input type="text" id="binarInput" placeholder="Tanya soal batik..." autocomplete="off" maxlength="500">' +
-      '<button id="binarSend" aria-label="Kirim">âž¤</button></div>';
+      '<button id="binarSend" aria-label="Kirim">➤</button></div>';
     document.body.appendChild(fab);
     document.body.appendChild(panel);
     const toggle = (force) => {
@@ -1944,10 +1944,10 @@
         '<div class="about-collage-wrapper"><div class="service-card" style="overflow:hidden;"><div class="service-img-box" style="height:420px;"><img src="' + esc(img) + '" alt="' + esc(p.nama) + '" style="height:100%;object-fit:cover;"></div></div></div>' +
         '<div class="about-content"><span class="section-eyebrow-pill">' + esc(cat) + '</span>' +
         '<h2 class="section-main-heading" style="font-size:2rem;">' + esc(p.nama) + '</h2>' +
-        '<p class="service-meta-text">Terjual ' + (p.terjual || 0) + ' â€¢ Stok ' + p.stok + '</p>' +
+        '<p class="service-meta-text">Terjual ' + (p.terjual || 0) + ' • Stok ' + p.stok + '</p>' +
         '<div style="font-size:1.8rem;font-weight:800;color:var(--color-primary);margin:10px 0;">Rp ' + Number(p.harga).toLocaleString('id-ID') + '</div>' +
         '<p class="about-narrative">' + esc(p.deskripsi || '') + '</p>' + specs +
-        '<div class="backend-actions" style="align-items:center;"><div class="nb-qty"><button type="button" id="pdMin">âˆ’</button><b id="pdQty">1</b><button type="button" id="pdPlus">+</button></div>' +
+        '<div class="backend-actions" style="align-items:center;"><div class="nb-qty"><button type="button" id="pdMin">−</button><b id="pdQty">1</b><button type="button" id="pdPlus">+</button></div>' +
         '<button type="button" class="btn-pill btn-pill-royal" id="pdCart" style="padding:10px 20px;"><span>+ Keranjang</span></button>' +
         '<button type="button" class="btn-pill btn-pill-blue" id="pdBuy" style="padding:10px 20px;"><span>Beli Sekarang</span></button></div>' +
         '</div></div>';
@@ -1998,7 +1998,7 @@
         if (!items.length) { page.innerHTML = '<p class="service-desc">Tidak ada barang untuk checkout. <a href="belanja.html">Belanja dulu</a></p>'; return; }
       }
       const expOpts = Object.entries(meta.expeditions || {}).map(([k, v]) =>
-        '<option value="' + esc(k) + '" data-ongkir="' + v.ongkir + '">' + esc(v.label) + ' â€” Rp ' + Number(v.ongkir).toLocaleString('id-ID') + '</option>').join('');
+        '<option value="' + esc(k) + '" data-ongkir="' + v.ongkir + '">' + esc(v.label) + ' — Rp ' + Number(v.ongkir).toLocaleString('id-ID') + '</option>').join('');
       const rows = items.map((i) => {
         const p = i.product || {};
         const sub = (p.harga || 0) * i.jumlah;
@@ -2010,7 +2010,7 @@
       }).join('');
       const barangTotal = items.reduce((s, i) => s + ((i.product ? i.product.harga : 0) * i.jumlah), 0);
       page.innerHTML =
-        '<div class="backend-card" style="margin-bottom:16px;"><h3 class="service-title">ðŸ“ Alamat Pengiriman</h3>' +
+        '<div class="backend-card" style="margin-bottom:16px;"><h3 class="service-title">📍 Alamat Pengiriman</h3>' +
         '<p><b>' + esc(me.name || '') + ' (' + esc(me.phone || '-') + ')</b></p>' +
         '<p class="service-desc" id="coAddrText">' + esc(me.alamat || 'Belum ada alamat') + '</p>' +
         '<button type="button" class="nb-mini-btn primary" id="coAddrEdit">Ubah</button>' +
@@ -2215,7 +2215,7 @@
 
   /* ---------- pengaman login halaman Belanja ----------
      Belanja hanya untuk user login. Token di localStorage saja belum
-     cukup bukti â€” validasi lewat /me (auth:sanctum). Dipanggil di boot
+     cukup bukti — validasi lewat /me (auth:sanctum). Dipanggil di boot
      sebelum initNativeShop; kembalikan true bila mengalihkan (boot berhenti). */
   async function guardBelanjaPage() {
     if (!/belanja\.html$/i.test(window.location.pathname)) return false;

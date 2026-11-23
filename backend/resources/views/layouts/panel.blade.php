@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>@yield('title', 'Panel Admin | BATIK BINAR')</title>
+  <title>@yield('title', ((auth()->user()->role ?? null) === 'superadmin' ? 'Panel Superadmin | BATIK BINAR' : 'Panel Admin | BATIK BINAR'))</title>
   @include('layouts.theme-css')
   <link rel="stylesheet" href="{{ asset('css/admin-panel.css') }}?v={{ filemtime(public_path('css/admin-panel.css')) }}">
   <link rel="icon" type="image/png" href="{{ asset('assets/logo-batik-binar.png') }}">
@@ -47,7 +47,7 @@
         <img src="{{ asset('assets/logo-batik-binar.png') }}" alt="Batik Binar" class="sidebar-logo-img">
         <div class="sidebar-logo-text">Batik Binar<span>Pesisir Indramayu</span></div>
       </div>
-      <span class="admin-badge">{{ $isSuper ? 'Superadmin Panel' : 'Admin Panel' }}</span>
+      <span class="admin-badge">{{ $role === 'superadmin' ? 'Super Admin Panel' : 'Admin Panel' }}</span>
     </div>
     <nav class="sidebar-nav">
       <div class="nav-label">Menu Utama</div>
@@ -61,9 +61,10 @@
       <a href="{{ route('admin.contents.index') }}" class="nav-item {{ request()->routeIs('admin.contents.*', 'admin.categories.*', 'admin.jenis.*', 'admin.settings.*') ? 'active' : '' }}"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>Konten</a>
       <a href="{{ route('admin.jenis.index') }}" class="nav-item {{ request()->routeIs('admin.jenis.*') ? 'active' : '' }}"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>Jenis</a>
       <a href="{{ route('admin.otp.index') }}" class="nav-item {{ request()->routeIs('admin.otp.*') ? 'active' : '' }}"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>OTP</a>
+      <a href="{{ route('admin.settings.index') }}" class="nav-item {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>Pengaturan</a>
       @if($role === 'superadmin')
       <div class="nav-label" style="margin-top:16px">Sistem</div>
-      <a href="{{ route('superadmin.users.index') }}" class="nav-item {{ request()->routeIs('superadmin.users.*') ? 'active' : '' }}"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>User</a>
+      <a href="{{ route('superadmin.users.index') }}" class="nav-item nav-superadmin {{ request()->routeIs('superadmin.users.*') ? 'active' : '' }}"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>User</a>
       <a href="{{ route('superadmin.chatbot.index') }}" class="nav-item {{ request()->routeIs('superadmin.chatbot.*') ? 'active' : '' }}"><span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>Chatbot</a>
       @endif
     </nav>
@@ -95,9 +96,26 @@
           <strong id="clockTime">--:--:--</strong>
           <span id="clockDate">-- --- ----</span>
         </div>
-        <a href="{{ route('admin.chats.index') }}" class="topbar-bell" aria-label="Chat Penjual" title="Chat Penjual">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-        </a>
+        {{-- Lonceng notifikasi: dropdown seperti referensi admin.html, isi dari API (lihat admin-panel.js). --}}
+        <div class="notif-bell-wrapper">
+          <button class="notif-bell-btn" id="notifBellBtn" aria-label="Notifikasi" type="button">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+            <span id="notifBadge" style="display:none;">0</span>
+          </button>
+          <div class="notif-dropdown" id="notifDropdown">
+            <div class="notif-dropdown-header">
+              <h3>Notifikasi</h3>
+              <button class="notif-mark-all" id="notifMarkAll" type="button">Tandai semua dibaca</button>
+            </div>
+            <div class="notif-list" id="notifList">
+              <div class="notif-empty">Memuat notifikasi...</div>
+            </div>
+            <div class="notif-dropdown-footer">
+              <a href="{{ route('admin.chats.index') }}" class="notif-see-all">Lihat semua notifikasi &rarr;</a>
+            </div>
+          </div>
+        </div>
+        <div class="notif-backdrop" id="notifBackdrop"></div>
         <div class="topbar-avatar">{{ strtoupper(mb_substr(auth()->user()->name ?? 'A', 0, 1)) }}</div>
       </div>
     </header>

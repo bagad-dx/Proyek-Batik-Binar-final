@@ -174,7 +174,7 @@ class CatalogApiController extends Controller
         ]);
 
         kirim_notifikasi($request->user()->id, 'Pesanan #' . $order->id . ' dibuat',
-            $product->nama . ' x' . $data['jumlah'] . ' â€” silakan selesaikan pembayaran Midtrans.',
+            $product->nama . ' x' . $data['jumlah'] . ' — silakan selesaikan pembayaran Midtrans.',
             'pesanan', 'pesanan', $order->id);
 
         $extra = [];
