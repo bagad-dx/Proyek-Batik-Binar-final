@@ -24,6 +24,7 @@ class Product extends Model
     {
         if (! $this->gambar) return null;
         if (str_starts_with($this->gambar, 'http')) return $this->gambar;
+        if (str_starts_with($this->gambar, 'assets/storage/')) return asset($this->gambar);
         return asset('storage/' . $this->gambar);
     }
 }

@@ -74,6 +74,7 @@
     if (!gambar) return fallback;
     if (/^https?:\/\//.test(gambar)) return gambar;
     if (gambar.charAt(0) === '/') return API_BASE + gambar;
+    if (gambar.indexOf('assets/storage/') === 0) return API_BASE + '/' + gambar;
     return API_BASE + '/storage/' + gambar;
   }
   const FALLBACK_IMG = 'assets/img/pin-7b7da76e.jpg';

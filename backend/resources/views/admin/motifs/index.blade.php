@@ -10,13 +10,26 @@
 </div>
 <div class="backend-card" style="overflow-x:auto">
   <table class="backend-table">
-    <thead><tr><th>Nama</th><th>Asal</th><th>Teknik</th><th>Aksi</th></tr></thead>
+    <thead><tr><th>Nama</th>
+    <th>Image</th>
+    <th>Asal</th>
+    {{-- <th>Teknik</th> --}}
+    <th>Aksi</th></tr></thead>
     <tbody>
     @foreach($motifs as $m)
       <tr>
-        <td><strong>{{ $m->nama }}</strong><div class="service-meta-text">{{ $m->lama_pengerjaan }}</div></td>
+        <td>
+          <strong>{{ $m->nama }}</strong>
+          {{-- <div class="service-meta-text">{{ $m->lama_pengerjaan }}</div> --}}
+        </td>
+        <td>{{ $m->gambar }}</td>
+        {{-- <td><img src="{{ $m->gambar }}" alt=""></td> --}}
+        <td><img src="public/assets/images/asset1.webp" alt=""></td>
+        <td>
+          {{-- <img src="{{ asset($m->gambar) }}" alt="" style="width: 64px;"> --}}
+        </td>
         <td>{{ $m->asal }}</td>
-        <td>{{ $m->teknik }}</td>
+        {{-- <td>{{ $m->teknik }}</td> --}}
         <td style="text-align:center;white-space:nowrap">
           <a href="{{ route('admin.motifs.edit',$m) }}" class="btn-pill btn-pill-blue" style="padding:6px 14px;font-size:.8rem"><span>Edit</span></a>
           <form method="POST" action="{{ route('admin.motifs.destroy',$m) }}" style="display:inline" onsubmit="return confirm('Hapus?')">@csrf @method('DELETE')<button type="submit" class="btn-pill btn-pill-royal" style="padding:6px 14px;font-size:.8rem"><span>Hapus</span></button></form>

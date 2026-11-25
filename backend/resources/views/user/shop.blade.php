@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Belanja Batik Binar')
 @section('content')
-@php $img = fn($path, $fb) => $path ? (str_starts_with($path,'http') ? $path : asset('storage/'.$path)) : $fb; @endphp
 <div class="services-header reveal">
   <span class="section-eyebrow-pill">JUAL BELI • TOKO WASATRA</span>
   <h2 class="section-main-heading">Belanja Batik Otentik</h2>
@@ -18,7 +17,7 @@
   @forelse($products as $p)
   <div class="service-card">
     <div class="service-img-box">
-      <a href="{{ route('shop.show', $p) }}"><img src="{{ $img($p->gambar, 'https://i.pinimg.com/1200x/7b/7d/a7/7b7da76e1d305f43cf9ddda3e83f8bc3.jpg') }}" alt="{{ $p->nama }}"></a>
+      <a href="{{ route('shop.show', $p) }}"><img src="{{ $p->gambar_url ?? 'https://i.pinimg.com/1200x/7b/7d/a7/7b7da76e1d305f43cf9ddda3e83f8bc3.jpg' }}" alt="{{ $p->nama }}"></a>
       <div class="service-icon-badge" style="font-size:.7rem;font-weight:800;">{{ $p->category->nama ?? 'Batik' }}</div>
     </div>
     <div class="service-body">

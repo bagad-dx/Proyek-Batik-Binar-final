@@ -14,8 +14,8 @@ use App\Models\Motif;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
-// Homepage NATIVE (file statis, sama persis folder FrontEnd/PROYEK)
-Route::get('/', fn () => response()->file(public_path('index.html')))->name('home');
+// Halaman beranda dirender lewat PHP; index.html tetap menjadi alias lama.
+Route::get('/', fn () => redirect('/home.php'))->name('home');
 
 // Koleksi motif lengkap (publik)
 Route::get('/koleksi', function (\Illuminate\Http\Request $request) {

@@ -29,7 +29,7 @@ Folder ini adalah salinan mandiri halaman native (`*.html`, `css/`, `assets/`,
 
 ## Catatan
 
-- Gambar produk: `BINAR_API_BASE + /storage/...` otomatis.
+- Gambar lama: `BINAR_API_BASE + /storage/...`; gambar produk baru: `BINAR_API_BASE + /assets/storage/...`.
 - Login web-session (Sanctum cookie) hanya aktif di mode gabung;
   mode pisah memakai token API (login.html sudah begitu).
 - Jangan edit referensi `FrontEnd/PROYEK` — itu arsip murni.

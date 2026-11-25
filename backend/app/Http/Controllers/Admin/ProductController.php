@@ -46,12 +46,15 @@ class ProductController extends Controller
             'shopee_url' => 'nullable|url|max:500',
             'status' => 'required|in:aktif,nonaktif,draft',
             'gambar' => 'nullable|image|max:2048',
+        ], [
+            'gambar.image' => 'File gambar harus berupa gambar yang valid.',
+            'gambar.max' => 'Ukuran gambar maksimal 2 MB.',
         ]);
 
         $data['slug'] = Str::slug($data['nama']) . '-' . Str::random(5);
         $data['user_id'] = Auth::id();
         if ($request->hasFile('gambar')) {
-            $data['gambar'] = $request->file('gambar')->store('products', 'public');
+            $data['gambar'] = $this->storeProductImage($request);
         }
 
         Product::create($data);
@@ -81,25 +84,54 @@ class ProductController extends Controller
             'shopee_url' => 'nullable|url|max:500',
             'status' => 'required|in:aktif,nonaktif,draft',
             'gambar' => 'nullable|image|max:2048',
+        ], [
+            'gambar.image' => 'File gambar harus berupa gambar yang valid.',
+            'gambar.max' => 'Ukuran gambar maksimal 2 MB.',
         ]);
 
+        $previousImage = $product->gambar;
         if ($request->hasFile('gambar')) {
-            if ($product->gambar && ! str_starts_with($product->gambar, 'http')) {
-                Storage::disk('public')->delete($product->gambar);
-            }
-            $data['gambar'] = $request->file('gambar')->store('products', 'public');
+            $data['gambar'] = $this->storeProductImage($request);
         }
 
         $product->update($data);
+
+        if ($request->hasFile('gambar')) {
+            $this->deleteProductImage($previousImage);
+        }
+
         return redirect()->route('admin.products.index')->with('success', 'Produk berhasil diupdate.');
     }
 
     public function destroy(Product $product)
     {
-        if ($product->gambar && ! str_starts_with($product->gambar, 'http')) {
-            Storage::disk('public')->delete($product->gambar);
-        }
+        $this->deleteProductImage($product->gambar);
         $product->delete();
         return redirect()->route('admin.products.index')->with('success', 'Produk dihapus.');
+    }
+
+    private function storeProductImage(Request $request): string
+    {
+        $path = $request->file('gambar')->store('products', 'product_images');
+
+        if (! is_string($path) || $path === '') {
+            throw new \RuntimeException('Gagal menyimpan gambar produk.');
+        }
+
+        return 'assets/storage/' . $path;
+    }
+
+    private function deleteProductImage(?string $path): void
+    {
+        if (! $path || str_starts_with($path, 'http')) {
+            return;
+        }
+
+        if (str_starts_with($path, 'assets/storage/')) {
+            Storage::disk('product_images')->delete(substr($path, strlen('assets/storage/')));
+            return;
+        }
+
+        Storage::disk('public')->delete($path);
     }
 }

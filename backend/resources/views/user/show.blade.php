@@ -1,13 +1,12 @@
 @extends('layouts.app')
 @section('title', $product->nama . ' | BATIK BINAR')
 @section('content')
-@php $img = fn($path, $fb) => $path ? (str_starts_with($path,'http') ? $path : asset('storage/'.$path)) : $fb; @endphp
 <div class="about-section" style="padding-top:10px;">
   <div class="about-grid">
     <div class="about-collage-wrapper reveal active">
       <div class="about-brush-splash"></div>
       <div class="service-card" style="overflow:hidden;">
-        <div class="service-img-box" style="height:380px;"><img src="{{ $img($product->gambar, 'https://i.pinimg.com/1200x/7b/7d/a7/7b7da76e1d305f43cf9ddda3e83f8bc3.jpg') }}" alt="{{ $product->nama }}" style="height:100%;object-fit:cover;"></div>
+        <div class="service-img-box" style="height:380px;"><img src="{{ $product->gambar_url ?? 'https://i.pinimg.com/1200x/7b/7d/a7/7b7da76e1d305f43cf9ddda3e83f8bc3.jpg' }}" alt="{{ $product->nama }}" style="height:100%;object-fit:cover;"></div>
       </div>
     </div>
     <div class="about-content">
@@ -40,7 +39,7 @@
 <div class="services-header" style="margin-top:20px;"><span class="section-eyebrow-pill">TERKAIT</span><h2 class="section-main-heading" style="font-size:1.4rem;">Produk Sejenis</h2></div>
 <div class="services-grid-6" style="grid-template-columns:repeat(3,1fr);">
   @foreach($related as $r)
-  <div class="service-card"><div class="service-img-box"><a href="{{ route('shop.show', $r) }}"><img src="{{ $img($r->gambar, 'https://i.pinimg.com/1200x/7b/7d/a7/7b7da76e1d305f43cf9ddda3e83f8bc3.jpg') }}" alt="{{ $r->nama }}"></a></div>
+  <div class="service-card"><div class="service-img-box"><a href="{{ route('shop.show', $r) }}"><img src="{{ $r->gambar_url ?? 'https://i.pinimg.com/1200x/7b/7d/a7/7b7da76e1d305f43cf9ddda3e83f8bc3.jpg' }}" alt="{{ $r->nama }}"></a></div>
     <div class="service-body"><h3 class="service-title">{{ $r->nama }}</h3><div class="service-footer"><span class="service-meta-text">Rp {{ number_format($r->harga,0,',','.') }}</span><a class="btn-circle-arrow" href="{{ route('shop.show', $r) }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></div></div>
   </div>
   @endforeach

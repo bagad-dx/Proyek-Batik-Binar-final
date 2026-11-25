@@ -246,7 +246,7 @@ class ChatbotController extends Controller
             'nama' => $p->nama,
             'harga' => 'Rp ' . number_format($p->harga, 0, ',', '.'),
             'stok' => $p->stok,
-            'gambar' => $p->gambar ? (str_starts_with($p->gambar, 'http') ? $p->gambar : asset('storage/' . $p->gambar)) : null,
+            'gambar' => $p->gambar_url,
             'url' => route('shop.show', $p),
         ])->values()->all();
     }
