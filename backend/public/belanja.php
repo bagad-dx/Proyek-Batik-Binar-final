@@ -154,7 +154,7 @@ $jenisProduk = batikFetchAll(
             ?>
             <article class="shop-product-card" data-id="<?= $productId ?>">
               <a class="shop-product-img" href="produk.php?id=<?= $productId ?>">
-                <img src="<?= batikEscape($image) ?>" alt="<?= batikEscape($productName) ?>" loading="lazy">
+                <img src="<?= batikEscape($image) ?>" alt="<?= batikEscape($productName) ?>" loading="lazy" style="height:32vh;">
                 <span class="shop-product-badge"><?= batikEscape($category) ?></span>
               </a>
               <div class="shop-product-body">

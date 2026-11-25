@@ -155,75 +155,75 @@
     });
   }
 
-  function initNativeShop() {
-    const grid = document.getElementById('shopGrid');
-    if (!grid) return;
-    // ganti data statis dengan data live dari framework (markup kartu tetap sama)
-    window.openShopDetail = openShopDetailApi;
-    const count = document.getElementById('shopSearchCount');
-    const empty = document.getElementById('shopEmpty');
-    // ambil SEMUA halaman API agar 50 produk tampil seperti aslinya
-    (async () => {
-      let page = 1, pages = 1;
-      API_PRODUCTS = [];
-      try {
-        do {
-          const res = await api('/products?page=' + page);
-          API_PRODUCTS = API_PRODUCTS.concat(res.data || []);
-          pages = res.last_page || 1;
-          page++;
-        } while (page <= pages);
-      } catch (e) { /* biarkan render statis script.js bila API mati */ }
-      if (!API_PRODUCTS.length) return;
-      // Pil filter gabungan Raka (tb_jenis_produk via /api/jenis, label_display);
-      // pil statis dipertahankan sebagai fallback. Dukung ?jenis=<id|key> & ?q=
-      // ala belanja.php Raka; pencarian mencakup deskripsi/ukuran/teknik.
-      const CATKEY = { 'Kain Panjang': 'kain', Selendang: 'selendang', 'Busana Pria': 'pria', 'Busana Wanita': 'wanita', Aksesoris: 'aksesoris' };
-      const catKey = (p) => CATKEY[(p.category && p.category.nama) || (p.jenis && p.jenis.label_display) || ''] || 'semua';
-      const jenisIdOf = (p) => String(p.jenis_id || (p.jenis && p.jenis.id) || '');
-      const pills = document.getElementById('shopFilterPills');
-      const input = document.getElementById('shopSearchInput');
-      const qs0 = new URLSearchParams(window.location.search);
-      let f = qs0.get('jenis') || 'semua', q = (qs0.get('q') || '').toLowerCase();
-      if (input && qs0.get('q')) input.value = qs0.get('q');
-      try {
-        const jenis = await api('/jenis');
-        if (Array.isArray(jenis) && jenis.length && pills && !pills.dataset.live) {
-          pills.dataset.live = '1';
-          pills.innerHTML = '<button class="shop-filter-btn' + (f === 'semua' ? ' active' : '') + '" data-filter="semua">Semua Produk</button>' +
-            jenis.map((j) => '<button class="shop-filter-btn' + (String(j.id) === String(f) ? ' active' : '') + '" data-filter="' + j.id + '">' + esc(j.label_display || j.nama) + '</button>').join('');
-        }
-      } catch (e) { /* pil statis tetap dipakai bila API mati */ }
-      const render = () => {
-        const list = API_PRODUCTS.filter((p) => {
-          const okF = f === 'semua' || (/^\d+$/.test(String(f)) ? jenisIdOf(p) === String(f) : catKey(p) === f);
-          const hay = ((p.nama || '') + ' ' + (p.motif || '') + ' ' + (p.bahan || '') + ' ' + (p.deskripsi || '') + ' ' + (p.ukuran || '') + ' ' + (p.teknik || '')).toLowerCase();
-          return okF && (!q || hay.includes(q));
-        });
-        if (count) count.textContent = list.length + ' produk';
-        if (!list.length) { grid.style.display = 'none'; if (empty) empty.style.display = 'block'; grid.innerHTML = ''; return; }
-        grid.style.display = 'grid';
-        if (empty) empty.style.display = 'none';
-        grid.innerHTML = list.map(productCard).join('');
-        paintHearts(grid);
-        $$('.shop-product-card', grid).forEach((card) => {
-          card.addEventListener('click', (e) => {
-            const add = e.target.closest('[data-add]');
-            if (add) { e.stopPropagation(); addToCart(add.getAttribute('data-add'), 1); return; }
-            if (e.target.closest('.nb-heart')) return;
-            window.location.href = 'produk.html?id=' + card.getAttribute('data-id');
-          });
-        });
-      };
-      if (input) input.addEventListener('input', () => { q = input.value.trim().toLowerCase(); render(); });
-      if (pills) pills.addEventListener('click', (e) => {
-        const btn = e.target.closest('.shop-filter-btn');
-        if (!btn) return;
-        $$('.shop-filter-btn', pills).forEach((b) => b.classList.remove('active'));
-        btn.classList.add('active');
-        f = btn.getAttribute('data-filter');
-        render();
-      });
-      render();
-    })();
-  }
+  // function initNativeShop() {
+  //   const grid = document.getElementById('shopGrid');
+  //   if (!grid) return;
+  //   // ganti data statis dengan data live dari framework (markup kartu tetap sama)
+  //   window.openShopDetail = openShopDetailApi;
+  //   const count = document.getElementById('shopSearchCount');
+  //   const empty = document.getElementById('shopEmpty');
+  //   // ambil SEMUA halaman API agar 50 produk tampil seperti aslinya
+  //   (async () => {
+  //     let page = 1, pages = 1;
+  //     API_PRODUCTS = [];
+  //     try {
+  //       do {
+  //         const res = await api('/products?page=' + page);
+  //         API_PRODUCTS = API_PRODUCTS.concat(res.data || []);
+  //         pages = res.last_page || 1;
+  //         page++;
+  //       } while (page <= pages);
+  //     } catch (e) { /* biarkan render statis script.js bila API mati */ }
+  //     if (!API_PRODUCTS.length) return;
+  //     // Pil filter gabungan Raka (tb_jenis_produk via /api/jenis, label_display);
+  //     // pil statis dipertahankan sebagai fallback. Dukung ?jenis=<id|key> & ?q=
+  //     // ala belanja.php Raka; pencarian mencakup deskripsi/ukuran/teknik.
+  //     const CATKEY = { 'Kain Panjang': 'kain', Selendang: 'selendang', 'Busana Pria': 'pria', 'Busana Wanita': 'wanita', Aksesoris: 'aksesoris' };
+  //     const catKey = (p) => CATKEY[(p.category && p.category.nama) || (p.jenis && p.jenis.label_display) || ''] || 'semua';
+  //     const jenisIdOf = (p) => String(p.jenis_id || (p.jenis && p.jenis.id) || '');
+  //     const pills = document.getElementById('shopFilterPills');
+  //     const input = document.getElementById('shopSearchInput');
+  //     const qs0 = new URLSearchParams(window.location.search);
+  //     let f = qs0.get('jenis') || 'semua', q = (qs0.get('q') || '').toLowerCase();
+  //     if (input && qs0.get('q')) input.value = qs0.get('q');
+  //     try {
+  //       const jenis = await api('/jenis');
+  //       if (Array.isArray(jenis) && jenis.length && pills && !pills.dataset.live) {
+  //         pills.dataset.live = '1';
+  //         pills.innerHTML = '<button class="shop-filter-btn' + (f === 'semua' ? ' active' : '') + '" data-filter="semua">Semua Produk</button>' +
+  //           jenis.map((j) => '<button class="shop-filter-btn' + (String(j.id) === String(f) ? ' active' : '') + '" data-filter="' + j.id + '">' + esc(j.label_display || j.nama) + '</button>').join('');
+  //       }
+  //     } catch (e) { /* pil statis tetap dipakai bila API mati */ }
+  //     const render = () => {
+  //       const list = API_PRODUCTS.filter((p) => {
+  //         const okF = f === 'semua' || (/^\d+$/.test(String(f)) ? jenisIdOf(p) === String(f) : catKey(p) === f);
+  //         const hay = ((p.nama || '') + ' ' + (p.motif || '') + ' ' + (p.bahan || '') + ' ' + (p.deskripsi || '') + ' ' + (p.ukuran || '') + ' ' + (p.teknik || '')).toLowerCase();
+  //         return okF && (!q || hay.includes(q));
+  //       });
+  //       if (count) count.textContent = list.length + ' produk';
+  //       if (!list.length) { grid.style.display = 'none'; if (empty) empty.style.display = 'block'; grid.innerHTML = ''; return; }
+  //       grid.style.display = 'grid';
+  //       if (empty) empty.style.display = 'none';
+  //       grid.innerHTML = list.map(productCard).join('');
+  //       paintHearts(grid);
+  //       $$('.shop-product-card', grid).forEach((card) => {
+  //         card.addEventListener('click', (e) => {
+  //           const add = e.target.closest('[data-add]');
+  //           if (add) { e.stopPropagation(); addToCart(add.getAttribute('data-add'), 1); return; }
+  //           if (e.target.closest('.nb-heart')) return;
+  //           window.location.href = 'produk.html?id=' + card.getAttribute('data-id');
+  //         });
+  //       });
+  //     };
+  //     if (input) input.addEventListener('input', () => { q = input.value.trim().toLowerCase(); render(); });
+  //     if (pills) pills.addEventListener('click', (e) => {
+  //       const btn = e.target.closest('.shop-filter-btn');
+  //       if (!btn) return;
+  //       $$('.shop-filter-btn', pills).forEach((b) => b.classList.remove('active'));
+  //       btn.classList.add('active');
+  //       f = btn.getAttribute('data-filter');
+  //       render();
+  //     });
+  //     render();
+  //   })();
+  // }
