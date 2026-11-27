@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\JenisProduk;
 use App\Models\Product;
+use App\Models\Motif;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -65,7 +66,8 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $jenis = JenisProduk::all();
-        return view('admin.products.form', compact('product', 'categories', 'jenis'));
+        $motifs = Motif::orderBy('nama')->get();
+        return view('admin.products.form', compact('product', 'categories', 'jenis', 'motifs'));
     }
 
     public function update(Request $request, Product $product)
