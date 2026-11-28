@@ -52,7 +52,7 @@
         </ul>
       </nav>
       <div class="nav-actions">
-        <a href="dashboard.html" class="nav-icon-btn" aria-label="Dashboard" style="background-color: var(--color-accent); color: white;">
+        <!-- <a href="dashboard.html" class="nav-icon-btn" aria-label="Dashboard" style="background-color: var(--color-accent); color: white;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
             <circle cx="12" cy="7" r="4"></circle>
@@ -66,7 +66,7 @@
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
           </div>
-        </a>
+        </a> -->
       </div>
       <button class="menu-toggle-btn" id="menuToggleBtn" aria-label="Buka menu navigasi" type="button">
         <span></span><span></span><span></span>

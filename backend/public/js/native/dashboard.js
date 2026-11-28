@@ -67,8 +67,6 @@
       const logoutBtn = document.querySelector('.nav-actions a.btn-pill[href="login.html"]');
       if (logoutBtn) logoutBtn.addEventListener('click', (e) => { e.preventDefault(); doLogout(); });
     } catch (e) {
-      // Hanya sesi kedaluwarsa yang melempar ke login; error lain (mis.
-      // jaringan) tidak boleh menghapus token + menendang user.
       if (String(e.message).includes('401') || String(e.message).includes('Unauthenticated')) {
         store.clear();
         window.location.href = 'login.html';
