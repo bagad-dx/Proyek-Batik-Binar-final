@@ -41,11 +41,6 @@
     } catch (err) { body.innerHTML = '<p class="service-desc">' + esc(err.message) + '</p>'; }
   }
   function initWishlistUI() {
-    // angka wishlist live di dashboard
-    const nums = $$('.dash-stat-number');
-    if (nums[1] && document.querySelector('.dash-orders-list') && store.token) {
-      api('/wishlist').then((items) => { nums[1].textContent = items.length; }).catch(() => {});
-    }
     // tombol Wishlist (menu cepat) -> modal
     $$('.dash-action-btn').forEach((a) => {
       const label = (a.querySelector('span') || {}).textContent || '';

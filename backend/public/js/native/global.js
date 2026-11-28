@@ -190,7 +190,6 @@
     initNativeLogin();
     initNativeRegister();
     initGoogleButtons();
-    initNativeShop();
     initNativeGaleri();
     initNativeDashboard();
     initCartDrawer();

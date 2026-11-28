@@ -4,6 +4,7 @@
 
   const scriptUrl = document.currentScript && document.currentScript.src;
   if (!scriptUrl) throw new Error('Batik Binar native runtime must be loaded from a script element.');
+  const version = new URL(scriptUrl).searchParams.get('v');
 
   const files = [
     'global.js', 'auth.js', 'payment-methods.js', 'shop.js', 'dashboard.js',
@@ -12,7 +13,8 @@
   ];
 
   files.forEach((file) => {
-    const src = new URL('js/native/' + file, scriptUrl).href;
-    document.write('<script src="' + src + '"><\/script>');
+    const src = new URL('js/native/' + file, scriptUrl);
+    if (version) src.searchParams.set('v', version);
+    document.write('<script src="' + src.href + '"><\/script>');
   });
 })();

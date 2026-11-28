@@ -169,6 +169,7 @@ class OtpService
 
         try {
             $response = Http::timeout(20)
+                ->withoutVerifying()
                 ->retry(2, 400, function ($exception, $response) {
                     return $exception instanceof \Illuminate\Http\Client\ConnectionException
                         || ($response && $response->serverError());
@@ -180,6 +181,18 @@ class OtpService
                     'message' => $message,
                     'countryCode' => '62',
                 ]);
+            // $response = Http::timeout(20)
+            //     ->retry(2, 400, function ($exception, $response) {
+            //         return $exception instanceof \Illuminate\Http\Client\ConnectionException
+            //             || ($response && $response->serverError());
+            //     }, throw: false)
+            //     ->withHeaders(['Authorization' => $token])
+            //     ->asForm()
+            //     ->post('https://api.fonnte.com/send', [
+            //         'target' => $target,
+            //         'message' => $message,
+            //         'countryCode' => '62',
+            //     ]);
 
             $json = $response->json();
             $status = is_array($json) ? ($json['status'] ?? null) : null;

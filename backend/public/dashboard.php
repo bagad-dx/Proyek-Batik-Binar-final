@@ -89,7 +89,7 @@
             </svg>
           </div>
           <div class="dash-hero-text">
-            <h1 class="dash-hero-title">Selamat Datang, Pengguna!</h1>
+            <h1 class="dash-hero-title">Memuat data akun...</h1>
             <p class="dash-hero-desc">Kelola akun, pesanan, dan preferensi batik Anda di satu tempat.</p>
           </div>
         </div>
@@ -114,7 +114,7 @@
                   </svg>
                 </div>
                 <div class="dash-stat-info">
-                  <span class="dash-stat-number">3</span>
+                  <span class="dash-stat-number">—</span>
                   <span class="dash-stat-label">Pesanan Aktif</span>
                 </div>
               </div>
@@ -125,7 +125,7 @@
                   </svg>
                 </div>
                 <div class="dash-stat-info">
-                  <span class="dash-stat-number">12</span>
+                  <span class="dash-stat-number">—</span>
                   <span class="dash-stat-label">Wishlist</span>
                 </div>
               </div>
@@ -136,7 +136,7 @@
                   </svg>
                 </div>
                 <div class="dash-stat-info">
-                  <span class="dash-stat-number">8</span>
+                  <span class="dash-stat-number">—</span>
                   <span class="dash-stat-label">Riwayat Pesanan</span>
                 </div>
               </div>
@@ -149,39 +149,7 @@
                 <a href="#" class="dash-see-all">Lihat Semua →</a>
               </div>
               <div class="dash-orders-list">
-                <div class="dash-order-item">
-                  <div class="dash-order-img">
-                    <img loading="lazy" decoding="async" src="assets/img/pin-1dc76be6.jpg" width="1000" height="750" alt="Kain Iwak Etong">
-                  </div>
-                  <div class="dash-order-info">
-                    <h3>Kain Iwak Etong Royal Blue</h3>
-                    <p>Tulis Complongan • Katun Primissima</p>
-                  </div>
-                  <div class="dash-order-price">Rp 1.850.000</div>
-                  <span class="dash-order-status status-process">Diproses</span>
-                </div>
-                <div class="dash-order-item">
-                  <div class="dash-order-img">
-                    <img loading="lazy" decoding="async" src="assets/img/pin-8f842281.jpg" width="800" height="800" alt="Kemeja Merak">
-                  </div>
-                  <div class="dash-order-info">
-                    <h3>Kemeja Lengan Pendek Merak</h3>
-                    <p>Cap • Katun Prima • Size L</p>
-                  </div>
-                  <div class="dash-order-price">Rp 980.000</div>
-                  <span class="dash-order-status status-shipped">Dikirim</span>
-                </div>
-                <div class="dash-order-item">
-                  <div class="dash-order-img">
-                    <img loading="lazy" decoding="async" src="assets/img/pin-8f842281.jpg" width="800" height="800" alt="Clutch Merak">
-                  </div>
-                  <div class="dash-order-info">
-                    <h3>Clutch Batik Merak Ngibing</h3>
-                    <p>Tulis • Batik + Kulit Sintetis</p>
-                  </div>
-                  <div class="dash-order-price">Rp 380.000</div>
-                  <span class="dash-order-status status-done">Selesai</span>
-                </div>
+                <p class="service-desc">Memuat pesanan...</p>
               </div>
             </div>
           </div>
@@ -198,22 +166,22 @@
                   </svg>
                 </div>
                 <div>
-                  <h3 class="dash-profile-name">Pengguna Batik Binar</h3>
-                  <p class="dash-profile-email">pengguna@batikbinar.id</p>
+                  <h3 class="dash-profile-name">Memuat...</h3>
+                  <p class="dash-profile-email"></p>
                 </div>
               </div>
               <div class="dash-profile-details">
                 <div class="dash-profile-row">
                   <span class="dash-profile-label">Telepon</span>
-                  <span class="dash-profile-value">+62 821-xxxx-xxxx</span>
+                  <span class="dash-profile-value">-</span>
                 </div>
                 <div class="dash-profile-row">
                   <span class="dash-profile-label">Bergabung</span>
-                  <span class="dash-profile-value">Oktober 2026</span>
+                  <span class="dash-profile-value">-</span>
                 </div>
                 <div class="dash-profile-row">
                   <span class="dash-profile-label">Status</span>
-                  <span class="dash-profile-value dash-member-badge">Member Aktif</span>
+                  <span class="dash-profile-value dash-member-badge">-</span>
                 </div>
               </div>
               <a href="#" class="btn-pill btn-pill-royal" style="width: 100%; justify-content: center; margin-top: 16px; font-size: 0.88rem;">
@@ -391,6 +359,6 @@
   </footer>
 
   <script src="script.js"></script>
-  <script src="native-api.js?v=15"></script>
+  <script src="native-api.js?v=16"></script>
 </body>
 </html>

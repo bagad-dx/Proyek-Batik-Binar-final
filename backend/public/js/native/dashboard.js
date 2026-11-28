@@ -8,11 +8,11 @@
     const initial = (((me && (me.name || me.username)) || '?') + '').trim().charAt(0).toUpperCase();
     const html = src
       ? '<img src="' + esc(src) + '" alt="Foto profil" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">'
-      : null;
+      : '<span style="display:flex;width:100%;height:100%;align-items:center;justify-content:center;font-size:1.5rem;font-weight:700;">' + esc(initial) + '</span>';
     const heroAv = document.querySelector('.dash-avatar');
-    if (heroAv && html) heroAv.innerHTML = html;
+    if (heroAv) heroAv.innerHTML = html;
     const cardAv = document.querySelector('.dash-profile-avatar');
-    if (cardAv && html) cardAv.innerHTML = html;
+    if (cardAv) cardAv.innerHTML = html;
   }
 
   async function initNativeDashboard() {
@@ -29,10 +29,11 @@
         setTimeout(() => { window.location.href = afterLoginRedirect(me); }, 700);
         return;
       }
-      hero.textContent = 'Selamat Datang, ' + (me.name || me.username) + '!';
+      const displayName = String(me.name || me.username || 'Pengguna').trim();
+      hero.textContent = 'Selamat Datang, ' + displayName + '!';
       paintDashAvatars(me);
       const setText = (sel, txt) => { const el = $(sel); if (el) el.textContent = txt; };
-      setText('.dash-profile-name', me.name || me.username);
+      setText('.dash-profile-name', displayName);
       setText('.dash-profile-email', me.email || '');
       const rows = $$('.dash-profile-row');
       rows.forEach((row) => {
@@ -40,15 +41,19 @@
         const val = row.querySelector('.dash-profile-value');
         if (!val) return;
         if (/telepon/i.test(label)) val.textContent = me.phone || '-';
-        if (/bergabung/i.test(label) && me.created_at) {
+        if (/bergabung/i.test(label)) {
           const t = new Date(me.created_at);
-          val.textContent = t.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) +
-            ', ' + t.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }).replace(':', '.');
+          val.textContent = me.created_at && !Number.isNaN(t.getTime())
+            ? t.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) +
+              ', ' + t.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }).replace(':', '.')
+            : '-';
         }
+        if (/status/i.test(label)) val.textContent = me.banned_at ? 'Banned' : (me.is_active ? 'Aktif' : 'Nonaktif');
       });
       const orders = s.pesanan_terbaru || [];
       const nums = $$('.dash-stat-number');
       if (nums[0]) nums[0].textContent = s.pesanan_aktif || 0;
+      if (nums[1]) nums[1].textContent = s.wishlist || 0;
       if (nums[2]) nums[2].textContent = s.riwayat_pesanan || 0;
       const list = document.querySelector('.dash-orders-list');
       if (list) {
@@ -69,6 +74,8 @@
         window.location.href = 'login.html';
         return;
       }
+      const list = document.querySelector('.dash-orders-list');
+      if (list) list.innerHTML = '<p class="service-desc">Data akun tidak dapat dimuat.</p>';
       toast(e.message, 'error');
     }
   }

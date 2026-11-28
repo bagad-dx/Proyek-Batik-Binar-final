@@ -153,6 +153,6 @@ $relatedProducts = $product
   </footer>
 
   <script src="script.js"></script>
-  <script src="native-api.js?v=15"></script>
+  <script src="native-api.js?v=16"></script>
 </body>
 </html>
